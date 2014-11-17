@@ -1,0 +1,127 @@
+package ReferenceProject.controllers
+
+main {
+	appVersion "2.0"
+	modelVersion "2.0" // ?????
+
+}
+
+remoteConnection CitizenAppRemoteConnection {
+	uri "http://...."
+	user "citizenapp"
+	password "Qwertz123"
+	key "1234"
+}
+
+
+remoteConnection AdministrativeAppRemoteConnection{
+	uri "http://...."
+	user "adminapp"
+	password "Qwertz123"
+	key "5678"
+}
+
+contentProvider Complaint[] ComplaintProvider {
+	providerType CitizenAppRemoteConnection
+}
+
+
+WorkflowElement Locationdetection {
+	onInit {
+		
+		map LocationDetectionView.StreetView.streetLbl to ComplaintProvider.location.street
+		map LocationDetectionView.StreetView.streetNoLbl to ComplaintProvider.location.number
+		map LocationDetectionView.CityView.zipLbl to ComplaintProvider.location.postalCode
+		map LocationDetectionView.CityView.cityLbl to ComplaintProvider.location.city
+		map LocationDetectionView.countryLbl to ComplaintProvider.location.country
+		map LocationDetectionView.latitudeLbl to ComplaintProvider.location.latitude
+		map LocationDetectionView.longitudeLbl to ComplaintProvider.location.longitude
+	
+		map LocationVerifyView.StreetView.streetLbl to ComplaintProvider.location.street
+		map LocationVerifyView.StreetView.streetNoLbl to ComplaintProvider.location.number
+		map LocationVerifyView.CityView.zipLbl to ComplaintProvider.location.postalCode
+		map LocationVerifyView.CityView.cityLbl to ComplaintProvider.location.city
+		map LocationVerifyView.countryLbl to ComplaintProvider.location.country
+		map LocationVerifyView.latitudeValueLbl to ComplaintProvider.location.latitude
+		map LocationVerifyView.longitudeValueLbl to ComplaintProvider.location.longitude
+		map LocationVerifyView.locationMap.latitudeLbl to ComplaintProvider.location.latitude
+		map LocationVerifyView.locationMap.longitudeLbl to ComplaintProvider.location.longitude
+		
+		call NewObjectAction(ComplaintProvider)
+		
+		display LocationDetectionView
+	}
+	LocationDetectionView.DetectLocationBtn {
+		detectLocation returns ComplaintProvider.location
+	}
+	LocationDetectionView.NavigationBar.next{
+		display LocationVerifyView
+	}
+	LocationVerifyView.NavigationBar.previous {
+		display LocationView
+	}
+	LocationVerifyView.NavigationBar.next {
+		throw LocationEvent
+	}
+}
+
+
+WorkflowElement Mediacapturing {
+	onInit {
+		map MediaCapturingView.UploadImg to ComplaintProvider.picture
+		display MediaCapturingView
+	}
+	MediaCapturingView.UploadBtn {
+		uploadFile returns ComplaintProvider.picture
+	}
+	MediaCapturingView.NavigationBar.next {
+		throw MediacapturedEvent
+	}
+}
+
+WorkflowElement SubmitComplaint {
+	onInit {
+		map SubmitComplaintView.streetLbl to ComplaintProvider.location.street
+		map SubmitComplaintView.streetNoLbl to ComplaintProvider.location.number
+		map SubmitComplaintView.zipLbl to ComplaintProvider.location.postalCode
+		map SubmitComplaintView.cityLbl to ComplaintProvider.location.city
+		map SubmitComplaintView.countryLbl to ComplaintProvider.location.country
+		map SubmitComplaintView.latitudeLbl to ComplaintProvider.location.latitude
+		map SubmitComplaintView.longitudeLbl to ComplaintProvider.location.longitude
+		map MediacapturingView.UploadImg to ComplaintProvider.picture
+		map MediacapturingView.DescriptionTxt to ComplaintProvider.descriptions
+	
+		display SubmitComplaintView
+	}
+	SubmitMediaView.NavigationBar.next {
+		throw SubmissionEvent 	
+		call DataAction(save ComplaintProvider)
+		backToStartScreen
+
+	}
+}
+
+
+WorkflowElement ProcessMessage {
+	onInit {
+		map ProcessMessageView.ProceesStreetView.streetLbl to ComplaintProvider.location.street
+		map ProcessMessageView.ProcessStreetView.streetNoLbl to ComplaintProvider.location.number
+		map ProcessMessageView.ProcessCityView.zipLbl to ComplaintProvider.location.postalCode
+		map ProcessMessageView.ProcessCityView.cityLbl to ComplaintProvider.location.city
+		map ProcessMessageView.countryLbl to ComplaintProvider.location.country
+		map ProcessMessageView.ProcessLaloView.latitudeLbl to ComplaintProvider.location.latitude
+		map ProcessMessageView.ProcessLaloView.longitudeLbl to ComplaintProvider.location.longitude
+		map ProcessMessageView.UploadImg to ComplaintProvider.picture
+		map ProcessMessageView.DescriptionTxt to ComplaintProvider.descriptions
+		map ProcessMessageView.FeedbackTxt to ComplaintProvider.feedback
+		map ProcessMessageView.complaintStatusDropdown to ComplaintProvider.status
+		display ProcessMessageView
+	}
+	ProcessMessageView.NavigationBar.next {
+			
+		call DataAction(save ComplaintProvider)
+		backToStartScreen
+		throw UpdateStatusEvent
+
+	}
+}

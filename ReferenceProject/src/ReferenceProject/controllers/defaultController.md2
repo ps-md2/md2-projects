@@ -1,0 +1,17 @@
+package ReferenceProject.controllers
+
+/*
+ * Implement the controller here
+ */
+
+main {
+	appName "ReferenceProject"
+	appVersion "1.0"
+	modelVersion "1.0"
+	startView firstView
+	onInitialized startAction
+}
+
+action CustomAction startAction {
+	
+}
