@@ -4,13 +4,22 @@ package ReferenceProject.models
  * Implement the model here
  */
 entity Complaint {
-	loc: location  // use current MD2 location instead!
+	loc: Location  // use current MD2 location instead!--> No, current MD2 location is a content provider, not en entity!
 	picture : file (optional) //not yet supported
 	descriptions : string
 	feedback : string
 	status : ComplaintStatus
 }
 
+entity Location {
+	myStreet: string
+	myStreetNo: string
+	myPostalCode: integer
+	myCity: string
+	myCountry: string
+	myLatitude: float
+	myLongitude: float
+}
 
 enum ComplaintStatus {
 	"User is filling out complaint",
