@@ -61,7 +61,7 @@ WorkflowElement Locationdetection {
 		display LocationView
 	}
 	LocationVerifyView.NavigationBar.next {
-		throw LocationEvent
+		fire LocationEvent
 	}
 }
 
@@ -75,7 +75,7 @@ WorkflowElement Mediacapturing {
 		uploadFile returns ComplaintProvider.picture
 	}
 	MediaCapturingView.NavigationBar.next {
-		throw MediacapturedEvent
+		fire MediacapturedEvent
 	}
 }
 
@@ -94,7 +94,7 @@ WorkflowElement SubmitComplaint {
 		display SubmitComplaintView
 	}
 	SubmitMediaView.NavigationBar.next {
-		throw SubmissionEvent 	
+		fire SubmissionEvent 	
 		call DataAction(save ComplaintProvider)
 		backToStartScreen
 
@@ -121,7 +121,7 @@ WorkflowElement ProcessMessage {
 			
 		call DataAction(save ComplaintProvider)
 		backToStartScreen
-		throw UpdateStatusEvent
+		fire UpdateStatusEvent
 
 	}
 }

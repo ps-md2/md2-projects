@@ -1,19 +1,19 @@
 package ReferenceProject.workflows
 
 WorkflowElement CitizenLocationdetection
-	throws LocationEvent{
+	fires LocationEvent{
 		start Mediacapturing}
 
 WorkflowElement Mediacapturing 
-	throws MediacapturedEvent{
+	fires MediacapturedEvent{
 		start SubmitComplaint}
 
 WorkflowElement SubmitComplaint 
-	throws SubmissionEvent {
+	fires SubmissionEvent {
 		start ProcessMessage}
 
 WorkflowElement ProcessMessage
-	throws UpdateStatusEvent {
+	fires UpdateStatusEvent {
 		start ProcessMessage}
 
 
