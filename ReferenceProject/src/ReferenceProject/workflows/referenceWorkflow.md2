@@ -1,32 +1,31 @@
 package ReferenceProject.workflows
 
-WorkflowElement CitizenLocationdetection
-	fires LocationEvent{
-		start Mediacapturing}
+WorkflowElement Locationdetection
+	fires LocationEvent {
+		start Mediacapturing }
 
-WorkflowElement Mediacapturing 
-	fires MediacapturedEvent{
-		start SubmitComplaint}
+WorkflowElement Mediacapturing
+	fires MediacapturedEvent {
+		start SubmitComplaint }
 
 WorkflowElement SubmitComplaint 
 	fires SubmissionEvent {
-		start ProcessMessage}
+		start ProcessMessage }
 
 WorkflowElement ProcessMessage
 	fires UpdateStatusEvent {
-		start ProcessMessage}
+		start ProcessMessage }
 
 
 App Citizenapp {
 	WorkflowElements {
-		Startable Locationdetection as CitizenLocationdetection ("Start Complaint"),
+		Locationdetection (startable: "Start Complaint") as CitizenLocationdetection,
 		Mediacapturing,
 		SubmitComplaint
 	}
 
 	appName "Complaining Citizen"
 	defaultConnection CitizenAppRemoteConnection
-
 }
 
 App AdministrationApp {
