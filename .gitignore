@@ -1,12 +1,15 @@
-*.class
+# standard files created by Windows and Mac
+Thumbs.db
+.DS_Store
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# bin directories of our projects
+ReferenceProject/bin/
 
-# Package Files #
-*.jar
-*.war
-*.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# gen directories of our projects
+ReferenceProject/src-gen/
+
+# User specific files and folders of Xcode
+project.xcworkspace/
+xcuserdata/
+
