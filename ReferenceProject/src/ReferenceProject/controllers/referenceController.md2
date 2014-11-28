@@ -113,15 +113,28 @@ WorkflowElement ProcessMessage {
 		map ProcessMessageView.ProcessLaloView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
 		map ProcessMessageView.UploadImg to ComplaintProvider.picture
 		map ProcessMessageView.DescriptionTxt to ComplaintProvider.descriptions
-		map ProcessMessageView.FeedbackTxt to ComplaintProvider.feedback
-		map ProcessMessageView.complaintStatusDropdown to ComplaintProvider.status
+		map FeedbackeView.FeedbackTxt to ComplaintProvider.feedback
+		map FeedbackView.complaintStatusDropdown to ComplaintProvider.status
 		display ProcessMessageView
 	}
+	
 	ProcessMessageView.NavigationBar.next {
-			
-		call DataAction(save ComplaintProvider)
-		backToStartScreen
-		fire UpdateStatusEvent
-
+		display FeedbackView	
 	}
+	
+	FeedbackView.NavigationBar.next {
+		call DataAction(save ComplaintProvider)
+		
+		if(FeedbackView.stayWithCurrCompl equals true) 
+		{
+			fire UpdateStatusEvent // goes back to ProcessMessageView of the current complaint
+		}
+		else
+		{
+			backToStartScreen
+		}
+	
+	}
+		
+	
 }

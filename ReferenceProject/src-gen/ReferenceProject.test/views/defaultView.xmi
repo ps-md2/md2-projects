@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mD2:MD2Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mD2="http://www.wwu.de/md2/framework/MD2">
+  <package pkgName="ReferenceProject.views"/>
+  <modelLayer xsi:type="mD2:View">
+    <viewElements xsi:type="mD2:GridLayoutPane" name="firstView">
+      <elements xsi:type="mD2:Spacer" width="100"/>
+      <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="1"/>
+      <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+      <params xsi:type="mD2:WidthParam" width="100"/>
+    </viewElements>
+  </modelLayer>
+</mD2:MD2Model>

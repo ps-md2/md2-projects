@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mD2:MD2Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mD2="http://www.wwu.de/md2/framework/MD2">
+  <package pkgName="ReferenceProject.workflows"/>
+  <modelLayer xsi:type="mD2:View">
+    <viewElements href="referenceWorkflow.md2#xtextLink_::0.1.0.0::1::/0"/>
+    <viewElements href="referenceWorkflow.md2#xtextLink_::0.1.0.1::1::/0"/>
+    <viewElements href="referenceWorkflow.md2#xtextLink_::0.1.0.2::1::/0"/>
+    <viewElements href="referenceWorkflow.md2#xtextLink_::0.1.0.3::1::/0"/>
+  </modelLayer>
+</mD2:MD2Model>

@@ -29,30 +29,30 @@ contentProvider Complaint[] ComplaintProvider {
 WorkflowElement Locationdetection {
 	onInit {
 		
-		map LocationDetectionView.StreetView.streetLbl to ComplaintProvider.location.street
-		map LocationDetectionView.StreetView.streetNoLbl to ComplaintProvider.location.number
-		map LocationDetectionView.CityView.zipLbl to ComplaintProvider.location.postalCode
-		map LocationDetectionView.CityView.cityLbl to ComplaintProvider.location.city
-		map LocationDetectionView.countryLbl to ComplaintProvider.location.country
-		map LocationDetectionView.latitudeLbl to ComplaintProvider.location.latitude
-		map LocationDetectionView.longitudeLbl to ComplaintProvider.location.longitude
+		map LocationDetectionView.myStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
+		map LocationDetectionView.myStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
+		map LocationDetectionView.myCityView.zipLbl to ComplaintProvider.Location.myPostalCode
+		map LocationDetectionView.myCityView.myCityLbl to ComplaintProvider.Location.myCity
+		map LocationDetectionView.myCountryLbl to ComplaintProvider.Location.myCountry
+		map LocationDetectionView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
+		map LocationDetectionView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
 	
-		map LocationVerifyView.StreetView.streetLbl to ComplaintProvider.location.street
-		map LocationVerifyView.StreetView.streetNoLbl to ComplaintProvider.location.number
-		map LocationVerifyView.CityView.zipLbl to ComplaintProvider.location.postalCode
-		map LocationVerifyView.CityView.cityLbl to ComplaintProvider.location.city
-		map LocationVerifyView.countryLbl to ComplaintProvider.location.country
-		map LocationVerifyView.latitudeValueLbl to ComplaintProvider.location.latitude
-		map LocationVerifyView.longitudeValueLbl to ComplaintProvider.location.longitude
-		map LocationVerifyView.locationMap.latitudeLbl to ComplaintProvider.location.latitude
-		map LocationVerifyView.locationMap.longitudeLbl to ComplaintProvider.location.longitude
+		map LocationVerifyView.myStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
+		map LocationVerifyView.myStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
+		map LocationVerifyView.myCityView.zipLbl to ComplaintProvider.Location.myPostalCode
+		map LocationVerifyView.myCityView.myCityLbl to ComplaintProvider.Location.myCity
+		map LocationVerifyView.myCountryLbl to ComplaintProvider.Location.myCountry
+		map LocationVerifyView.myLatitudeValueLbl to ComplaintProvider.Location.myLatitude
+		map LocationVerifyView.myLongitudeValueLbl to ComplaintProvider.Location.myLongitude
+		map LocationVerifyView.LocationMap.myLatitudeLbl to ComplaintProvider.Location.myLatitude
+		map LocationVerifyView.LocationMap.myLongitudeLbl to ComplaintProvider.Location.myLongitude
 		
 		call NewObjectAction(ComplaintProvider)
 		
 		display LocationDetectionView
 	}
 	LocationDetectionView.DetectLocationBtn {
-		detectLocation returns ComplaintProvider.location
+		detectLocation returns ComplaintProvider.Location
 	}
 	LocationDetectionView.NavigationBar.next{
 		display LocationVerifyView
@@ -81,13 +81,13 @@ WorkflowElement Mediacapturing {
 
 WorkflowElement SubmitComplaint {
 	onInit {
-		map SubmitComplaintView.streetLbl to ComplaintProvider.location.street
-		map SubmitComplaintView.streetNoLbl to ComplaintProvider.location.number
-		map SubmitComplaintView.zipLbl to ComplaintProvider.location.postalCode
-		map SubmitComplaintView.cityLbl to ComplaintProvider.location.city
-		map SubmitComplaintView.countryLbl to ComplaintProvider.location.country
-		map SubmitComplaintView.latitudeLbl to ComplaintProvider.location.latitude
-		map SubmitComplaintView.longitudeLbl to ComplaintProvider.location.longitude
+		map SubmitComplaintView.myStreetLbl to ComplaintProvider.Location.myStreet
+		map SubmitComplaintView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
+		map SubmitComplaintView.zipLbl to ComplaintProvider.Location.myPostalCode
+		map SubmitComplaintView.myCityLbl to ComplaintProvider.Location.myCity
+		map SubmitComplaintView.myCountryLbl to ComplaintProvider.Location.myCountry
+		map SubmitComplaintView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
+		map SubmitComplaintView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
 		map MediacapturingView.UploadImg to ComplaintProvider.picture
 		map MediacapturingView.DescriptionTxt to ComplaintProvider.descriptions
 	
@@ -104,24 +104,37 @@ WorkflowElement SubmitComplaint {
 
 WorkflowElement ProcessMessage {
 	onInit {
-		map ProcessMessageView.ProceesStreetView.streetLbl to ComplaintProvider.location.street
-		map ProcessMessageView.ProcessStreetView.streetNoLbl to ComplaintProvider.location.number
-		map ProcessMessageView.ProcessCityView.zipLbl to ComplaintProvider.location.postalCode
-		map ProcessMessageView.ProcessCityView.cityLbl to ComplaintProvider.location.city
-		map ProcessMessageView.countryLbl to ComplaintProvider.location.country
-		map ProcessMessageView.ProcessLaloView.latitudeLbl to ComplaintProvider.location.latitude
-		map ProcessMessageView.ProcessLaloView.longitudeLbl to ComplaintProvider.location.longitude
+		map ProcessMessageView.ProceesmyStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
+		map ProcessMessageView.ProcessmyStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
+		map ProcessMessageView.ProcessmyCityView.zipLbl to ComplaintProvider.Location.myPostalCode
+		map ProcessMessageView.ProcessmyCityView.myCityLbl to ComplaintProvider.Location.myCity
+		map ProcessMessageView.myCountryLbl to ComplaintProvider.Location.myCountry
+		map ProcessMessageView.ProcessLaloView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
+		map ProcessMessageView.ProcessLaloView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
 		map ProcessMessageView.UploadImg to ComplaintProvider.picture
 		map ProcessMessageView.DescriptionTxt to ComplaintProvider.descriptions
-		map ProcessMessageView.FeedbackTxt to ComplaintProvider.feedback
-		map ProcessMessageView.complaintStatusDropdown to ComplaintProvider.status
+		map FeedbackeView.FeedbackTxt to ComplaintProvider.feedback
+		map FeedbackView.complaintStatusDropdown to ComplaintProvider.status
 		display ProcessMessageView
 	}
+	
 	ProcessMessageView.NavigationBar.next {
-			
-		call DataAction(save ComplaintProvider)
-		backToStartScreen
-		fire UpdateStatusEvent
-
+		display FeedbackView	
 	}
+	
+	FeedbackView.NavigationBar.next {
+		call DataAction(save ComplaintProvider)
+		
+		if(FeedbackView.stayWithCurrCompl equals true) 
+		{
+			fire UpdateStatusEvent // goes back to ProcessMessageView of the current complaint
+		}
+		else
+		{
+			backToStartScreen
+		}
+	
+	}
+		
+	
 }

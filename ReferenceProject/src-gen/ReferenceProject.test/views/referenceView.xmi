@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mD2:MD2Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mD2="http://www.wwu.de/md2/framework/MD2">
+  <package pkgName="ReferenceProject.views"/>
+  <modelLayer xsi:type="mD2:View">
+    <viewElements xsi:type="mD2:GridLayoutPane" name="LocationDetectionView">
+      <elements xsi:type="mD2:Label" name="TitleLbl" width="50" text="Enter location"/>
+      <elements xsi:type="mD2:Spacer" width="50"/>
+      <elements xsi:type="mD2:GridLayoutPane" name="__ContainerstreetLbl">
+        <elements xsi:type="mD2:TextInput" name="streetLbl" width="90" tooltipText="street"/>
+        <elements xsi:type="mD2:Tooltip" name="__TooltipstreetLbl" width="10" text="street"/>
+        <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+        <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+        <params xsi:type="mD2:WidthParam" width="50"/>
+      </elements>
+      <elements xsi:type="mD2:GridLayoutPane" name="__ContainerstreetNoLbl">
+        <elements xsi:type="mD2:TextInput" name="streetNoLbl" width="90" tooltipText="no"/>
+        <elements xsi:type="mD2:Tooltip" name="__TooltipstreetNoLbl" width="10" text="no"/>
+        <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+        <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+        <params xsi:type="mD2:WidthParam" width="50"/>
+      </elements>
+      <elements xsi:type="mD2:GridLayoutPane" name="__ContainerzipLbl">
+        <elements xsi:type="mD2:TextInput" name="zipLbl" width="90" tooltipText="zip"/>
+        <elements xsi:type="mD2:Tooltip" name="__TooltipzipLbl" width="10" text="zip"/>
+        <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+        <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+        <params xsi:type="mD2:WidthParam" width="50"/>
+      </elements>
+      <elements xsi:type="mD2:GridLayoutPane" name="__ContainercityLbl">
+        <elements xsi:type="mD2:TextInput" name="cityLbl" width="90" tooltipText="city"/>
+        <elements xsi:type="mD2:Tooltip" name="__TooltipcityLbl" width="10" text="city"/>
+        <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+        <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+        <params xsi:type="mD2:WidthParam" width="50"/>
+      </elements>
+      <elements xsi:type="mD2:GridLayoutPane" name="__ContainercountryLbl">
+        <elements xsi:type="mD2:TextInput" name="countryLbl" width="90" tooltipText="country"/>
+        <elements xsi:type="mD2:Tooltip" name="__TooltipcountryLbl" width="10" text="country"/>
+        <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+        <params xsi:type="mD2:GridLayoutPaneRowsParam" value="1"/>
+        <params xsi:type="mD2:WidthParam" width="99"/>
+      </elements>
+      <elements xsi:type="mD2:Spacer" width="1"/>
+      <elements xsi:type="mD2:Label" name="latitudeLbl" width="50" text="Latitude:"/>
+      <elements xsi:type="mD2:Label" name="latitudeValueLbl" width="50" text=""/>
+      <elements xsi:type="mD2:Label" name="longitudeLbl" width="50" text="Longitude:"/>
+      <elements xsi:type="mD2:Label" name="longitudeValueLbl" width="50" text=""/>
+      <elements xsi:type="mD2:Spacer" width="1"/>
+      <elements xsi:type="mD2:Button" name="DetectLocationBtn" width="99" text="My Location"/>
+      <elements href="referenceView.md2#xtextLink_::0.1.0.0.1.14::1::/0"/>
+      <elements xsi:type="mD2:Spacer" width="100"/>
+      <elements xsi:type="mD2:Spacer" width="50"/>
+      <elements xsi:type="mD2:Spacer" width="50"/>
+      <params xsi:type="mD2:GridLayoutPaneColumnsParam" value="2"/>
+      <params xsi:type="mD2:GridLayoutPaneRowsParam" value="9"/>
+      <params xsi:type="mD2:WidthParam" width="100"/>
+    </viewElements>
+    <viewElements href="referenceView.md2#xtextLink_::0.1.0.1::1::/0"/>
+  </modelLayer>
+</mD2:MD2Model>

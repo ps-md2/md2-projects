@@ -114,6 +114,9 @@ FlowLayoutPane ProcessMessageView (vertical) {
 	NavigationBar(Cancel, next "Add Feedback")
 }
 
+
+
+
 FlowLayoutPane FeedbackView (vertical){
 	TextInput FeedbackTxt{
 			label "Feedback text"
@@ -125,7 +128,19 @@ FlowLayoutPane FeedbackView (vertical){
 		options ComplaintStatus
 	}
 	
+	BooleanInput continue{
+		label "stay with current complaint"
+		default false
+	}
+
 	NavigationBar(Cancel, next "Send Feedback")
 	
 
+}
+
+FlowLayoutPane ListOfComplaintsView (vertical) { 
+	
+	// ListView is missing, needs to be implemented here
+	
+	NavigationBar(Cancel, next "Add Feedback")
 }
