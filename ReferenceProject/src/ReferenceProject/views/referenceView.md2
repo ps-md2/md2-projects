@@ -15,7 +15,7 @@ GridLayoutPane LocationDetectionView (columns 2, rows 9) {
 	Label longitudeValueLbl ("")
 	Spacer {width 1%}
 	Button DetectLocationBtn {text "My Location"}
-	NavigationBar(Cancel, next)
+	//NavigationBar(Cancel, next)
 	Spacer {width 1%}
 }
 
@@ -23,24 +23,20 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	Label TitleLbl ("Verify Location") // better: As Title of Activity
 	
 	FlowLayoutPane StreetView (horizontal) {
-		Label streetLbl
-		Label streetNoLbl
+		LocationDetectionView.streetLbl -> streetLbl2
+		LocationDetectionView.streetNoLbl -> streetNoLbl2
 	}
 	FlowLayoutPane CityView (horizontal) {
-		Label zipLbl
-		Label cityLbl
+		LocationDetectionView.zipLbl -> zipLbl2
+		LocationDetectionView.cityLbl -> cityLbl2
 	}
 	
-	Label countryLbl
+	LocationDetectionView.countryLbl -> countryLbl2
 	Spacer {width 1%}
-	Label latitudeLbl
-	Label longitudeLbl
+	LocationDetectionView.latitudeLbl -> latitudeLbl2
+	LocationDetectionView.longitudeLbl -> longitudeLbl2
 	
-	Map locationMap {
-		location 51.9759276,7.6015973
-	}
-	
-	NavigationBar(Cancel, previous, next)
+	//NavigationBar(Cancel, previous, next)
 }
 
 FlowLayoutPane MediaCapturingView (vertical) {
@@ -51,7 +47,7 @@ FlowLayoutPane MediaCapturingView (vertical) {
 	Image UploadImg {
 		src "defaultImage.png"
 	}
-	NavigationBar(Cancel, next)
+	//NavigationBar(Cancel, next)
 }
 
 
@@ -61,24 +57,24 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 		src "uploadedImage.png"
 	}
 	FlowLayoutPane StreetView (horizontal) {
-		Label streetLbl
-		Label streetNoLbl
+		LocationDetectionView.streetLbl -> streetLbl3
+		LocationDetectionView.streetNoLbl -> streetNoLbl3
 	}
 	FlowLayoutPane CityView (horizontal) {
-		Label zipLbl
-		Label cityLbl
+		LocationDetectionView.zipLbl -> zipLbl3
+		LocationDetectionView.cityLbl -> cityLbl3
 	}
 	
-	Label countryLbl
-	
-	Label latitudeLbl
-	Label longitudeLbl
+	LocationDetectionView.countryLbl -> countryLbl3
+	Spacer {width 1%}
+	LocationDetectionView.latitudeLbl -> latitudeLbl3
+	LocationDetectionView.longitudeLbl -> longitudeLbl3
 	
 	TextInput DescriptionTxt {
 		label "Additional Description"
-		type "textarea"
+		type textarea
 	}
-	NavigationBar(Cancel, next "Submit complaint")
+	//NavigationBar(Cancel, next "Submit complaint")
 }
 
 
@@ -93,31 +89,31 @@ FlowLayoutPane ProcessMessageView (vertical) {
 		src "uploadedImage.png"
 	}
 	FlowLayoutPane ProcessStreetView (horizontal) {
-		Label streetLbl
-		Label streetNoLbl
+		LocationDetectionView.streetLbl -> streetLbl3
+		LocationDetectionView.streetNoLbl -> streetNoLbl3
 	}
 	FlowLayoutPane ProcessCityView (horizontal) {
-		Label zipLbl
-		Label cityLbl
+		LocationDetectionView.zipLbl -> zipLbl3
+		LocationDetectionView.cityLbl -> cityLbl3
 	}
 	
-	Label countryLbl
+	LocationDetectionView.countryLbl -> countryLbl3
 	
 	FlowLayoutPane ProcessLaloView (horizontal) {
-		Label latitudeLbl
-		Label longitudeLbl
+		LocationDetectionView.latitudeLbl -> latitudeLbl3
+		LocationDetectionView.longitudeLbl -> longitudeLbl3
 	}
 	TextInput DescriptionTxt {
 		label "Additional Description"
-		type "textarea"
+		type textarea
 	}
-	NavigationBar(Cancel, next "Add Feedback")
+	//NavigationBar(Cancel, next "Add Feedback")
 }
 
 FlowLayoutPane FeedbackView (vertical){
 	TextInput FeedbackTxt{
 			label "Feedback text"
-			type "textarea"
+			type textarea
 	}
 	
 	OptionInput complaintStatusDropdown {
@@ -125,7 +121,5 @@ FlowLayoutPane FeedbackView (vertical){
 		options ComplaintStatus
 	}
 	
-	NavigationBar(Cancel, next "Send Feedback")
-	
-
+	//NavigationBar(Cancel, next "Send Feedback")
 }
