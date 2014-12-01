@@ -6,5 +6,8 @@
     "md2_location_service": {},
     "md2_local_store": {},
     
+    "md2_models": {},
+    "md2_content_providers": {},
+    
     "md2_app_ReferenceProject": {}
 }
