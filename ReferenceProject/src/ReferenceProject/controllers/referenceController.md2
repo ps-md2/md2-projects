@@ -4,7 +4,7 @@ main {
 	appName "generatableApp"
 	appVersion "2.0"
 	modelVersion "2.0" // ?????
-	startView LocationDetectionView
+	startWorkflow myWorkflow
 	onInitialized init
 }
 
@@ -130,3 +130,18 @@ action CustomAction init{
 //
 //	}
 //}
+
+workflow myWorkflow{
+	step LocationDetection: 
+		view LocationDetectionView
+		proceed on LocationDetectionView.Next.onClick
+		
+	
+step LocationVerify:
+		view LocationVerifyView
+		proceed on LocationVerifyView.Next2.onClick
+		reverse on LocationVerifyView.Previous.onClick
+
+step MediaCapturing:
+	 	view MediaCapturingView
+}

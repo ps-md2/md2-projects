@@ -1,7 +1,7 @@
 package ReferenceProject.views
 
 GridLayoutPane LocationDetectionView (columns 2, rows 9) {
-	Label TitleLbl ("Enter location") // better: As Title of Activity
+	Label TitleLbl ("Enter your location") // better: As Title of Activity
 	Spacer
 	TextInput streetLbl {tooltip "street"}
 	TextInput streetNoLbl {tooltip "no"}
@@ -15,6 +15,8 @@ GridLayoutPane LocationDetectionView (columns 2, rows 9) {
 	Label longitudeValueLbl ("")
 	Spacer {width 1%}
 	Button DetectLocationBtn {text "My Location"}
+	Button Cancel {text "Cancel"}
+	Button Next {text "Next"}
 	//NavigationBar(Cancel, next)
 	Spacer {width 1%}
 }
@@ -37,6 +39,9 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	LocationDetectionView.longitudeLbl -> longitudeLbl2
 	
 	//NavigationBar(Cancel, previous, next)
+	LocationDetectionView.Cancel -> Cancel2
+	LocationDetectionView.Next -> Next2
+	Button Previous {text "Previous"}
 }
 
 FlowLayoutPane MediaCapturingView (vertical) {
@@ -75,6 +80,9 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 		type textarea
 	}
 	//NavigationBar(Cancel, next "Submit complaint")
+	LocationDetectionView.Cancel -> Cancel3
+	Button submitComplaint {text "Submit complaint"}
+	
 }
 
 
@@ -108,6 +116,8 @@ FlowLayoutPane ProcessMessageView (vertical) {
 		type textarea
 	}
 	//NavigationBar(Cancel, next "Add Feedback")
+		LocationDetectionView.Cancel -> Cancel4
+	Button addFeedback {text "Add Feedback"}
 }
 
 FlowLayoutPane FeedbackView (vertical){
@@ -122,4 +132,6 @@ FlowLayoutPane FeedbackView (vertical){
 	}
 	
 	//NavigationBar(Cancel, next "Send Feedback")
+			LocationDetectionView.Cancel -> Cancel4
+	Button sendFeedback {text "Send Feedback"}
 }
