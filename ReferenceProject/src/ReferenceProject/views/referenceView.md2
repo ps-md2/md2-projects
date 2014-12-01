@@ -5,7 +5,7 @@ GridLayoutPane LocationDetectionView (columns 2, rows 9) {
 	Spacer
 	TextInput streetLbl {tooltip "street"}
 	TextInput streetNoLbl {tooltip "no"}
-	TextInput zipLbl {tooltip "zip"}
+	IntegerInput zipLbl {tooltip "zip" }
 	TextInput cityLbl {tooltip "city"}
 	TextInput countryLbl {tooltip "country" width 100%}
 	Spacer {width 1%}

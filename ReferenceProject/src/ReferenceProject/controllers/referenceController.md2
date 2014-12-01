@@ -9,10 +9,7 @@ main {
 }
 
 remoteConnection CitizenAppRemoteConnection {
-	uri "http://...."
-	user "citizenapp"
-	password "Qwertz123"
-	key "1234"
+	uri "http://localhost:8081/Backend/"
 }
 
 
@@ -23,12 +20,30 @@ remoteConnection AdministrativeAppRemoteConnection{
 	key "5678"
 }
 
-contentProvider Complaint[] ComplaintProvider {
+contentProvider Complaint[] complaintProvider {
+	providerType CitizenAppRemoteConnection
+}
+
+contentProvider Complaint localComplaintProvider {
 	providerType CitizenAppRemoteConnection
 }
 
 action CustomAction init{
-	call init
+		map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
+		map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
+//		map LocationDetectionView.zipLbl to :localComplaintProvider.loc.myPostalCode
+		map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
+		map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
+//		map LocationDetectionView.latitudeLbl to :localComplaintProvider.loc.myLatitude
+//		map LocationDetectionView.longitudeLbl to :localComplaintProvider.loc.myLongitude
+	
+		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
+		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+//		map LocationVerifyView.CityView.zipLbl2 to :localComplaintProvider.loc.myPostalCode
+		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+//		map LocationVerifyView.latitudeLbl2 to :localComplaintProvider.loc.myLatitude
+//		map LocationVerifyView.longitudeLbl2 to :localComplaintProvider.loc.myLongitude
 }
 
 //WorkflowElement Locationdetection {
@@ -134,8 +149,9 @@ action CustomAction init{
 workflow myWorkflow{
 	step LocationDetection: 
 		view LocationDetectionView
-		proceed on LocationDetectionView.Next.onClick
-		
+		proceed {on LocationDetectionView.Next.onClick
+		then ContentProviderOperation (save :localComplaintProvider)
+		}
 	
 step LocationVerify:
 		view LocationVerifyView
