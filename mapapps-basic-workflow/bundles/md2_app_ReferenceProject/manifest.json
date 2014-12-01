@@ -8,12 +8,6 @@
     "Require-Bundle": [],
     "Require-Bundle": [
         {
-            "name": "md2_local_store"
-        },
-        {
-            "name": "md2_store"
-        },
-        {
             "name": "md2_runtime"
         },
         {
