@@ -1,6 +1,6 @@
 package ReferenceProject.workflows
 
-WorkflowElement Locationdetection
+WorkflowElement CitizenLocationdetection
 	fires LocationEvent {
 		start Mediacapturing }
 
