@@ -1,3 +1,10 @@
+/*
+ * Fix breaking toolset tools
+ */
+ .everlasting .ctToolWindow .ctTool:last-child .dijitButtonNode .dijitIcon, .everlasting .ctToolWindow .ctWindowContentPadding .ctTool:last-child .dijitButtonNode .dijitIcon {
+	border: 0px none !important;
+}
+
 /* 
  * default style for md2 runtime window
  */
