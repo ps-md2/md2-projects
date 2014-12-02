@@ -14,7 +14,7 @@
     "Components": [
         {
             "name": "Models",
-            "provides": ["md2.app.ReferenceProject.Models"],
+            "provides": ["md2.app.Citizenapp.Models"],
             "instanceFactory": true
         }
     ]

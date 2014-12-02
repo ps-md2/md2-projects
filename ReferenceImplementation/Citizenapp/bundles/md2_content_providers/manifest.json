@@ -21,7 +21,7 @@
         {
             "name": "ComplaintProviderProvider",
             "impl": "./contentproviders/ComplaintProvider",
-            "provides": ["md2.app.ReferenceProject.ContentProvider"],
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
             "propertiesConstructor": true,
             "properties": {
                 "uri": "http://localhost:8081/Backend/"
@@ -37,7 +37,7 @@
         {
             "name": "LocalComplaintProviderProvider",
             "impl": "./contentproviders/LocalComplaintProvider",
-            "provides": ["md2.app.ReferenceProject.ContentProvider"],
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
             "propertiesConstructor": true,
             "properties": {
                 "uri": "http://localhost:8081/Backend/"
@@ -53,7 +53,7 @@
         {
             "name": "__returnStepStackProviderProvider",
             "impl": "./contentproviders/__returnStepStackProvider",
-            "provides": ["md2.app.ReferenceProject.ContentProvider"],
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
             "references": [
                 {
                     "name": "_localFactory",
@@ -65,7 +65,7 @@
         {
             "name": "__processChainControllerStateProviderProvider",
             "impl": "./contentproviders/__processChainControllerStateProvider",
-            "provides": ["md2.app.ReferenceProject.ContentProvider"],
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
             "references": [
                 {
                     "name": "_localFactory",

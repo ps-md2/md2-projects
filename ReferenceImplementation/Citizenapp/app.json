@@ -76,7 +76,7 @@
                 "toolsets": [
                     {
                         "id": "md2_apps_toolset",
-                        "title": "MD2 Apps",
+                        "title": "Startable Workflow Elements",
                         "container": "map",
                         "windowType": {
                             "window": {
