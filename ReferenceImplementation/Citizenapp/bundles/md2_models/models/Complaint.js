@@ -17,7 +17,7 @@ function(declare, _Entity) {
         
         _initialize: function() {
             this._attributes = {
-                loc: null,
+                loc: this._typeFactory.create("Location", null),
                 descriptions: this._typeFactory.create("string", null),
                 feedback: this._typeFactory.create("string", null),
                 status: this._typeFactory.create("ComplaintStatus", "VALUE0")

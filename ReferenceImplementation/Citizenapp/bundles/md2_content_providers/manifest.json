@@ -24,7 +24,7 @@
             "provides": ["md2.app.Citizenapp.ContentProvider"],
             "propertiesConstructor": true,
             "properties": {
-                "uri": "http://localhost:8081/Backend/"
+                "uri": "http://localhost:8081/ReferenceProject.backend/service/"
             },
             "references": [
                 {
@@ -40,7 +40,7 @@
             "provides": ["md2.app.Citizenapp.ContentProvider"],
             "propertiesConstructor": true,
             "properties": {
-                "uri": "http://localhost:8081/Backend/"
+                "uri": "http://localhost:8081/ReferenceProject.backend/service/"
             },
             "references": [
                 {
