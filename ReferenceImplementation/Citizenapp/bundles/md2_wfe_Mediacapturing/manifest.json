@@ -1,8 +1,8 @@
 {
-    "Bundle-SymbolicName": "md2_wfe_Locationdetection",
+    "Bundle-SymbolicName": "md2_wfe_Mediacapturing",
     "Bundle-Version": "2.0",
-    "Bundle-Name": "Workflow element Locationdetection",
-    "Bundle-Description": "Generated MD2 workflow element bundle: Locationdetection of Citizenapp",
+    "Bundle-Name": "Workflow Element Mediacapturing",
+    "Bundle-Description": "Generated MD2 workflow element bundle: Mediacapturing of Citizenapp",
     "Bundle-Localization": [],
     "Bundle-Main": "",
     "Require-Bundle": [],
@@ -19,13 +19,13 @@
     ],
     "Components": [
         {
-            "name": "MD2Locationdetection",
+            "name": "MD2ReferenceProject",
             "impl": "ct/Stateful",
-            "provides": ["md2.wfe.Locationdetection.AppDefinition"],
+            "provides": ["md2.app.ReferenceProject.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_Locationdetection",
-                "windowTitle": "Complaining Citizen",
+                "id": "md2_ReferenceProject",
+                "windowTitle": "generatableApp",
                 "onInitialized": "__startupAction",
                 "views": [
                     {
@@ -265,7 +265,7 @@
                                     "field": "Next",
                                     "cellStyle": {
                                         "width": "50%"
-                                    }
+                                    } 
                                 },
                                 {
                                     "type": "spacer",
@@ -515,18 +515,57 @@
                                 }
                             ]
                         }
+                    },
+                    {
+                        "name": "MediaCapturingView",
+                        "dataForm": {
+                            "dataform-version": "1.0.0",
+                            "type": "md2gridpanel",
+                            "cols": "1",
+                            "valueClass": "layoutCell",
+                            "cellStyle": {
+                                "width": "100%"
+                            }
+                            ,
+                            "children": [
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "TitleLbl2",
+                                    "defaultText": "Upload Photo",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "title": "Upload File",
+                                    "field": "UploadBtn",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "simpleimage",
+                                    "src": "md2_app_ReferenceProject:./resources/defaultImage.png",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                }
+                            ]
+                        }
                     }
                 ]
             }
         },
         {
             "name": "CustomActions",
-            "provides": ["md2.wfe.Locationdetection.CustomActions"],
+            "provides": ["md2.app.ReferenceProject.CustomActions"],
             "instanceFactory": true
         },
         {
             "name": "Controller",
-            "provides": ["md2.wfe.Locationdetection.Controller"],
+            "provides": ["md2.app.ReferenceProject.Controller"],
             "instanceFactory": true,
             "references": [
                 {
@@ -535,7 +574,7 @@
                 },
                 {
                     "name": "_customActions",
-                    "providing": "md2.wfe.Locationdetection.CustomActions"
+                    "providing": "md2.app.ReferenceProject.CustomActions"
                 },
                 {
                     "name": "_models",
@@ -548,20 +587,20 @@
                 },
                 {
                     "name": "_configBean",
-                    "providing": "md2.wfe.Locationdetection.AppDefinition"
+                    "providing": "md2.app.ReferenceProject.AppDefinition"
                 }
             ]
         },
         {
-            "name": "MD2LocationdetectionTool",
+            "name": "MD2ReferenceProjectTool",
             "impl": "ct.tools.Tool",
             "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_wfe_Locationdetection_tool",
-                "title": "Locationdetection",
-                "description": "Start Complaint",
-                "tooltip": "Start Complaint",
+                "id": "md2_app_ReferenceProject_tool",
+                "title": "generatableApp",
+                "description": "Start generatableApp",
+                "tooltip": "Start generatableApp",
                 "toolRole": "toolset",
                 "iconClass": "icon-view-grid",
                 "togglable": true,
@@ -571,7 +610,7 @@
             "references": [
                 {
                     "name": "handlerScope",
-                    "providing": "md2.wfe.Locationdetection.Controller"
+                    "providing": "md2.app.ReferenceProject.Controller"
                 }
             ]
         }
