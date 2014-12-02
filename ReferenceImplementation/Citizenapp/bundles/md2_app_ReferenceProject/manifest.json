@@ -265,7 +265,7 @@
                                     "field": "Next",
                                     "cellStyle": {
                                         "width": "50%"
-                                    }
+                                    } 
                                 },
                                 {
                                     "type": "spacer",
@@ -578,11 +578,11 @@
                 },
                 {
                     "name": "_models",
-                    "providing": "md2.app.ReferenceProject.Models"
+                    "providing": "md2.app.Citizenapp.Models"
                 },
                 {
                     "name": "_contentProviders",
-                    "providing": "md2.app.ReferenceProject.ContentProvider",
+                    "providing": "md2.app.Citizenapp.ContentProvider",
                     "cardinality": "0..n"
                 },
                 {

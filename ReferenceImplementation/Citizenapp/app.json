@@ -37,6 +37,8 @@
             "md2_models",
             "md2_content_providers",
             
+            "md2_wfe_Locationdetection",
+            
             "md2_app_ReferenceProject"
         ],
         
@@ -90,6 +92,7 @@
                             "rel_t": 30
                         },
                         "tools": [
+                            "md2_wfe_*",
                             "md2_app_*"
                         ]
                     }
