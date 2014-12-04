@@ -1,4 +1,4 @@
-package ReferenceProject.views
+package GeneratableProject.views
 
 GridLayoutPane LocationDetectionView (columns 2, rows 9) {
 	Label TitleLbl ("Enter your location") // better: As Title of Activity

@@ -1,6 +1,6 @@
-package ReferenceProject.controllers
+package GeneratableProject.controllers
 
-main { 
+main {
 	appName "generatableApp"
 	appVersion "2.0"
 	modelVersion "2.0" // ?????
@@ -149,15 +149,16 @@ action CustomAction init{
 processChain myWorkflow{
 	step LocationDetection: 
 		view LocationDetectionView
-		proceed {on LocationDetectionView.Next.onClick
-		then ContentProviderOperation (save :localComplaintProvider)
+		proceed {
+			on LocationDetectionView.Next.onClick
+			then ContentProviderOperation (save :localComplaintProvider)
 		}
 	
-step LocationVerify:
+	step LocationVerify:
 		view LocationVerifyView
 		proceed on LocationVerifyView.Next2.onClick
 		reverse on LocationVerifyView.Previous.onClick
 
-step MediaCapturing:
+	step MediaCapturing:
 	 	view MediaCapturingView
 }
