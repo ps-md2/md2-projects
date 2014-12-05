@@ -1,10 +1,11 @@
-package GeneratableProject.models
+package ReferenceProject.models
 
 /*
  * Implement the model here
  */
 entity Complaint {
 	loc: Location  // use current MD2 location instead!--> No, current MD2 location is a content provider, not en entity!
+	picture : file (optional) //not yet supported
 	descriptions : string
 	feedback : string
 	status : ComplaintStatus
