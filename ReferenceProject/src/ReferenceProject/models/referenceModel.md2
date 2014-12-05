@@ -4,13 +4,13 @@ package ReferenceProject.models
  * Implement the model here
  */
 entity Complaint {
-	loc: Location  // use current MD2 location instead!--> No, current MD2 location is a content provider, not en entity!
+	loc: Location2  // use current MD2 location instead!--> No, current MD2 location is a content provider, not en entity!
 	descriptions : string
 	feedback : string
 	status : ComplaintStatus
 }
 
-entity Location {
+entity Location2 {
 	myStreet: string
 	myStreetNo: string
 	myPostalCode: integer

@@ -9,7 +9,7 @@ main {
 }
 
 remoteConnection CitizenAppRemoteConnection {
-	uri "http://localhost:8081/Backend/"
+	uri "http://localhost:55737/Backend/service"
 }
 
 
@@ -20,12 +20,12 @@ remoteConnection AdministrativeAppRemoteConnection{
 	key "5678"
 }
 
-contentProvider Complaint[] complaintProvider {
-	providerType CitizenAppRemoteConnection
-}
+//contentProvider Complaint[] complaintProvider {
+//	providerType CitizenAppRemoteConnection
+//}
 
 contentProvider Complaint localComplaintProvider {
-	providerType CitizenAppRemoteConnection
+	providerType local
 }
 
 action CustomAction init{
@@ -37,11 +37,11 @@ action CustomAction init{
 //		map LocationDetectionView.latitudeLbl to :localComplaintProvider.loc.myLatitude
 //		map LocationDetectionView.longitudeLbl to :localComplaintProvider.loc.myLongitude
 	
-//		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
-//		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
-////		map LocationVerifyView.CityView.zipLbl2 to :localComplaintProvider.loc.myPostalCode
-//		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-//		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
+		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+//		map LocationVerifyView.CityView.zipLbl2 to :localComplaintProvider.loc.myPostalCode
+		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
 //		map LocationVerifyView.latitudeLbl2 to :localComplaintProvider.loc.myLatitude
 //		map LocationVerifyView.longitudeLbl2 to :localComplaintProvider.loc.myLongitude
 }
