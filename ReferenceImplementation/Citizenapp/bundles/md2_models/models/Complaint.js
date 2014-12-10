@@ -9,7 +9,7 @@ function(declare, _Entity) {
         _datatype: "Complaint",
         
         attributeTypes: {
-            loc: "Location",
+            loc: "Location2",
             descriptions: "string",
             feedback: "string",
             status: "ComplaintStatus"
@@ -17,7 +17,7 @@ function(declare, _Entity) {
         
         _initialize: function() {
             this._attributes = {
-                loc: this._typeFactory.create("Location", null),
+                loc: this._typeFactory.create("Location2", null),
                 descriptions: this._typeFactory.create("string", null),
                 feedback: this._typeFactory.create("string", null),
                 status: this._typeFactory.create("ComplaintStatus", "VALUE0")

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class __ReturnStepStack implements Serializable {
+public class ReturnStepStack implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -44,7 +44,7 @@ public class __ReturnStepStack implements Serializable {
 	@NotNull
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@XmlElement(nillable=true)
-	protected __ReturnStepStack tail;
+	protected ReturnStepStack tail;
 	
 	
 	///////////////////////////////////////
@@ -79,11 +79,11 @@ public class __ReturnStepStack implements Serializable {
 		this.returnAndProceedStep = returnAndProceedStep;
 	}
 	
-	public __ReturnStepStack getTail() {
+	public ReturnStepStack getTail() {
 		return tail;
 	}
 	
-	public void setTail(__ReturnStepStack tail) {
+	public void setTail(ReturnStepStack tail) {
 		this.tail = tail;
 	}
 	

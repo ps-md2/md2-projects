@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class __ProcessChainControllerState implements Serializable {
+public class ProcessChainControllerState implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

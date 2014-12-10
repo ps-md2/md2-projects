@@ -25,7 +25,7 @@ remoteConnection AdministrativeAppRemoteConnection{
 //}
 
 contentProvider Complaint localComplaintProvider {
-	providerType local
+	providerType CitizenAppRemoteConnection
 }
 
 action CustomAction init{

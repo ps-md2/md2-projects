@@ -4,9 +4,9 @@ define([
 ],
 function(declare, _Entity) {
     
-    var Location = declare([_Entity], {
+    var Location2 = declare([_Entity], {
         
-        _datatype: "Location",
+        _datatype: "Location2",
         
         attributeTypes: {
             myStreet: "string",
@@ -37,10 +37,10 @@ function(declare, _Entity) {
      */
     return declare([], {
         
-        datatype: "Location",
+        datatype: "Location2",
         
         create: function() {
-            return new Location(this.typeFactory);
+            return new Location2(this.typeFactory);
         }
         
     });

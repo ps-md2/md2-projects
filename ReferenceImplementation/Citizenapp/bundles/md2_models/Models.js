@@ -1,7 +1,7 @@
 define([
     "dojo/_base/declare",
     "./models/Complaint",
-    "./models/Location",
+    "./models/Location2",
     "./models/__ReturnStepStack",
     "./models/__ProcessChainControllerState",
     "./models/ComplaintStatus"
