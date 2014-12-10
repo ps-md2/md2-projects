@@ -552,6 +552,10 @@
                 {
                     "name": "_configBean",
                     "providing": "md2.wfe.Locationdetection.AppDefinition"
+                },
+                {
+                    "name": "_workflowEventHandler",
+                    "providing": "md2.workflow.EventHandler"
                 }
             ]
         },

@@ -17,8 +17,8 @@
             "instanceFactory": true,
             "references": [
                 {
-                    "name": "_controllers",
-                    "providing": "md2.app.Citizenapp.controllers",
+                    "name": "controller",
+                    "providing": "md2.app.aaaaaaaCitizenapp.controllers",
                     "policy": "dynamic",
                     "cardinality": "0..n"
                 }
