@@ -19,7 +19,7 @@ function(declare, ContentProvider) {
             var properties = this._properties;
             var entityFactory = typeFactory.getEntityFactory("Complaint");
             var store = this._remoteFactory.create(properties.uri, entityFactory);
-            var appId = "md2_ReferenceProject";
+            var appId = "md2_Locationdetection";
             
             
             return new ContentProvider("complaintProvider", appId, store, true);
