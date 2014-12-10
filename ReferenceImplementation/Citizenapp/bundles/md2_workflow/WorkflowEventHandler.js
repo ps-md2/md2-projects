@@ -1,18 +1,19 @@
 define([
-    "dojo/_base/declare",
-    "dojo/_base/array",
-    "ct/array", 
-    "ct/async"
+    "dojo/_base/declare", "ct/Hash"
 ],
-function(declare, d_array, ct_array, ct_async) {
+function(declare, Hash) {
     
     return declare([], {
+        constructor: function() {
+            this.controllers = new Hash();
+        },
         createInstance: function() {
             alert("hallo");
             return {
                 handleEvent: this.handleEvent,
-                addController: this.addController
-            }
+                addController: this.addController,
+                removeController: this.removeController
+            };
         },
         
         handleEvent: function(event, workflowelement) {
@@ -25,7 +26,7 @@ function(declare, d_array, ct_array, ct_async) {
              
         },
         
-        addController: function (controller) {
+        addController: function (controller, properties) {
             var id = controller.get("id"),
                     controllers = this.controllers;
             //controllers.set(id, controller);
@@ -40,6 +41,9 @@ function(declare, d_array, ct_array, ct_async) {
             //    }, this));
             //    task.delay(100);
             //}
+        },
+        
+        removeController: function (controller, properties) {
         }
         
     });

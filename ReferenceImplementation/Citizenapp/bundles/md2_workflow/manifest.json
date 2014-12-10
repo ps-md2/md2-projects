@@ -18,7 +18,7 @@
             "references": [
                 {
                     "name": "controller",
-                    "providing": "md2.app.aaaaaaaCitizenapp.controllers",
+                    "providing": "md2.app.Citizenapp.controllers",
                     "policy": "dynamic",
                     "cardinality": "0..n"
                 }
