@@ -19,503 +19,15 @@
     ],
     "Components": [
         {
-            "name": "MD2ReferenceProject",
+            "name": "MD2MediaCapturing",
             "impl": "ct/Stateful",
-            "provides": ["md2.app.ReferenceProject.AppDefinition"],
+            "provides": ["md2.app.MediaCapturing.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_ReferenceProject",
+                "id": "md2_MediaCapturing",
                 "windowTitle": "generatableApp",
                 "onInitialized": "__startupAction",
                 "views": [
-                    {
-                        "name": "LocationDetectionView",
-                        "dataForm": {
-                            "dataform-version": "1.0.0",
-                            "type": "md2gridpanel",
-                            "cols": "2",
-                            "valueClass": "layoutCell",
-                            "cellStyle": {
-                                "width": "100%"
-                            }
-                            ,
-                            "children": [
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "TitleLbl",
-                                    "defaultText": "Enter your location",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "textbox",
-                                            "datatype": "string",
-                                            "field": "streetLbl",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipstreetLbl",
-                                            "defaultText": "street",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "textbox",
-                                            "datatype": "string",
-                                            "field": "streetNoLbl",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipstreetNoLbl",
-                                            "defaultText": "no",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "numberspinner",
-                                            "datatype": "integer",
-                                            "field": "zipLbl",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipzipLbl",
-                                            "defaultText": "zip",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "textbox",
-                                            "datatype": "string",
-                                            "field": "cityLbl",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipcityLbl",
-                                            "defaultText": "city",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "99%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "textbox",
-                                            "datatype": "string",
-                                            "field": "countryLbl",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipcountryLbl",
-                                            "defaultText": "country",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "1%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "latitudeLbl",
-                                    "defaultText": "Latitude:",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "latitudeValueLbl",
-                                    "defaultText": "",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "longitudeLbl",
-                                    "defaultText": "Longitude:",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "longitudeValueLbl",
-                                    "defaultText": "",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "1%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "My Location",
-                                    "field": "DetectLocationBtn",
-                                    "cellStyle": {
-                                        "width": "99%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "Cancel",
-                                    "field": "Cancel",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "Next",
-                                    "field": "Next",
-                                    "cellStyle": {
-                                        "width": "50%"
-                                    } 
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "1%"
-                                    }
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "99%"
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "LocationVerifyView",
-                        "dataForm": {
-                            "dataform-version": "1.0.0",
-                            "type": "md2gridpanel",
-                            "cols": "1",
-                            "valueClass": "layoutCell",
-                            "cellStyle": {
-                                "width": "100%"
-                            }
-                            ,
-                            "children": [
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "TitleLbl1",
-                                    "defaultText": "Verify Location",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "md2gridpanel",
-                                            "cols": "2",
-                                            "valueClass": "layoutCell",
-                                            "cellStyle": {
-                                                "width": "50%"
-                                            }
-                                            ,
-                                            "children": [
-                                                {
-                                                    "type": "textbox",
-                                                    "datatype": "string",
-                                                    "field": "streetLbl2",
-                                                    "cellStyle": {
-                                                        "width": "90%"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "tooltipicon",
-                                                    "datatype": "string",
-                                                    "field": "__TooltipstreetLbl2",
-                                                    "defaultText": "street",
-                                                    "cellStyle": {
-                                                        "width": "10%"
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "md2gridpanel",
-                                            "cols": "2",
-                                            "valueClass": "layoutCell",
-                                            "cellStyle": {
-                                                "width": "50%"
-                                            }
-                                            ,
-                                            "children": [
-                                                {
-                                                    "type": "textbox",
-                                                    "datatype": "string",
-                                                    "field": "streetNoLbl2",
-                                                    "cellStyle": {
-                                                        "width": "90%"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "tooltipicon",
-                                                    "datatype": "string",
-                                                    "field": "__TooltipstreetNoLbl2",
-                                                    "defaultText": "no",
-                                                    "cellStyle": {
-                                                        "width": "10%"
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "md2gridpanel",
-                                            "cols": "2",
-                                            "valueClass": "layoutCell",
-                                            "cellStyle": {
-                                                "width": "50%"
-                                            }
-                                            ,
-                                            "children": [
-                                                {
-                                                    "type": "numberspinner",
-                                                    "datatype": "integer",
-                                                    "field": "zipLbl2",
-                                                    "cellStyle": {
-                                                        "width": "90%"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "tooltipicon",
-                                                    "datatype": "string",
-                                                    "field": "__TooltipzipLbl2",
-                                                    "defaultText": "zip",
-                                                    "cellStyle": {
-                                                        "width": "10%"
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "md2gridpanel",
-                                            "cols": "2",
-                                            "valueClass": "layoutCell",
-                                            "cellStyle": {
-                                                "width": "50%"
-                                            }
-                                            ,
-                                            "children": [
-                                                {
-                                                    "type": "textbox",
-                                                    "datatype": "string",
-                                                    "field": "cityLbl2",
-                                                    "cellStyle": {
-                                                        "width": "90%"
-                                                    }
-                                                },
-                                                {
-                                                    "type": "tooltipicon",
-                                                    "datatype": "string",
-                                                    "field": "__TooltipcityLbl2",
-                                                    "defaultText": "city",
-                                                    "cellStyle": {
-                                                        "width": "10%"
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "md2gridpanel",
-                                    "cols": "2",
-                                    "valueClass": "layoutCell",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                    ,
-                                    "children": [
-                                        {
-                                            "type": "textbox",
-                                            "datatype": "string",
-                                            "field": "countryLbl2",
-                                            "cellStyle": {
-                                                "width": "90%"
-                                            }
-                                        },
-                                        {
-                                            "type": "tooltipicon",
-                                            "datatype": "string",
-                                            "field": "__TooltipcountryLbl2",
-                                            "defaultText": "country",
-                                            "cellStyle": {
-                                                "width": "10%"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "spacer",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "latitudeLbl2",
-                                    "defaultText": "Latitude:",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "textoutput",
-                                    "datatype": "string",
-                                    "field": "longitudeLbl2",
-                                    "defaultText": "Longitude:",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "Cancel",
-                                    "field": "Cancel2",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "Next",
-                                    "field": "Next2",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "title": "Previous",
-                                    "field": "Previous",
-                                    "cellStyle": {
-                                        "width": "100%"
-                                    }
-                                }
-                            ]
-                        }
-                    },
                     {
                         "name": "MediaCapturingView",
                         "dataForm": {
@@ -560,12 +72,12 @@
         },
         {
             "name": "CustomActions",
-            "provides": ["md2.app.ReferenceProject.CustomActions"],
+            "provides": ["md2.app.MediaCapturing.CustomActions"],
             "instanceFactory": true
         },
         {
             "name": "Controller",
-            "provides": ["md2.app.ReferenceProject.Controller"],
+            "provides": ["md2.app.MediaCapturing.Controller"],
             "instanceFactory": true,
             "references": [
                 {
@@ -574,7 +86,7 @@
                 },
                 {
                     "name": "_customActions",
-                    "providing": "md2.app.ReferenceProject.CustomActions"
+                    "providing": "md2.app.MediaCapturing.CustomActions"
                 },
                 {
                     "name": "_models",
@@ -587,20 +99,20 @@
                 },
                 {
                     "name": "_configBean",
-                    "providing": "md2.app.ReferenceProject.AppDefinition"
+                    "providing": "md2.app.MediaCapturing.AppDefinition"
                 }
             ]
         },
         {
-            "name": "MD2ReferenceProjectTool",
+            "name": "MD2MediaCapturingTool",
             "impl": "ct.tools.Tool",
             "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_app_ReferenceProject_tool",
-                "title": "generatableApp",
-                "description": "Start generatableApp",
-                "tooltip": "Start generatableApp",
+                "id": "md2_app_MediaCapturing_tool",
+                "title": "[MediaCapturing]",
+                "description": "[MediaCapturing]",
+                "tooltip": "[MediaCapturing]",
                 "toolRole": "toolset",
                 "iconClass": "icon-view-grid",
                 "togglable": true,
@@ -610,7 +122,7 @@
             "references": [
                 {
                     "name": "handlerScope",
-                    "providing": "md2.app.ReferenceProject.Controller"
+                    "providing": "md2.app.MediaCapturing.Controller"
                 }
             ]
         }
