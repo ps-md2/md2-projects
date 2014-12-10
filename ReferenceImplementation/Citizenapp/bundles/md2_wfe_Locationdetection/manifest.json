@@ -15,6 +15,9 @@
         },
         {
             "name": "md2_content_providers"
+        },
+        {
+            "name": "md2_workflow"
         }
     ],
     "Components": [
@@ -526,7 +529,7 @@
         },
         {
             "name": "Controller",
-            "provides": ["md2.wfe.Locationdetection.Controller"],
+            "provides": ["md2.wfe.Locationdetection.Controller","md2.app.Citizenapp.controllers"],
             "instanceFactory": true,
             "references": [
                 {

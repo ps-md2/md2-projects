@@ -16,9 +16,9 @@ function(declare, _Action) {
             var expr0hg = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
             var expr0hh = this.$.create("string", "myWorkflow__LocationVerify");
             var bool0hf = expr0hg.equals(expr0hh);
-            var expr0hj = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-            var expr0hk = this.$.create("string", "myWorkflow__MediaCapturing");
-            var bool0hi = expr0hj.equals(expr0hk);
+         //   var expr0hj = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
+           // var expr0hk = this.$.create("string", "myWorkflow__MediaCapturing");
+         //   var bool0hi = expr0hj.equals(expr0hk);
             if (bool0hc) {
                 var expr0ho = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("lastEventFired");
                 var expr0hp = this.$.create("string", "__action.proceed");
@@ -55,12 +55,14 @@ function(declare, _Action) {
                 var bool0i5 = expr0i8.equals(expr0i9);
                 var bool0i3 = bool0i4 || bool0i5;
                 if (bool0hw) {
-                    var targetContentProvider0ia = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-                    var expr0ib = this.$.create("string", "myWorkflow__MediaCapturing");
-                    targetContentProvider0ia.setValue("currentProcessChainStep", expr0ib);
                     
-                    var action0ic = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");
-                    action0ic.execute();
+                     this.$.workflowEventHandler.handleEvent("LocationEvent", "Locationdetection");
+                   // var targetContentProvider0ia = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
+                   // var expr0ib = this.$.create("string", "myWorkflow__MediaCapturing");
+                   // targetContentProvider0ia.setValue("currentProcessChainStep", expr0ib);
+                    
+                   // var action0ic = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");
+                    //action0ic.execute();
                 }
                 else if (bool0i3) {
                     var targetContentProvider0id = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
@@ -71,8 +73,8 @@ function(declare, _Action) {
                     action0if.execute();
                 }
             }
-            else if (bool0hi) {
-            }
+         //   else if (bool0hi) {
+         //   }
             
         }
         

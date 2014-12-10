@@ -36,6 +36,7 @@
             
             "md2_models",
             "md2_content_providers",
+            "md2_workflow",
             
             "md2_wfe_Locationdetection",
             "md2_wfe_Mediacapturing",

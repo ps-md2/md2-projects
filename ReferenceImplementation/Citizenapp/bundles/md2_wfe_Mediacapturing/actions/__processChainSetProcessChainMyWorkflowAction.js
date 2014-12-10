@@ -11,7 +11,7 @@ function(declare, _Action) {
         execute: function() {
             
             var targetContentProvider0ix = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-            var expr0iy = this.$.create("string", "myWorkflow__LocationDetection");
+            var expr0iy = this.$.create("string", "myWorkflow__Mediacapturing");
             targetContentProvider0ix.setValue("currentProcessChainStep", expr0iy);
             
             var action0iz = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");

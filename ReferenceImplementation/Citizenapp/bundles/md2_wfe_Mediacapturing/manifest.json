@@ -15,17 +15,20 @@
         },
         {
             "name": "md2_content_providers"
+        },
+        {
+            "name": "md2_workflow"
         }
     ],
     "Components": [
         {
             "name": "MD2MediaCapturing",
             "impl": "ct/Stateful",
-            "provides": ["md2.app.MediaCapturing.AppDefinition"],
+            "provides": ["md2.wfe.MediaCapturing.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
                 "id": "md2_MediaCapturing",
-                "windowTitle": "generatableApp",
+                "windowTitle": "MediaCapturing",
                 "onInitialized": "__startupAction",
                 "views": [
                     {
@@ -72,12 +75,12 @@
         },
         {
             "name": "CustomActions",
-            "provides": ["md2.app.MediaCapturing.CustomActions"],
+            "provides": ["md2.wfe.MediaCapturing.CustomActions"],
             "instanceFactory": true
         },
         {
             "name": "Controller",
-            "provides": ["md2.app.MediaCapturing.Controller"],
+            "provides": ["md2.wfe.MediaCapturing.Controller", "md2.app.Citizenapp.controllers"],
             "instanceFactory": true,
             "references": [
                 {
@@ -86,7 +89,7 @@
                 },
                 {
                     "name": "_customActions",
-                    "providing": "md2.app.MediaCapturing.CustomActions"
+                    "providing": "md2.wfe.MediaCapturing.CustomActions"
                 },
                 {
                     "name": "_models",
@@ -99,7 +102,7 @@
                 },
                 {
                     "name": "_configBean",
-                    "providing": "md2.app.MediaCapturing.AppDefinition"
+                    "providing": "md2.wfe.MediaCapturing.AppDefinition"
                 }
             ]
         },
@@ -122,7 +125,7 @@
             "references": [
                 {
                     "name": "handlerScope",
-                    "providing": "md2.app.MediaCapturing.Controller"
+                    "providing": "md2.wfe.MediaCapturing.Controller"
                 }
             ]
         }

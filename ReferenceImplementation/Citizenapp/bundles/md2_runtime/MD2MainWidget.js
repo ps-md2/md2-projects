@@ -16,7 +16,8 @@ define([
     "./events/EventRegistry",
     "./actions/ActionFactory",
     "./validators/ValidatorFactory",
-    "./datatypes/TypeFactory"
+    "./datatypes/TypeFactory",
+    "../md2_workflow/WorkflowEventHandler"
 ], function(
     declare,
     lang,
@@ -35,7 +36,8 @@ define([
     EventRegistry,
     ActionFactory,
     ValidatorFactory,
-    TypeFactory
+    TypeFactory,
+    WorkflowEventHandler
 ) {
     
     return declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
@@ -86,6 +88,9 @@ define([
             // injected entities and enums
             var modelFactories = this._models;
             
+            // injected workflow event handler
+            var workflowEventHandler = this._workflowEventHandler;
+            
             // Object of references to be passed to actions/contentProviders etc.
             // Will be populated after all components are built. Thus, $ is only
             // available after the build!! It is meant to be used during runtime
@@ -112,7 +117,7 @@ define([
             this._actionFactory = actionFactory;
             
             this._window = this._createWindow(appId, viewManager);
-            
+                        
             lang.mixin($, {
                 dataMapper: dataMapper,
                 eventRegistry: eventRegistry,
@@ -124,7 +129,8 @@ define([
                 validatorFactory: validatorFactory,
                 actionFactory: actionFactory,
                 typeFactory: typeFactory,
-                create: typeFactory.create
+                create: typeFactory.create,
+                workflowEventHandler: workflowEventHandler
             });
             
         },

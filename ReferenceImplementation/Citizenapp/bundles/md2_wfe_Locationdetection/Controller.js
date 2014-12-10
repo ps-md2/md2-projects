@@ -17,6 +17,7 @@ function(declare) {
             app._customActions = this._customActions;
             app._models = this._models;
             app._contentProviders = this._contentProviders;
+            app._workflowEventHandler = this._workflowEventHandler;
             
             // build app
             app.build();
