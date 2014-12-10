@@ -9,7 +9,7 @@ main {
 }
 
 remoteConnection CitizenAppRemoteConnection {
-	uri "http://localhost:55737/Backend/service"
+	uri "http://localhost:8080/ReferenceProject.backend/service"
 }
 
 
