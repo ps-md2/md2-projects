@@ -16,8 +16,7 @@ define([
     "./events/EventRegistry",
     "./actions/ActionFactory",
     "./validators/ValidatorFactory",
-    "./datatypes/TypeFactory",
-    "../md2_workflow/WorkflowEventHandler"
+    "./datatypes/TypeFactory"
 ], function(
     declare,
     lang,
@@ -36,8 +35,7 @@ define([
     EventRegistry,
     ActionFactory,
     ValidatorFactory,
-    TypeFactory,
-    WorkflowEventHandler
+    TypeFactory
 ) {
     
     return declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {

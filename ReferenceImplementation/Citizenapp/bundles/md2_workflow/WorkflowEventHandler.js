@@ -27,6 +27,8 @@ function(declare, Hash) {
         },
         
         addController: function (controller, properties) {
+            console.log("controller", controller);
+            console.log("properties", properties);
             var id = controller.get("id"),
                     controllers = this.controllers;
             //controllers.set(id, controller);

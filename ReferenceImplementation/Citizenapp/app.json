@@ -38,10 +38,10 @@
             "md2_content_providers",
             "md2_workflow",
             
-            "md2_wfe_Locationdetection",
-            "md2_wfe_Mediacapturing",
+            "md2_app_ReferenceProject",
             
-            "md2_app_ReferenceProject"
+            "md2_wfe_Locationdetection",
+            "md2_wfe_Mediacapturing"
         ],
         
         // the bundles to skip during load (if empty none are skipped)
