@@ -5,19 +5,29 @@ package CurrentStateProject.workflows
  */
  
  WorkflowElement LocationDetection
-	fires LocationDetectionEvent {
+	fires LocationEvent {
 		start LocationDetection
 	}
 	
-WorkflowElement LocationDetection2
-	fires LocationDetection2Event { 
+WorkflowElement Mediacapturing
+	fires MediacapturedEvent { 
+		start SubmitComplaint
+	}
+	
+WorkflowElement SubmitComplaint
+	fires SubmitEvent {
 		start LocationDetection
 	}
 
-App CurrentStateProjectApp {
+
+App Citizenapp {
 	WorkflowElements {
-		LocationDetection (startable: "Start Controller 1")
+		LocationDetection (startable: "Start Controller 1"),
+		Mediacapturing,
+		SubmitComplaint
 	}
 	appName "currentStateApp"
 }
+
+
 

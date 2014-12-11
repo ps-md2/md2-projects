@@ -16,9 +16,9 @@ remoteConnection AdministrativeAppRemoteConnection{
 	key "5678"
 }
 
-contentProvider Complaint[] complaintProvider {
-	providerType CitizenAppRemoteConnection
-}
+//contentProvider Complaint[] complaintProvider {
+//	providerType CitizenAppRemoteConnection
+//}
 
 contentProvider Complaint localComplaintProvider {
 	providerType CitizenAppRemoteConnection
@@ -29,115 +29,77 @@ WorkflowElement LocationDetection{
 		action CustomAction init{
 			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
 			map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
-//		map LocationDetectionView.zipLbl to :localComplaintProvider.loc.myPostalCode
 			map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
 			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
-//		map LocationDetectionView.latitudeLbl to :localComplaintProvider.loc.myLatitude
-//		map LocationDetectionView.longitudeLbl to :localComplaintProvider.loc.myLongitude
-	
-//		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
-//		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
-////		map LocationVerifyView.CityView.zipLbl2 to :localComplaintProvider.loc.myPostalCode
-//		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-//		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
-//		map LocationVerifyView.latitudeLbl2 to :localComplaintProvider.loc.myLatitude
-//		map LocationVerifyView.longitudeLbl2 to :localComplaintProvider.loc.myLongitude
+			map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
+			map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+			map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+			map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+			//variant for implementation without process chains:
+			//call GotoView (LocationDetectionView) 
+			}
 		}
+		
+		
+	action CustomAction next {
+		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
 	}
 	
-	action CustomAction next {
-		bind action FireEvent(LocationDetectionEvent) on LocationDetectionView.Next.onClick
+	processChain LocationProcessChain{
+		step LocationDetection: 
+			view LocationDetectionView
+			proceed {on LocationDetectionView.Next.onClick
+			then ContentProviderOperation (save :localComplaintProvider)}
+
+		step LocationVerify:
+			view LocationVerifyView
+			reverse on LocationVerifyView.Previous.onClick
 	}
 }
 
-WorkflowElement LocationDetection2{
+
+WorkflowElement Mediacapturing {
 	onInit {
 		action CustomAction init{
-			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
-			map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
-			map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
-			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
+			//variant for implementation without process chains:
+			//call GotoView (MediaCapturingView)
 		}
 	}
 	
 	action CustomAction next {
-		bind action FireEvent(LocationDetection2Event) on LocationDetectionView.Next.onClick
+		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.Next.onClick
 	}
+	
+	processChain MediaProcessChain {
+	step MediaCapturing:
+		view MediaCapturingView
+	}
+
 }
 
-//WorkflowElement Locationdetection {
-//	onInit {
-//		
-//		map LocationDetectionView.myStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
-//		map LocationDetectionView.myStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
-//		map LocationDetectionView.myCityView.zipLbl to ComplaintProvider.Location.myPostalCode
-//		map LocationDetectionView.myCityView.myCityLbl to ComplaintProvider.Location.myCity
-//		map LocationDetectionView.myCountryLbl to ComplaintProvider.Location.myCountry
-//		map LocationDetectionView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
-//		map LocationDetectionView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
-//	
-//		map LocationVerifyView.myStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
-//		map LocationVerifyView.myStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
-//		map LocationVerifyView.myCityView.zipLbl to ComplaintProvider.Location.myPostalCode
-//		map LocationVerifyView.myCityView.myCityLbl to ComplaintProvider.Location.myCity
-//		map LocationVerifyView.myCountryLbl to ComplaintProvider.Location.myCountry
-//		map LocationVerifyView.myLatitudeValueLbl to ComplaintProvider.Location.myLatitude
-//		map LocationVerifyView.myLongitudeValueLbl to ComplaintProvider.Location.myLongitude
-//		map LocationVerifyView.LocationMap.myLatitudeLbl to ComplaintProvider.Location.myLatitude
-//		map LocationVerifyView.LocationMap.myLongitudeLbl to ComplaintProvider.Location.myLongitude
-//		
-//		call NewObjectAction(ComplaintProvider)
-//		
-//		display LocationDetectionView
-//	}
-//	LocationDetectionView.DetectLocationBtn {
-//		detectLocation returns ComplaintProvider.Location
-//	}
-//	LocationDetectionView.NavigationBar.next{
-//		display LocationVerifyView
-//	}
-//	LocationVerifyView.NavigationBar.previous {
-//		display LocationView
-//	}
-//	LocationVerifyView.NavigationBar.next {
-//		fire LocationEvent
-//	}
-//}
-//
-//
-//WorkflowElement Mediacapturing {
-//	onInit {
-//		map MediaCapturingView.UploadImg to ComplaintProvider.picture
-//		display MediaCapturingView
-//	}
-//	MediaCapturingView.UploadBtn {
-//		uploadFile returns ComplaintProvider.picture
-//	}
-//	MediaCapturingView.NavigationBar.next {
-//		fire MediacapturedEvent
-//	}
-//}
-//
-//WorkflowElement SubmitComplaint {
-//	onInit {
-//		map SubmitComplaintView.myStreetLbl to ComplaintProvider.Location.myStreet
-//		map SubmitComplaintView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
-//		map SubmitComplaintView.zipLbl to ComplaintProvider.Location.myPostalCode
-//		map SubmitComplaintView.myCityLbl to ComplaintProvider.Location.myCity
-//		map SubmitComplaintView.myCountryLbl to ComplaintProvider.Location.myCountry
-//		map SubmitComplaintView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
-//		map SubmitComplaintView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
-//		map MediacapturingView.UploadImg to ComplaintProvider.picture
-//		map MediacapturingView.DescriptionTxt to ComplaintProvider.descriptions
-//	
-//		display SubmitComplaintView
-//	}
-//	SubmitMediaView.NavigationBar.next {
-//		fire SubmissionEvent 	
-//		call DataAction(save ComplaintProvider)
-//		backToStartScreen
-//
-//	}
+WorkflowElement SubmitComplaint {
+	onInit {
+		action CustomAction init {
+			//variant for implementation without process chains:
+			//call GotoView (SubmitComplaintView)
+		}
+
+	}
+	
+	action CustomAction next {
+		bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
+		//needs to be substituted by remote provider
+		call ContentProviderOperation(save :localComplaintProvider)
+		call DisplayMessage ("yeah, it worked!")
+		//backToStartScreen
+	}
+	
+	processChain ComplaintProcessChain {
+		step SubmitComplaint:
+			view SubmitComplaintView
+	}
+}	
+
 //}
 //
 //
