@@ -19,6 +19,7 @@ function(declare, Hash) {
         handleEvent: function(event, workflowelement) {
            if (event === "LocationEvent" && workflowelement === "Locationdetection")
            {
+               // TODO get correct controller from list this.controllers
               var wfe = this._mediacapturingController;
               wfe.activate();
            }
@@ -31,6 +32,9 @@ function(declare, Hash) {
             console.log("properties", properties);
             var id = controller.get("id"),
                     controllers = this.controllers;
+            
+            // TODO put controller into list this.controllers
+            
             //controllers.set(id, controller);
             //if (this.activated && !this._initToolsetDefs) {
             //    ct_array.arrayAdd(this._controllersToAdd || (this._controllersToAdd = []), controller);
