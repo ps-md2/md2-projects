@@ -15,33 +15,13 @@
             "name": "WorkflowEventHandler",
             "provides": ["md2.workflow.EventHandler"],
             "instanceFactory": true,
+            "immediate": true,
             "references": [
                 {
                     "name": "controller",
                     "providing": "md2.app.Citizenapp.controllers",
                     "policy": "dynamic",
                     "cardinality": "0..n"
-                }
-            ]
-        },
-        { // Tool is somehow required in order to auto-load this package
-            // prevents cyclic references, e.g. wfe_Locationdetection -> WorkflowEventHandler -> wfe_Locationdetection
-            "name": "LoaderTool",
-            "impl": "ct.tools.Tool",
-            "provides": ["ct.tools.Tool"],
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "md2_workflow_loader",
-                "title": "[dummy]",
-                "description": "[dummy]",
-                "tooltip": "[dummy]",
-                "toolRole": "toolset",
-                "iconClass": "icon-view-grid"
-            },
-            "references": [
-                {
-                    "name": "_eventHandler",
-                    "providing": "md2.workflow.EventHandler"
                 }
             ]
         }
