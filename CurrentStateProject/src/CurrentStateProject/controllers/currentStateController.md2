@@ -25,6 +25,7 @@ contentProvider Complaint localComplaintProvider {
 }
 
 WorkflowElement LocationDetection{
+	defaultProcessChain LocationProcessChain
 	onInit {
 		action CustomAction init{
 			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
@@ -59,6 +60,7 @@ WorkflowElement LocationDetection{
 
 
 WorkflowElement Mediacapturing {
+	defaultProcessChain MediaProcessChain
 	onInit {
 		action CustomAction init{
 			//variant for implementation without process chains:
@@ -78,6 +80,7 @@ WorkflowElement Mediacapturing {
 }
 
 WorkflowElement SubmitComplaint {
+	defaultProcessChain ComplaintProcessChain
 	onInit {
 		action CustomAction init {
 			//variant for implementation without process chains:
