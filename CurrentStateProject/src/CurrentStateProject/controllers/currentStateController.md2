@@ -1,0 +1,128 @@
+package CurrentStateProject.controllers
+
+main {
+	appVersion "1.0"
+	modelVersion "1.0"
+}
+
+remoteConnection CitizenAppRemoteConnection {
+	uri "http://localhost:8081/Backend/"
+}
+
+remoteConnection AdministrativeAppRemoteConnection{
+	uri "http://...."
+	user "adminapp"
+	password "Qwertz123"
+	key "5678"
+}
+
+//contentProvider Complaint[] complaintProvider {
+//	providerType CitizenAppRemoteConnection
+//}
+
+contentProvider Complaint localComplaintProvider {
+	providerType CitizenAppRemoteConnection
+}
+
+WorkflowElement LocationDetection{
+	onInit {
+		action CustomAction init{
+			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
+			map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
+			map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
+			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
+			map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
+			map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+			map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+			map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+			//variant for implementation without process chains:
+			//call GotoView (LocationDetectionView) 
+			}
+		}
+		
+		
+	action CustomAction next {
+		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
+	}
+	
+	processChain LocationProcessChain{
+		step LocationDetection: 
+			view LocationDetectionView
+			proceed {on LocationDetectionView.Next.onClick
+			then ContentProviderOperation (save :localComplaintProvider)}
+
+		step LocationVerify:
+			view LocationVerifyView
+			reverse on LocationVerifyView.Previous.onClick
+	}
+}
+
+
+WorkflowElement Mediacapturing {
+	onInit {
+		action CustomAction init{
+			//variant for implementation without process chains:
+			//call GotoView (MediaCapturingView)
+		}
+	}
+	
+	action CustomAction next {
+		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.Next.onClick
+	}
+	
+	processChain MediaProcessChain {
+	step MediaCapturing:
+		view MediaCapturingView
+	}
+
+}
+
+WorkflowElement SubmitComplaint {
+	onInit {
+		action CustomAction init {
+			//variant for implementation without process chains:
+			//call GotoView (SubmitComplaintView)
+		}
+
+	}
+	
+	action CustomAction next {
+		bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
+		//needs to be substituted by remote provider
+		call ContentProviderOperation(save :localComplaintProvider)
+		call DisplayMessage ("yeah, it worked!")
+		//backToStartScreen
+	}
+	
+	processChain ComplaintProcessChain {
+		step SubmitComplaint:
+			view SubmitComplaintView
+	}
+}	
+
+//}
+//
+//
+//WorkflowElement ProcessMessage {
+//	onInit {
+//		map ProcessMessageView.ProceesmyStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
+//		map ProcessMessageView.ProcessmyStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
+//		map ProcessMessageView.ProcessmyCityView.zipLbl to ComplaintProvider.Location.myPostalCode
+//		map ProcessMessageView.ProcessmyCityView.myCityLbl to ComplaintProvider.Location.myCity
+//		map ProcessMessageView.myCountryLbl to ComplaintProvider.Location.myCountry
+//		map ProcessMessageView.ProcessLaloView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
+//		map ProcessMessageView.ProcessLaloView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
+//		map ProcessMessageView.UploadImg to ComplaintProvider.picture
+//		map ProcessMessageView.DescriptionTxt to ComplaintProvider.descriptions
+//		map ProcessMessageView.FeedbackTxt to ComplaintProvider.feedback
+//		map ProcessMessageView.complaintStatusDropdown to ComplaintProvider.status
+//		display ProcessMessageView
+//	}
+//	ProcessMessageView.NavigationBar.next {
+//			
+//		call DataAction(save ComplaintProvider)
+//		backToStartScreen
+//		fire UpdateStatusEvent
+//
+//	}
+//}

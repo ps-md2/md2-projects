@@ -3,11 +3,10 @@ Thumbs.db
 .DS_Store
 
 # bin directories of our projects
-ReferenceProject/bin/
-
+*/bin/
 
 # gen directories of our projects
-ReferenceProject/src-gen/
+*/src-gen/
 
 # User specific files and folders of Xcode
 project.xcworkspace/

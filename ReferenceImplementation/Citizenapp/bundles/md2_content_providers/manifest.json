@@ -1,0 +1,78 @@
+{
+    "Bundle-SymbolicName": "md2_content_providers",
+    "Bundle-Version": "2.0",
+    "Bundle-Name": "Citizenapp md2_content_providers",
+    "Bundle-Description": "Generated MD2 bundle: Content Providers of Citizenapp",
+    "Bundle-Localization": [],
+    "Bundle-Main": "",
+    "Require-Bundle": [],
+    "Require-Bundle": [
+        {
+            "name": "md2_local_store"
+        },
+        {
+            "name": "md2_store"
+        },
+        {
+            "name": "md2_runtime"
+        }
+    ],
+    "Components": [      
+        {
+            "name": "ComplaintProviderProvider",
+            "impl": "./contentproviders/ComplaintProvider",
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
+            "propertiesConstructor": true,
+            "properties": {
+                "uri": "http://localhost:8080/ReferenceProject.backend/service/"
+            },
+            "references": [
+                {
+                    "name": "_remoteFactory",
+                    "providing": "md2.store.RemoteStore",
+                    "cardinality": "0..1"
+                }
+            ]
+        },
+        {
+            "name": "LocalComplaintProviderProvider",
+            "impl": "./contentproviders/LocalComplaintProvider",
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
+            "propertiesConstructor": true,
+            "properties": {
+                "uri": "http://localhost:8080/ReferenceProject.backend/service/"
+            },
+            "references": [
+                {
+                    "name": "_remoteFactory",
+                    "providing": "md2.store.RemoteStore",
+                    "cardinality": "0..1"
+                }
+            ]
+        },
+        {
+            "name": "__returnStepStackProviderProvider",
+            "impl": "./contentproviders/__returnStepStackProvider",
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
+            "references": [
+                {
+                    "name": "_localFactory",
+                    "providing": "md2.store.LocalStore",
+                    "cardinality": "0..1"
+                }
+            ]
+        },
+        {
+            "name": "__processChainControllerStateProviderProvider",
+            "impl": "./contentproviders/__processChainControllerStateProvider",
+            "provides": ["md2.app.Citizenapp.ContentProvider"],
+            "references": [
+                {
+                    "name": "_localFactory",
+                    "providing": "md2.store.LocalStore",
+                    "cardinality": "0..1"
+                }
+            ]
+        }
+    ]
+}

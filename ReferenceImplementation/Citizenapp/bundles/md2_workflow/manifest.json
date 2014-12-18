@@ -1,0 +1,29 @@
+{
+    "Bundle-SymbolicName": "md2_workflow",
+    "Bundle-Version": "2.0",
+    "Bundle-Name": "workflow",
+    "Bundle-Description": "Generated MD2 bundle: workflow",
+    "Bundle-Localization": [],
+    "Bundle-Main": "",
+    "Require-Bundle": [
+        {
+            "name": "md2_runtime"
+        }
+    ],
+    "Components": [
+        {
+            "name": "WorkflowEventHandler",
+            "provides": ["md2.workflow.EventHandler"],
+            "instanceFactory": true,
+            "immediate": true,
+            "references": [
+                {
+                    "name": "controller",
+                    "providing": "md2.app.Citizenapp.controllers",
+                    "policy": "dynamic",
+                    "cardinality": "0..n"
+                }
+            ]
+        }
+    ]
+}
