@@ -3,6 +3,7 @@ package CurrentStateProject.controllers
 main {
 	appVersion "1.0"
 	modelVersion "1.0"
+	defaultConnection CitizenAppRemoteConnection
 }
 
 remoteConnection CitizenAppRemoteConnection {
