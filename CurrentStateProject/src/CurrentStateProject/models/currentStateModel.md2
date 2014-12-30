@@ -1,20 +1,20 @@
 package CurrentStateProject.models
 
 entity Complaint {
-	loc: Location  // use current MD2 location instead!--> No, current MD2 location is a content provider, not an entity!
-	descriptions : string
-	feedback : string
+	loc: Address  // use current MD2 location instead!--> No, current MD2 location is a content provider, not an entity!
+	descriptions : string(optional)
+	feedback : string(optional)
 	status : ComplaintStatus
 }
 
-entity Location {
-	myStreet: string
-	myStreetNo: string
-	myPostalCode: integer
-	myCity: string
-	myCountry: string
-	myLatitude: float
-	myLongitude: float
+entity Address {
+	myStreet: string(optional)
+	myStreetNo: string(optional)
+	myPostalCode: integer(optional)
+	myCity: string(optional)
+	myCountry: string(optional)
+	myLatitude: float(optional)
+	myLongitude: float(optional)
 }
 
 enum ComplaintStatus {

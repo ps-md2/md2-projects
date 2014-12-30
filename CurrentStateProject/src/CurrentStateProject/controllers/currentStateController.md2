@@ -7,7 +7,7 @@ main {
 }
 
 remoteConnection CitizenAppRemoteConnection {
-	uri "http://localhost:8081/Backend/"
+	uri "http://localhost:8080/CurrentStateProject.backend/service/"
 }
 
 remoteConnection AdministrativeAppRemoteConnection{
@@ -38,6 +38,8 @@ WorkflowElement LocationDetection{
 			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
 			map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
 			map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+			map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+			map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry 
 			
 			//variant for implementation without process chains:
 			//call GotoView (LocationDetectionView)
@@ -45,8 +47,6 @@ WorkflowElement LocationDetection{
 	
 	action CustomAction next {
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
-		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry 
 	}
 	
 	processChain LocationProcessChain{

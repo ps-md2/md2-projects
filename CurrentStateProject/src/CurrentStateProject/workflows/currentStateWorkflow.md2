@@ -20,7 +20,7 @@ WorkflowElement SubmitComplaint
 	}
 
 
-App Citizenapp {
+App CurrentStateApp {
 	WorkflowElements {
 		LocationDetection (startable: "Start Controller 1"),
 		Mediacapturing,
