@@ -28,23 +28,25 @@ contentProvider Complaint localComplaintProvider {
 WorkflowElement LocationDetection{
 	defaultProcessChain LocationProcessChain
 	onInit {
-		action CustomAction init{
+		init
+	}
+	
+	action CustomAction init{
 			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
 			map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
 			map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
 			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
 			map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
 			map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
-			map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-			map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+			
 			//variant for implementation without process chains:
-			//call GotoView (LocationDetectionView) 
+			//call GotoView (LocationDetectionView)
 			}
-		}
-		
-		
+	
 	action CustomAction next {
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
+		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry 
 	}
 	
 	processChain LocationProcessChain{
@@ -63,11 +65,13 @@ WorkflowElement LocationDetection{
 WorkflowElement Mediacapturing {
 	defaultProcessChain MediaProcessChain
 	onInit {
-		action CustomAction init{
+		init
+	}
+	
+	action CustomAction init{
 			//variant for implementation without process chains:
 			//call GotoView (MediaCapturingView)
 		}
-	}
 	
 	action CustomAction next {
 		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.Next.onClick
@@ -77,17 +81,17 @@ WorkflowElement Mediacapturing {
 	step MediaCapturing:
 		view MediaCapturingView
 	}
-
 }
 
 WorkflowElement SubmitComplaint {
 	defaultProcessChain ComplaintProcessChain
 	onInit {
-		action CustomAction init {
-			//variant for implementation without process chains:
-			//call GotoView (SubmitComplaintView)
-		}
-
+		init
+	}
+	
+	action CustomAction init {
+		//variant for implementation without process chains:
+		//call GotoView (SubmitComplaintView)
 	}
 	
 	action CustomAction next {
@@ -102,7 +106,7 @@ WorkflowElement SubmitComplaint {
 		step SubmitComplaint:
 			view SubmitComplaintView
 	}
-}	
+}
 
 //}
 //
