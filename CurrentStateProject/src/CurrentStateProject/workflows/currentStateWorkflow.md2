@@ -6,7 +6,7 @@ package CurrentStateProject.workflows
  
  WorkflowElement LocationDetection
 	fires LocationEvent {
-		start LocationDetection
+		start Mediacapturing
 	}
 	
 WorkflowElement Mediacapturing

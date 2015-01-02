@@ -32,21 +32,19 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction init{
-			map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
-			map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
-			map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
-			map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
-			map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
-			map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
-			map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-			map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry 
-			
-			//variant for implementation without process chains:
-			//call GotoView (LocationDetectionView)
-			}
-	
-	action CustomAction next {
+		map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
+		map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
+		map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
+		map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
+		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
+		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
+		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
+		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
+		
+		//variant for implementation without process chains:
+		//call GotoView (LocationDetectionView)
 	}
 	
 	processChain LocationProcessChain{
