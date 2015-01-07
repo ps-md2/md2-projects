@@ -10,7 +10,7 @@ package CurrentStateProject.workflows
 	}
 	
 WorkflowElement Mediacapturing
-	fires MediacapturedEvent { 
+	fires MediacapturedEvent {
 		start SubmitComplaint
 	}
 	
@@ -29,5 +29,12 @@ App CurrentStateApp {
 	appName "currentStateApp"
 }
 
+
+App AdminApp {
+	WorkflowElements {
+		LocationDetection (startable: "Start Controller 1")
+	}
+	appName "adminApp"
+}
 
 

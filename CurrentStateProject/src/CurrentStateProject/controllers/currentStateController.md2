@@ -28,7 +28,8 @@ contentProvider Complaint localComplaintProvider {
 WorkflowElement LocationDetection{
 	defaultProcessChain LocationProcessChain
 	onInit {
-		init
+		init,
+		next
 	}
 	
 	action CustomAction init{
@@ -41,10 +42,12 @@ WorkflowElement LocationDetection{
 		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
 		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
 		
-		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
-		
 		//variant for implementation without process chains:
 		//call GotoView (LocationDetectionView)
+	}
+	
+	action CustomAction next{
+		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
 	}
 	
 	processChain LocationProcessChain{
