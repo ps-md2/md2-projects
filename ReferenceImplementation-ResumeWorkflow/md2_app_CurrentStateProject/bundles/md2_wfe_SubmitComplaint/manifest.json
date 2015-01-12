@@ -334,6 +334,10 @@
                     "providing": "md2.runtime.InstanceFactory"
                 },
                 {
+                    "name": "_workflowStateHandler",
+                    "providing": "md2.workflow.WorkflowStateHandler"
+                },
+                {
                     "name": "_customActions",
                     "providing": "md2.wfe.SubmitComplaint.CustomActions"
                 },

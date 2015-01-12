@@ -115,6 +115,10 @@
                 {
                     "name": "_workflowEventHandler",
                     "providing": "md2.workflow.EventHandler"
+                },
+                {
+                    "name": "_workflowStateHandler",
+                    "providing": "md2.workflow.WorkflowStateHandler"
                 }
             ]
         }

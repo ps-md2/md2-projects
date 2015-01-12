@@ -22,6 +22,10 @@
                     "providing": "md2.app.currentStateApp.controllers",
                     "policy": "dynamic",
                     "cardinality": "0..n"
+                },
+                {
+                    "name": "workflowStateHandler",
+                    "providing": "md2.workflow.WorkflowStateHandler"
                 }
             ]
         }
