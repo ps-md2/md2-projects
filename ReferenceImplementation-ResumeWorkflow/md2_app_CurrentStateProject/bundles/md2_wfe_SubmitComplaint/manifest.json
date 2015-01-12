@@ -1,0 +1,360 @@
+{
+    "Bundle-SymbolicName": "md2_wfe_SubmitComplaint", //TODO:"md2_wfe_CurrentStateProject"
+    "Bundle-Version": "1.0",
+    "Bundle-Name": "Workflow element SubmitComplaint",
+    "Bundle-Description": "Generated MD2 workflow element bundle: SubmitComplaint of currentStateApp",
+    "Bundle-Localization": [],
+    "Bundle-Main": "",
+    "Require-Bundle": [
+        {
+            "name": "md2_runtime"
+        },
+        {
+            "name": "md2_models"
+        },
+        {
+            "name": "md2_content_providers"
+        },
+        {
+            "name": "md2_workflow"
+        }
+    ],
+    "Components": [
+        {
+            "name": "MD2SubmitComplaint",//TODO: processedInput.getBasePackageName.split("\\.").last.toFirstUpper
+            "impl": "ct/Stateful",
+            "provides": ["md2.wfe.SubmitComplaint.AppDefinition"], //TODO: CurrentStateProject
+            "propertiesConstructor": true,
+            "properties": {
+                "appId": "md2_currentStateApp",
+                "id": "md2_SubmitComplaint", //TODO: processedInput.getBasePackageName.replace(".", "_")
+                "windowTitle": "de.wwu.md2.framework.mD2.impl.WorkflowElementImpl@1242cfa1 (name: SubmitComplaint)",
+                "onInitialized": "__startupAction",
+                "views": [
+                    {
+                        "name": "SubmitComplaintView",
+                        "dataForm": {
+                            "dataform-version": "1.0.0",
+                            "type": "md2gridpanel",
+                            "cols": "1",
+                            "valueClass": "layoutCell",
+                            "cellStyle": {
+                                "width": "100%"
+                            }
+                            ,
+                            "children": [
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "TitleLbl3",
+                                    "defaultText": "Submit Complaint",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "simpleimage",
+                                    "src": "md2_app_CurrentStateProject:./resources/uploadedImage.png",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "md2gridpanel",
+                                    "cols": "2",
+                                    "valueClass": "layoutCell",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                    ,
+                                    "children": [
+                                        {
+                                            "type": "md2gridpanel",
+                                            "cols": "2",
+                                            "valueClass": "layoutCell",
+                                            "cellStyle": {
+                                                "width": "50%"
+                                            }
+                                            ,
+                                            "children": [
+                                                {
+                                                    "type": "textbox",
+                                                    "datatype": "string",
+                                                    "field": "streetLbl3",
+                                                    "cellStyle": {
+                                                        "width": "90%"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "tooltipicon",
+                                                    "datatype": "string",
+                                                    "field": "__TooltipstreetLbl3",
+                                                    "defaultText": "street",
+                                                    "cellStyle": {
+                                                        "width": "10%"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "md2gridpanel",
+                                            "cols": "2",
+                                            "valueClass": "layoutCell",
+                                            "cellStyle": {
+                                                "width": "50%"
+                                            }
+                                            ,
+                                            "children": [
+                                                {
+                                                    "type": "textbox",
+                                                    "datatype": "string",
+                                                    "field": "streetNoLbl3",
+                                                    "cellStyle": {
+                                                        "width": "90%"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "tooltipicon",
+                                                    "datatype": "string",
+                                                    "field": "__TooltipstreetNoLbl3",
+                                                    "defaultText": "no",
+                                                    "cellStyle": {
+                                                        "width": "10%"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "md2gridpanel",
+                                    "cols": "2",
+                                    "valueClass": "layoutCell",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                    ,
+                                    "children": [
+                                        {
+                                            "type": "md2gridpanel",
+                                            "cols": "2",
+                                            "valueClass": "layoutCell",
+                                            "cellStyle": {
+                                                "width": "50%"
+                                            }
+                                            ,
+                                            "children": [
+                                                {
+                                                    "type": "numberspinner",
+                                                    "datatype": "integer",
+                                                    "field": "zipLbl3",
+                                                    "cellStyle": {
+                                                        "width": "90%"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "tooltipicon",
+                                                    "datatype": "string",
+                                                    "field": "__TooltipzipLbl3",
+                                                    "defaultText": "zip",
+                                                    "cellStyle": {
+                                                        "width": "10%"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "md2gridpanel",
+                                            "cols": "2",
+                                            "valueClass": "layoutCell",
+                                            "cellStyle": {
+                                                "width": "50%"
+                                            }
+                                            ,
+                                            "children": [
+                                                {
+                                                    "type": "textbox",
+                                                    "datatype": "string",
+                                                    "field": "cityLbl3",
+                                                    "cellStyle": {
+                                                        "width": "90%"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "tooltipicon",
+                                                    "datatype": "string",
+                                                    "field": "__TooltipcityLbl3",
+                                                    "defaultText": "city",
+                                                    "cellStyle": {
+                                                        "width": "10%"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "md2gridpanel",
+                                    "cols": "2",
+                                    "valueClass": "layoutCell",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                    ,
+                                    "children": [
+                                        {
+                                            "type": "textbox",
+                                            "datatype": "string",
+                                            "field": "countryLbl3",
+                                            "cellStyle": {
+                                                "width": "90%"
+                                            }
+                                        },
+                                        {
+                                            "type": "tooltipicon",
+                                            "datatype": "string",
+                                            "field": "__TooltipcountryLbl3",
+                                            "defaultText": "country",
+                                            "cellStyle": {
+                                                "width": "10%"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "spacer",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "latitudeLbl3",
+                                    "defaultText": "Latitude:",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "latitudeValueLbl3",
+                                    "defaultText": "",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "longitudeLbl3",
+                                    "defaultText": "Longitude:",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "textoutput",
+                                    "datatype": "string",
+                                    "field": "longitudeValueLbl3",
+                                    "defaultText": "",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "md2gridpanel",
+                                    "cols": "3",
+                                    "valueClass": "layoutCell",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                    ,
+                                    "children": [
+                                        {
+                                            "type": "textoutput",
+                                            "datatype": "string",
+                                            "field": "__LabelDescriptionTxt",
+                                            "defaultText": "Additional Description",
+                                            "cellStyle": {
+                                                "width": "40%"
+                                            }
+                                        },
+                                        {
+                                            "type": "textbox",
+                                            "datatype": "string",
+                                            "field": "DescriptionTxt",
+                                            "cellStyle": {
+                                                "width": "50%"
+                                            }
+                                        },
+                                        {
+                                            "type": "spacer",
+                                            "cellStyle": {
+                                                "width": "10%"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "button",
+                                    "title": "Cancel",
+                                    "field": "Cancel3",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "title": "Submit complaint",
+                                    "field": "submitComplaint",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "CustomActions",
+            "provides": ["md2.wfe.SubmitComplaint.CustomActions"], //TODO: processedInput.getBasePackageName
+            "instanceFactory": true
+        },
+        {
+            "name": "Controller",
+            "provides": ["md2.wfe.SubmitComplaint.Controller","md2.app.currentStateApp.controllers"], //TODO: processedInput.getBasePackageName
+            "instanceFactory": true,
+            "references": [
+                {
+                    "name": "_md2AppWidget",
+                    "providing": "md2.runtime.InstanceFactory"
+                },
+                {
+                    "name": "_customActions",
+                    "providing": "md2.wfe.SubmitComplaint.CustomActions"
+                },
+                {
+                    "name": "_models",
+                    "providing": "md2.app.currentStateApp.Models"
+                },
+                {
+                    "name": "_contentProviders",
+                    "providing": "md2.app.currentStateApp.ContentProvider",
+                    "cardinality": "0..n"
+                },
+                {
+                    "name": "_configBean",
+                    "providing": "md2.wfe.SubmitComplaint.AppDefinition"
+                },
+                {
+                    "name": "_workflowEventHandler",
+                    "providing": "md2.workflow.EventHandler"
+                }
+            ]
+        }
+    ]
+}
