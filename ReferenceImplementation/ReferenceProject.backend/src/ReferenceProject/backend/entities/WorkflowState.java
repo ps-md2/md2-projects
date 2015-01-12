@@ -1,4 +1,4 @@
-package ReferenceProject.backend.models;
+package ReferenceProject.backend.entities;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class ProcessChainControllerState implements Serializable {
+public class WorkflowState implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -29,11 +29,11 @@ public class ProcessChainControllerState implements Serializable {
 	
 	@NotNull
 	@XmlElement(nillable=true)
-	protected String currentProcessChainStep;
+	protected String currentWorkflowElement;
 	
 	@NotNull
 	@XmlElement(nillable=true)
-	protected String lastEventFired;
+	protected String lastEventFired; //TODO: Really necessary?
 	
 	
 	///////////////////////////////////////
@@ -44,12 +44,12 @@ public class ProcessChainControllerState implements Serializable {
 		return __internalId;
 	}
 	
-	public String getCurrentProcessChainStep() {
-		return currentProcessChainStep;
+	public String getCurrentWorkflowElement() {
+		return currentWorkflowElement;
 	}
 	
-	public void setCurrentProcessChainStep(String currentProcessChainStep) {
-		this.currentProcessChainStep = currentProcessChainStep;
+	public void setCurrentWorkflowElement(String currentWorkflowElement) {
+		this.currentWorkflowElement = currentWorkflowElement;
 	}
 	
 	public String getLastEventFired() {

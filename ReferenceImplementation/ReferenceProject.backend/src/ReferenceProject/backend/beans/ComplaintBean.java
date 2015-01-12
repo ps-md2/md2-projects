@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 import ReferenceProject.backend.Utils;
 import ReferenceProject.backend.datatypes.InternalIdWrapper;
-import ReferenceProject.backend.models.Complaint;
+import ReferenceProject.backend.entities.models.Complaint;
 
 @Stateless
 public class ComplaintBean {

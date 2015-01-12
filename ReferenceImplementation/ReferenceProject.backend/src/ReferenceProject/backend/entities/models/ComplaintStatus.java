@@ -1,4 +1,4 @@
-package ReferenceProject.backend.models;
+package ReferenceProject.backend.entities.models;
 
 import javax.xml.bind.annotation.XmlEnumValue;
 

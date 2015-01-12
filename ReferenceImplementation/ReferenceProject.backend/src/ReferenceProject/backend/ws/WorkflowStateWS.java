@@ -23,7 +23,7 @@ import ReferenceProject.backend.entities.models.Complaint;
 
 @Path("/complaint")
 @Stateless
-public class ComplaintWS {
+public class WorkflowStateWS {
 	
 	@EJB
 	ComplaintBean complaintBean;
