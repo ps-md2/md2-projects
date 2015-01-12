@@ -42,6 +42,7 @@
             //"md2_app_ReferenceProject",
             
             "md2_wfe_Locationdetection",
+            "md2_list_of_open_issues",
             "md2_wfe_Mediacapturing"
         ],
         
@@ -96,7 +97,8 @@
                         },
                         "tools": [
                             "md2_wfe_*",
-                            "md2_app_*"
+                            "md2_app_*",
+                            "md2_list_of_open_issues"
                         ]
                     }
                 ]
