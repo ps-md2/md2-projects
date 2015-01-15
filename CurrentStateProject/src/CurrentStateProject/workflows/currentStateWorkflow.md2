@@ -23,8 +23,8 @@ WorkflowElement SubmitComplaint
 App CurrentStateApp {
 	WorkflowElements {
 		LocationDetection (startable: "Start Controller 1"),
-		Mediacapturing,
-		SubmitComplaint
+		Mediacapturing//,
+		//SubmitComplaint
 	}
 	appName "currentStateApp"
 }
@@ -32,7 +32,7 @@ App CurrentStateApp {
 
 App AdminApp {
 	WorkflowElements {
-		LocationDetection (startable: "Start Controller 1")
+		SubmitComplaint (startable: "Start Controller 1")
 	}
 	appName "adminApp"
 }
