@@ -22,10 +22,17 @@ public class WorkflowStateBean {
 	 * Default logic to get and set Complaint entities
 	 */
 	
-	public List<WorkflowState> getAllOpenIssues(String app, String filter){
-		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws " + 
-			Utils.buildWhereParameterFromFilterString(filter), WorkflowState.class);
+	public List<WorkflowState> getAllWorkflowStates(String app, String filter){
+		//TypedQuery<WorkflowState> query = em.createQuery("SELECT * FROM WorkflowState ws " + 
+		//	Utils.buildWhereParameterFromFilterString(filter), WorkflowState.class);
+		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws", WorkflowState.class);
 		return query.getResultList();
+	}
+	
+	public WorkflowState getWorkflowState(int instanceId){
+		return (WorkflowState) em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id")
+		.setParameter("id", instanceId)
+		.getSingleResult();
 	}
 	
 	public List<InternalIdWrapper> createOrUpdateWorkflowStates(List<WorkflowState> workflowStates) {

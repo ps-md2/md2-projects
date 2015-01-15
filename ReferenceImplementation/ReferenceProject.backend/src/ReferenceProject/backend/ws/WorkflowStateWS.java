@@ -17,25 +17,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import ReferenceProject.backend.Config;
-import ReferenceProject.backend.beans.ComplaintBean;
+import ReferenceProject.backend.beans.WorkflowStateBean;
 import ReferenceProject.backend.datatypes.InternalIdWrapper;
-import ReferenceProject.backend.entities.models.Complaint;
+import ReferenceProject.backend.entities.WorkflowState;
 
-@Path("/complaint")
+@Path("/workflowState")
 @Stateless
 public class WorkflowStateWS {
 	
 	@EJB
-	ComplaintBean complaintBean;
+	WorkflowStateBean workflowStateBean;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getAll(@QueryParam("filter") final String filter, @QueryParam("limit") final int limit) {
-		final GenericEntity<List<Complaint>> complaints =
-				new GenericEntity<List<Complaint>>(complaintBean.getAllComplaints(filter, limit)) {};
+	public Response getAll() {
+		final GenericEntity<List<WorkflowState>> workflowStates =
+				new GenericEntity<List<WorkflowState>>(workflowStateBean.getAllWorkflowStates("", "")) {};
 		return Response
 				.ok()
-				.entity(complaints)
+				.entity(workflowStates)
 				.header("MD2-Model-Version", Config.MODEL_VERSION)
 				.build();
 	}
@@ -44,12 +44,12 @@ public class WorkflowStateWS {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response get(@PathParam("id") Integer id) {
-		final Complaint complaint = complaintBean.getComplaint(id);
+		final WorkflowState workflowState = workflowStateBean.getWorkflowState(id);
 		
-		if (complaint != null) {
+		if (workflowState != null) {
 			return Response
 				.ok()
-				.entity(new GenericEntity<Complaint>(complaint) {})
+				.entity(new GenericEntity<WorkflowState>(workflowState) {})
 				.header("MD2-Model-Version", Config.MODEL_VERSION)
 				.build();
 		} else {
@@ -58,7 +58,6 @@ public class WorkflowStateWS {
 				.header("MD2-Model-Version", Config.MODEL_VERSION)
 				.build();
 		}
-
 	}
 	
 	/**
@@ -75,9 +74,9 @@ public class WorkflowStateWS {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response createOrUpdate(List<Complaint> complaints) {
+	public Response createOrUpdate(List<WorkflowState> workflowStates) {
 		final GenericEntity<List<InternalIdWrapper>> ids =
-				new GenericEntity<List<InternalIdWrapper>>(complaintBean.createOrUpdateComplaints(complaints)) {};
+				new GenericEntity<List<InternalIdWrapper>>(workflowStateBean.createOrUpdateWorkflowStates(workflowStates)) {};
 		return Response
 				.ok()
 				.entity(ids)
@@ -87,7 +86,7 @@ public class WorkflowStateWS {
 	
 	@DELETE
 	public Response delete(@QueryParam("id") List<Integer> ids) {
-		if (complaintBean.deleteComplaints(ids)) {
+		if (workflowStateBean.deleteWorkflowStates(ids)) {
 			return Response
 				.noContent()
 				.header("MD2-Model-Version", Config.MODEL_VERSION)
