@@ -3,11 +3,11 @@ package CurrentStateProject.views
 GridLayoutPane LocationDetectionView (columns 2, rows 9) {
 	Label TitleLbl ("Enter your location") // better: As Title of Activity
 	Spacer
-	TextInput streetLbl {tooltip "street"}
-	TextInput streetNoLbl {tooltip "no"}
-	IntegerInput zipLbl {tooltip "zip" }
-	TextInput cityLbl {tooltip "city"}
-	TextInput countryLbl {tooltip "country" width 100%}
+	TextInput streetLbl { label "Street" }
+	TextInput streetNoLbl { label "No" }
+	TextInput zipLbl { label  "Zip" }
+	TextInput cityLbl { label  "City"}
+	TextInput countryLbl { label  "Country" width 100%}
 	Spacer {width 1%}
 	Label latitudeLbl ("Latitude:")
 	Label latitudeValueLbl ("")
@@ -25,15 +25,15 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	Label TitleLbl ("Verify Location") // better: As Title of Activity
 	
 	FlowLayoutPane StreetView (horizontal) {
-		LocationDetectionView.streetLbl -> streetLbl2
-		LocationDetectionView.streetNoLbl -> streetNoLbl2
+		Label streetLbl2 ("")
+		Label streetNoLbl2 ("")
 	}
 	FlowLayoutPane CityView (horizontal) {
-		LocationDetectionView.zipLbl -> zipLbl2
-		LocationDetectionView.cityLbl -> cityLbl2
+		Label zipLbl2 ("")
+		Label cityLbl2 ("")
 	}
 	
-	LocationDetectionView.countryLbl -> countryLbl2
+	Label countryLbl2 ("")
 	Spacer {width 1%}
 	LocationDetectionView.latitudeLbl -> latitudeLbl2
 	LocationDetectionView.longitudeLbl -> longitudeLbl2
