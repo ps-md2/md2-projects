@@ -10,7 +10,7 @@ entity Complaint {
 entity Address {
 	myStreet: string(optional)
 	myStreetNo: string(optional)
-	myPostalCode: integer(optional)
+	myPostalCode: string(optional)
 	myCity: string(optional)
 	myCountry: string(optional)
 	myLatitude: float(optional)

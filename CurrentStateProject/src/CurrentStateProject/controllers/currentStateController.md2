@@ -21,7 +21,11 @@ remoteConnection AdministrativeAppRemoteConnection{
 //	providerType CitizenAppRemoteConnection
 //}
 
-contentProvider Complaint localComplaintProvider {
+contentProvider Complaint complaintProvider {
+	providerType CitizenAppRemoteConnection
+}
+
+contentProvider Address addressProvider {
 	providerType CitizenAppRemoteConnection
 }
 
@@ -33,14 +37,17 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction init{
-		map LocationDetectionView.streetLbl to :localComplaintProvider.loc.myStreet
-		map LocationDetectionView.streetNoLbl to :localComplaintProvider.loc.myStreetNo
-		map LocationDetectionView.cityLbl to :localComplaintProvider.loc.myCity
-		map LocationDetectionView.countryLbl to :localComplaintProvider.loc.myCountry
-		map LocationVerifyView.StreetView.streetLbl2 to :localComplaintProvider.loc.myStreet
-		map LocationVerifyView.StreetView.streetNoLbl2 to :localComplaintProvider.loc.myStreetNo
-		map LocationVerifyView.CityView.cityLbl2 to :localComplaintProvider.loc.myCity
-		map LocationVerifyView.countryLbl2 to :localComplaintProvider.loc.myCountry
+		
+		map LocationDetectionView.streetLbl to :addressProvider.myStreet
+		map LocationDetectionView.streetNoLbl to :addressProvider.myStreetNo
+		map LocationDetectionView.cityLbl to :addressProvider.myCity
+		map LocationDetectionView.countryLbl to :addressProvider.myCountry
+		map LocationDetectionView.zipLbl to :addressProvider.myPostalCode
+		map LocationVerifyView.StreetView.streetLbl2 to :addressProvider.myStreet
+		map LocationVerifyView.StreetView.streetNoLbl2 to :addressProvider.myStreetNo
+		map LocationVerifyView.CityView.cityLbl2 to :addressProvider.myCity
+		map LocationVerifyView.countryLbl2 to :addressProvider.myCountry
+		map LocationVerifyView.CityView.zipLbl2 to :addressProvider.myPostalCode
 		
 		//variant for implementation without process chains:
 		//call GotoView (LocationDetectionView)
@@ -50,16 +57,23 @@ WorkflowElement LocationDetection{
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
 	}
 	
+	action CustomAction saveComplaint {
+		set :complaintProvider.loc = :addressProvider
+		call ContentProviderOperation (save :complaintProvider)
+	}
 	processChain LocationProcessChain{
 		step LocationDetection: 
 			view LocationDetectionView
-			proceed {on LocationDetectionView.Next.onClick
-			then ContentProviderOperation (save :localComplaintProvider)}
+			proceed {
+				on LocationDetectionView.Next.onClick
+				then saveComplaint
+				}
 
 		step LocationVerify:
 			view LocationVerifyView
 			reverse on LocationVerifyView.Previous.onClick
 	}
+	
 }
 
 
@@ -98,7 +112,7 @@ WorkflowElement SubmitComplaint {
 	action CustomAction next {
 		bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
 		//needs to be substituted by remote provider
-		call ContentProviderOperation(save :localComplaintProvider)
+		call ContentProviderOperation(save :complaintProvider)
 		call DisplayMessage ("yeah, it worked!")
 		//backToStartScreen
 	}
