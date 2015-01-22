@@ -38,11 +38,13 @@
             "md2_content_providers",
             "md2_workflow",
             
+            "md2_list_of_open_issues",
+            "md2_workflow_store",
+            
             // Not needed for refrerence implementation: Only use for comparison
             //"md2_app_ReferenceProject",
             
             "md2_wfe_Locationdetection",
-            "md2_list_of_open_issues",
             "md2_wfe_Mediacapturing"
         ],
         
@@ -53,6 +55,12 @@
     
     // bundles section used to overwrite or add any property defined by components in the manifest.json of bundles
     "bundles": {
+        "md2_workflow_store": {
+            "MD2WorkflowStore": {
+                    "uri": "http://localhost:8080/ReferenceProject.backend/service/",
+                    "app": "dummyApp"
+            }
+        },
         "notifier": {
             "NotifierFactory": {
                 "fadeTime": 10000
