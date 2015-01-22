@@ -45,6 +45,19 @@ public class WorkflowState implements Serializable {
 	
 	@OneToOne
 	protected Complaint complaint;
+	///////////////////////////////////////
+	/// constructor
+	///////////////////////////////////////
+	
+	public WorkflowState(){
+		
+	}
+	public WorkflowState (String lastEventFired, Integer instanceId, String wfe) {
+		this.instanceId = instanceId;
+		//this.complaint = complaint;
+		this.lastEventFired = lastEventFired;
+		this.currentWorkflowElement = wfe;
+	}
 	
 	///////////////////////////////////////
 	/// Getters and setters

@@ -3,6 +3,7 @@ package ReferenceProject.backend.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,12 +12,15 @@ import javax.persistence.TypedQuery;
 import ReferenceProject.backend.Utils;
 import ReferenceProject.backend.datatypes.InternalIdWrapper;
 import ReferenceProject.backend.entities.WorkflowState;
+import ReferenceProject.backend.entities.models.Complaint;
 
 @Stateless
 public class WorkflowStateBean {
 	
 	@PersistenceContext(unitName = "ReferenceProject.backend")
     EntityManager em;
+	@EJB
+	ComplaintBean complaintBean;
 	
 	/*
 	 * Default logic to get and set Complaint entities
@@ -44,6 +48,23 @@ public class WorkflowStateBean {
 			ids.add(new InternalIdWrapper(workflowState.getInternal__id()));
 		}
 		return ids;
+	}
+	
+	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, Integer instanceId, String wfe){
+		
+		WorkflowState ws = getWorkflowState(instanceId);
+		if(ws.equals(null)){
+			WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, wfe);
+			em.persist(workflowState);
+		}
+		else {
+			ws.setCurrentWorkflowElement(wfe);
+			ws.setLastEventFired(lastEventFired);
+			em.merge(ws);
+		}
+//		WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, complaint, wfe);
+//		em.merge(workflowState);
+		return ws;
 	}
 	
 	public boolean deleteWorkflowStates(List<Integer> ids) {

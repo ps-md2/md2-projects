@@ -55,6 +55,14 @@ public class ComplaintBean {
 		return ids;
 	}
 	
+	public Complaint createOrUpdateComplaint(Complaint complaint){
+		
+		complaint = em.merge(complaint);
+		
+		return complaint;
+	}
+	
+	
 	public boolean deleteComplaints(List<Integer> ids) {
 		
 		Long count = em.createQuery("SELECT COUNT(t) FROM Complaint t WHERE t.__internalId IN :ids", Long.class)
