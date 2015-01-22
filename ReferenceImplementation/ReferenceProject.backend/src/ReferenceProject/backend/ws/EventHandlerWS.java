@@ -41,7 +41,7 @@ public class EventHandlerWS {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response createOrUpdate(@QueryParam("instanceId") Integer id, @QueryParam("lastEventFired") String event,
+	public Response createOrUpdate(@QueryParam("instanceId") String id, @QueryParam("lastEventFired") String event,
 			@QueryParam("currentWfe") String wfe) {
 		System.out.println(id +", " + event + ", " + wfe);
 

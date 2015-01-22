@@ -43,7 +43,7 @@ public class WorkflowStateWS {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response get(@PathParam("id") Integer id) {
+	public Response get(@PathParam("id") String id) {
 		final WorkflowState workflowState = workflowStateBean.getWorkflowState(id);
 		
 		if (workflowState != null) {

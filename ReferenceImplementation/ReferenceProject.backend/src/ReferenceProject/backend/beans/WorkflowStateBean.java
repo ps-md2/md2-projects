@@ -33,7 +33,7 @@ public class WorkflowStateBean {
 		return query.getResultList();
 	}
 	
-	public WorkflowState getWorkflowState(int instanceId){
+	public WorkflowState getWorkflowState(String instanceId){
 		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id", WorkflowState.class)
 				.setParameter("id", instanceId);
 		List<WorkflowState> states = query.getResultList();
@@ -61,7 +61,7 @@ public class WorkflowStateBean {
 	 * @param wfe the current workflowelement
 	 * @return current workflowstate
 	 */
-	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, Integer instanceId, String wfe){
+	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, String instanceId, String wfe){
 		
 		WorkflowState ws = getWorkflowState(instanceId);
 		if(ws == null){

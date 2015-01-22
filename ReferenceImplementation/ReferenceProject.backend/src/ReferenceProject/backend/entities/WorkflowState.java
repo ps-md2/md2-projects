@@ -38,7 +38,7 @@ public class WorkflowState implements Serializable {
 	@Column(unique=true)
 	@NotNull
 	@XmlElement(nillable=true)
-	protected int instanceId;
+	protected String instanceId;
 	
 	@NotNull
 	@XmlElement(nillable=true)
@@ -55,7 +55,8 @@ public class WorkflowState implements Serializable {
 	public WorkflowState(){
 		
 	}
-	public WorkflowState (String lastEventFired, Integer instanceId, String wfe) {
+	
+	public WorkflowState (String lastEventFired, String instanceId, String wfe) {
 		this.instanceId = instanceId;
 		this.lastEventFired = lastEventFired;
 		this.currentWorkflowElement = wfe;
@@ -69,7 +70,7 @@ public class WorkflowState implements Serializable {
 		return __internalId;
 	}
 	
-	public int get_instanceId() {
+	public String get_instanceId() {
 		return instanceId;
 	}
 
