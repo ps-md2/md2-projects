@@ -1,6 +1,5 @@
 package ReferenceProject.backend.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,9 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ReferenceProject.backend.Utils;
-import ReferenceProject.backend.datatypes.InternalIdWrapper;
 import ReferenceProject.backend.entities.WorkflowState;
-import ReferenceProject.backend.entities.models.Complaint;
 
 @Stateless
 public class WorkflowStateBean {
@@ -37,9 +34,8 @@ public class WorkflowStateBean {
 		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id", WorkflowState.class)
 				.setParameter("id", instanceId);
 		List<WorkflowState> states = query.getResultList();
-				//(WorkflowState) em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id")
-		
-		//.getSingleResult();
+		//(WorkflowState) em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id")
+				//.getSingleResult();
 		
 		return (states.size() > 0) ? states.get(0) : null;
 	}
@@ -55,11 +51,12 @@ public class WorkflowStateBean {
 //		return ids;
 //	}
 	/**
-	 * creates a new workflow state if it does not exist yet. otherwise the current workflowstate is updated
+	 * Creates a new workflowState if it does not exist yet.
+	 * Otherwise, the current workflowState is updated.
 	 * @param lastEventFired
 	 * @param instanceId
-	 * @param wfe the current workflowelement
-	 * @return current workflowstate
+	 * @param wfe the current workflowElement
+	 * @return current workflowState
 	 */
 	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, String instanceId, String wfe){
 		

@@ -71,18 +71,18 @@ public class WorkflowStateWS {
 	 *   }
 	 * ]
 	 */
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response createOrUpdate(List<WorkflowState> workflowStates) {
-		final GenericEntity<List<InternalIdWrapper>> ids =
-				new GenericEntity<List<InternalIdWrapper>>(workflowStateBean.createOrUpdateWorkflowStates(workflowStates)) {};
-		return Response
-				.ok()
-				.entity(ids)
-				.header("MD2-Model-Version", Config.MODEL_VERSION)
-				.build();
-	}
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+//	public Response createOrUpdate(List<WorkflowState> workflowStates) {
+//		final GenericEntity<List<InternalIdWrapper>> ids =
+//				new GenericEntity<List<InternalIdWrapper>>(workflowStateBean.createOrUpdateWorkflowStates(workflowStates)) {};
+//		return Response
+//				.ok()
+//				.entity(ids)
+//				.header("MD2-Model-Version", Config.MODEL_VERSION)
+//				.build();
+//	}
 	
 	@DELETE
 	public Response delete(@QueryParam("id") List<Integer> ids) {

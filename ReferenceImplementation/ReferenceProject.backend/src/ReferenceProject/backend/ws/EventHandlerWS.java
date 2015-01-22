@@ -30,12 +30,12 @@ public class EventHandlerWS {
 	@EJB
 	WorkflowStateBean workflowStateBean;
 	@EJB
-	ComplaintBean compaintBean;
+	ComplaintBean complaintBean;
 	
 
 	
 	/**
-	 * receives workflowinstanceId, lastEventFired and the current workflowelement and starts their persistence
+	 * Receives workflowInstanceId, lastEventFired and the current workflowElement and starts their persistence.
 	 */
 	
 	@POST
@@ -43,11 +43,9 @@ public class EventHandlerWS {
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response createOrUpdate(@QueryParam("instanceId") String id, @QueryParam("lastEventFired") String event,
 			@QueryParam("currentWfe") String wfe) {
-		System.out.println(id +", " + event + ", " + wfe);
 
 		workflowStateBean.createOrUpdateWorkflowState(event, id, wfe);
-		
-		
+				
 		return Response
 				.ok()
 				.header("MD2-Model-Version", Config.MODEL_VERSION)

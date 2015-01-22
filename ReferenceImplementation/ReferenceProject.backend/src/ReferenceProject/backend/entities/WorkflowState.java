@@ -7,18 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import ReferenceProject.backend.entities.models.Complaint;
+
 /**
  * 
- * Each workflow state corresponds to a workflow instance and keeps track of its state,
- * which is represented by the current workflowelement and the last event fired
+ * Each workflowState corresponds to a workflowInstance and keeps track of its state,
+ * which is represented by the current workflowElement and the last event fired.
  *
  */
 @Entity
@@ -89,6 +88,4 @@ public class WorkflowState implements Serializable {
 	public void setLastEventFired(String lastEventFired) {
 		this.lastEventFired = lastEventFired;
 	}
-	
-
 }
