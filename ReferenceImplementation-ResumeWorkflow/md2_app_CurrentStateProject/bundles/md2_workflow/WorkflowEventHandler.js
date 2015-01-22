@@ -1,7 +1,8 @@
 define([
     "dojo/_base/declare", "ct/Hash"
 ],
-function(declare, Hash) {    
+function(declare, Hash) {
+    
     return declare([], {
         constructor: function() {
            this.controllers = new Hash();
@@ -11,29 +12,33 @@ function(declare, Hash) {
               handleEvent: this.handleEvent,
               addController: this.addController,
               removeController: this.removeController,
+              changeWorkflowElement: this.changeWorkflowElement,
+              fireEventToBackend: this.fireEventToBackend,
               instance: this
             };
         },
         
         handleEvent: function(event, workflowelement) {
+           
           if
         (event === "LocationEvent" && workflowelement === "LocationDetection")
-        {  this.instance.controllers.get("md2.wfe.LocationDetection.Controller").closeWindow();
-           this.instance.controllers.get("md2.wfe.LocationDetection.Controller")._isFirstExecution = true;
-           this.instance.workflowStateHandler.setLastWindow("md2_"+workflowelement,  "md2_Mediacapturing");
-           this.instance.controllers.get("md2.wfe.Mediacapturing.Controller").openWindow();
+        {  
+            this.changeWorkflowElement("md2.wfe.LocationDetection.Controller", "md2.wfe.Mediacapturing.Controller", "md2_Mediacapturing")
         }
         else if
         (event === "MediacapturedEvent" && workflowelement === "Mediacapturing")
-        {  this.instance.controllers.get("md2.wfe.Mediacapturing.Controller").closeWindow();
-           this.instance.controllers.get("md2.wfe.Mediacapturing.Controller")._isFirstExecution = true;
-           this.instance.controllers.get("md2.wfe.SubmitComplaint.Controller").openWindow();
+        {  
+            this.changeWorkflowElement("md2.wfe.Mediacapturing.Controller", "md2.wfe.SubmitComplaint.Controller", "md2_SubmitComplaint")
         }
         else if
         (event === "SubmitEvent" && workflowelement === "SubmitComplaint")
-        {  this.instance.controllers.get("md2.wfe.SubmitComplaint.Controller").closeWindow();
-           this.instance.controllers.get("md2.wfe.SubmitComplaint.Controller")._isFirstExecution = true;
-           this.instance.controllers.get("md2.wfe.LocationDetection.Controller").openWindow();
+        {  
+            this.fireEventToBackend("SubmitEvent","SubmitComplaint","md2.wfe.SubmitComplaint.Controller");
+            var activeController3 = this.instance.controllers.get("md2.wfe.SubmitComplaint.Controller");
+            activeController3.closeWindow();
+            activeController3._isFirstExecution = true;
+            this.instance.workflowStateHandler.setResumeWorkflowElement(activeController3._startedWorkflowInstanceId, "md2_LocationDetection");
+            this.instance.controllers.get("md2.wfe.LocationDetection.Controller").openWindow();
         }
 
         },
@@ -43,6 +48,27 @@ function(declare, Hash) {
         },
     
         removeController: function (controller, properties) {
-        }    
+        },
+        
+        changeWorkflowElement: function(previousControllerId, nextControllerId, nextWorflowElement) {
+            var previousController = this.instance.controllers.get(previousControllerId);
+            var nextController = this.instance.controllers.get(nextControllerId);  
+            nextController._startedWorkflowInstanceId = previousController._startedWorkflowInstanceId;
+            previousController.closeWindow();
+            previousController._isFirstExecution = true;
+            this.instance.workflowStateHandler.setResumeWorkflowElement(nextController._startedWorkflowInstanceId, nextWorflowElement);
+            nextController.openWindow();
+        },
+        //TODO: Notification. Reset Workflow
+        fireEventToBackend: function(event, workflowElement, currentControllerId){
+            var currentController = this.instance.controllers.get(currentControllerId);
+            currentController.closeWindow();
+            currentController._isFirstExecution = true;
+            alert("To be implemented. \n\
+                \nEvent:"+ event+
+                "\nWorkflow Element:"+workflowElement+
+                "\nWorkflow Instance:"+ currentController._startedWorkflowInstanceId);
+        }
+    
     });
 });

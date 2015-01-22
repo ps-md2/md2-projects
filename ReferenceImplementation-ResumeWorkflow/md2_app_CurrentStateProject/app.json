@@ -79,11 +79,11 @@
                 "toolsets": [
                     {
                         "id": "md2_apps_toolset",
-                        "title": "sdfgs",
+                        "title": "Startable Workflow Elements",
                         "container": "map",
                         "windowType": {
                             "window": {
-                                "resizable": true,
+                                "resizable": false,
                                 "dndDraggable": true,
                                 "collapsable": false
                             }
