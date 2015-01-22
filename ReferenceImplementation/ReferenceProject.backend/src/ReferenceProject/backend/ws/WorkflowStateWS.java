@@ -39,7 +39,23 @@ public class WorkflowStateWS {
 	public Response getAllOpenIssues() {
 		
 		final List<WorkflowState> workflowStates =
-				new ArrayList<WorkflowState>(workflowStateBean.getAllWorkflowStates("", ""));
+				new ArrayList<WorkflowState>(workflowStateBean.getAllWorkflowStates(""));
+			
+				
+		return Response
+				.ok()
+				.entity(workflowStates)
+				.header("MD2-Model-Version", Config.MODEL_VERSION)
+				.build();
+	}
+	
+	@GET
+	@Path("filteredOpenIssues")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response getFilteredOpenIssues(@QueryParam("app") String app) {
+		
+		final List<WorkflowState> workflowStates =
+				new ArrayList<WorkflowState>(workflowStateBean.getAllWorkflowStates(app));
 			
 				
 		return Response

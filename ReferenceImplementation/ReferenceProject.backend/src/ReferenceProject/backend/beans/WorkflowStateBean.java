@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ReferenceProject.backend.Config;
 import ReferenceProject.backend.Utils;
 import ReferenceProject.backend.datatypes.InternalIdWrapper;
 import ReferenceProject.backend.entities.WorkflowState;
@@ -22,11 +23,24 @@ public class WorkflowStateBean {
 	 * Default logic to get and set Complaint entities
 	 */
 	
-	public List<WorkflowState> getAllWorkflowStates(String app, String filter){
-		//TypedQuery<WorkflowState> query = em.createQuery("SELECT * FROM WorkflowState ws " + 
-		//	Utils.buildWhereParameterFromFilterString(filter), WorkflowState.class);
-		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws", WorkflowState.class);
-		return query.getResultList();
+	
+	public List<WorkflowState> getAllWorkflowStates(String app){
+		List<WorkflowState> states = new ArrayList<WorkflowState>();
+		if(app.equals("")){
+			TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws", WorkflowState.class);
+			states = query.getResultList();
+		}
+		else{
+			String[] wfes = Config.apps.get(app);
+
+			for(String s:wfes)
+			{
+				TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.currentWorkflowElement = :wfe", WorkflowState.class)
+					.setParameter("wfe", s);
+				states.addAll(query.getResultList());
+			}
+		}
+		return states;
 	}
 	
 	public WorkflowState getWorkflowState(int instanceId){
