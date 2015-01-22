@@ -1,5 +1,6 @@
 package ReferenceProject.backend.ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -28,11 +29,19 @@ public class WorkflowStateWS {
 	@EJB
 	WorkflowStateBean workflowStateBean;
 	
+	/**
+	 * 
+	 * @return all open issues
+	 */
 	@GET
+	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getAll() {
-		final GenericEntity<List<WorkflowState>> workflowStates =
-				new GenericEntity<List<WorkflowState>>(workflowStateBean.getAllWorkflowStates("", "")) {};
+	public Response getAllOpenIssues() {
+		
+		final List<WorkflowState> workflowStates =
+				new ArrayList<WorkflowState>(workflowStateBean.getAllWorkflowStates("", ""));
+			
+				
 		return Response
 				.ok()
 				.entity(workflowStates)
