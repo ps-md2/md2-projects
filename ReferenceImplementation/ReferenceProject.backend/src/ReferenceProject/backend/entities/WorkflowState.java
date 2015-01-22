@@ -15,7 +15,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import ReferenceProject.backend.entities.models.Complaint;
-
+/**
+ * 
+ * Each workflow state corresponds to a workflow instance and keeps track of its state,
+ * which is represented by the current workflowelement and the last event fired
+ *
+ */
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -41,10 +46,8 @@ public class WorkflowState implements Serializable {
 	
 	@NotNull
 	@XmlElement(nillable=true)
-	protected String lastEventFired; //TODO: Really necessary?
+	protected String lastEventFired; 
 	
-	@OneToOne
-	protected Complaint complaint;
 	///////////////////////////////////////
 	/// constructor
 	///////////////////////////////////////
@@ -54,7 +57,6 @@ public class WorkflowState implements Serializable {
 	}
 	public WorkflowState (String lastEventFired, Integer instanceId, String wfe) {
 		this.instanceId = instanceId;
-		//this.complaint = complaint;
 		this.lastEventFired = lastEventFired;
 		this.currentWorkflowElement = wfe;
 	}
@@ -87,12 +89,5 @@ public class WorkflowState implements Serializable {
 		this.lastEventFired = lastEventFired;
 	}
 	
-	/*public Complaint getComplaint() {
-		return complaint;
-	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
-	}*/
-	
 }

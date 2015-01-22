@@ -34,26 +34,37 @@ public class WorkflowStateBean {
 	}
 	
 	public WorkflowState getWorkflowState(int instanceId){
-		return (WorkflowState) em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id")
-		.setParameter("id", instanceId)
-		.getSingleResult();
-	}
-	
-	public List<InternalIdWrapper> createOrUpdateWorkflowStates(List<WorkflowState> workflowStates) {
-		ArrayList<InternalIdWrapper> ids = new ArrayList<InternalIdWrapper>();
+		TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id", WorkflowState.class)
+				.setParameter("id", instanceId);
+		List<WorkflowState> states = query.getResultList();
+				//(WorkflowState) em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.instanceId = :id")
 		
-		for(WorkflowState workflowState : workflowStates) {
-			workflowState = em.merge(workflowState);
-								
-			ids.add(new InternalIdWrapper(workflowState.getInternal__id()));
-		}
-		return ids;
+		//.getSingleResult();
+		
+		return (states.size() > 0) ? states.get(0) : null;
 	}
 	
+//	public List<InternalIdWrapper> createOrUpdateWorkflowStates(List<WorkflowState> workflowStates) {
+//		ArrayList<InternalIdWrapper> ids = new ArrayList<InternalIdWrapper>();
+//		
+//		for(WorkflowState workflowState : workflowStates) {
+//			workflowState = em.merge(workflowState);
+//								
+//			ids.add(new InternalIdWrapper(workflowState.getInternal__id()));
+//		}
+//		return ids;
+//	}
+	/**
+	 * creates a new workflow state if it does not exist yet. otherwise the current workflowstate is updated
+	 * @param lastEventFired
+	 * @param instanceId
+	 * @param wfe the current workflowelement
+	 * @return current workflowstate
+	 */
 	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, Integer instanceId, String wfe){
 		
 		WorkflowState ws = getWorkflowState(instanceId);
-		if(ws.equals(null)){
+		if(ws == null){
 			WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, wfe);
 			em.persist(workflowState);
 		}

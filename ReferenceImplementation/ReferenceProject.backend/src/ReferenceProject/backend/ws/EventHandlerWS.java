@@ -35,9 +35,9 @@ public class EventHandlerWS {
 
 	
 	/**
-	 * receives workflowinstanceId, lastEventFired, the current workflowelement and the corresponding data and stores everything
+	 * receives workflowinstanceId, lastEventFired and the current workflowelement and starts their persistence
 	 */
-	//workflowstate
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
