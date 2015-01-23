@@ -57,8 +57,8 @@
     "bundles": {
         "md2_workflow_store": {
             "MD2WorkflowStore": {
-                    "uri": "http://localhost:8080/ReferenceProject.backend/service/",
-                    "app": "dummyApp"
+                    "uri": "http://localhost:8080/ReferenceProject.backend/service/workflowState/",
+                    "app": "CitizenApp"
             }
         },
         "notifier": {
