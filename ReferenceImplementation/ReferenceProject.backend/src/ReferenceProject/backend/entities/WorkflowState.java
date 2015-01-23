@@ -7,15 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import ReferenceProject.backend.entities.models.Complaint;
 
+/**
+ * 
+ * Each workflowState corresponds to a workflowInstance and keeps track of its state,
+ * which is represented by the current workflowElement and the last event fired.
+ *
+ */
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -33,7 +37,7 @@ public class WorkflowState implements Serializable {
 	@Column(unique=true)
 	@NotNull
 	@XmlElement(nillable=true)
-	protected int instanceId;
+	protected String instanceId;
 	
 	@NotNull
 	@XmlElement(nillable=true)
@@ -41,10 +45,21 @@ public class WorkflowState implements Serializable {
 	
 	@NotNull
 	@XmlElement(nillable=true)
-	protected String lastEventFired; //TODO: Really necessary?
+	protected String lastEventFired; 
 	
-	@OneToOne
-	protected Complaint complaint;
+	///////////////////////////////////////
+	/// constructor
+	///////////////////////////////////////
+	
+	public WorkflowState(){
+		
+	}
+	
+	public WorkflowState (String lastEventFired, String instanceId, String wfe) {
+		this.instanceId = instanceId;
+		this.lastEventFired = lastEventFired;
+		this.currentWorkflowElement = wfe;
+	}
 	
 	///////////////////////////////////////
 	/// Getters and setters
@@ -54,7 +69,7 @@ public class WorkflowState implements Serializable {
 		return __internalId;
 	}
 	
-	public int get_instanceId() {
+	public String get_instanceId() {
 		return instanceId;
 	}
 
@@ -73,13 +88,4 @@ public class WorkflowState implements Serializable {
 	public void setLastEventFired(String lastEventFired) {
 		this.lastEventFired = lastEventFired;
 	}
-	
-	/*public Complaint getComplaint() {
-		return complaint;
-	}
-
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
-	}*/
-	
 }

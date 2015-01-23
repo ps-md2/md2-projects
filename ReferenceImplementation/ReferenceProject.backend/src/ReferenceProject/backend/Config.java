@@ -1,5 +1,6 @@
 package ReferenceProject.backend;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -21,4 +22,17 @@ public class Config {
 	 */
 	public final static List<String> SUPPORTED_MODEL_VERSIONS = Lists.newArrayList("2.0");
 	
+	public final static HashMap<String, String[]> apps = setApps();
+	
+	/**
+	 * provides a hashmap for filtering workflowelements by apps
+	 * @return
+	 */
+	private static HashMap<String,String[]> setApps(){
+		
+		HashMap<String, String[]> map = new HashMap<String, String[]>();
+		map.put("Citizenapp", new String[]{"LocationDetection", "Mediacapturing", "SubmitComplaint"});
+		map.put("Administrationapp", new String[]{"ProcessComplaint"});
+		return map;
+	}
 }
