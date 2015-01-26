@@ -1,0 +1,33 @@
+{
+    "Bundle-SymbolicName": "md2_workflow",
+    "Bundle-Name": "currentStateApp workflow",
+    "Bundle-Description": "Generated MD2 bundle: workflow of currentStateApp",
+    "Bundle-Version": "2.0",
+            "Bundle-Localization": [],
+            "Bundle-Main": "",
+    "Require-Bundle": [
+        {
+            "name": "md2_runtime"
+        }
+    ],
+    "Components": [
+        {
+            "name": "WorkflowEventHandler",
+            "provides": ["md2.workflow.EventHandler"],
+            "instanceFactory": true,
+            "immediate": true,
+            "references": [
+                {
+                    "name": "controller",
+                    "providing": "md2.app.currentStateApp.controllers",
+                    "policy": "dynamic",
+                    "cardinality": "0..n"
+                },
+                {
+                    "name": "workflowStateHandler",
+                    "providing": "md2.workflow.WorkflowStateHandler"
+                }
+            ]
+        }
+    ]
+}
