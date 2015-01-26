@@ -37,7 +37,7 @@ public class WorkflowStateBean {
 		// app name was set:
 		String[] wfes = Config.APP_WORKFLOWELEMENT_RELATIONSHIP.get(app);
 		if (wfes == null) {
-			throw new RuntimeException("The app " + app + " is not registered with this backend.").
+			throw new RuntimeException("The app " + app + " is not registered with this backend.");
 		}
 		for(String s:wfes)
 		{
