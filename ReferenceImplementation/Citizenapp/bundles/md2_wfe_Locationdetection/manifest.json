@@ -556,6 +556,10 @@
                 {
                     "name": "_workflowEventHandler",
                     "providing": "md2.workflow.EventHandler"
+                },
+				{
+                    "name": "_workflowStateHandler",
+                    "providing": "md2.workflow.WorkflowStateHandler"
                 }
             ]
         },
@@ -572,7 +576,7 @@
                 "toolRole": "toolset",
                 "iconClass": "icon-view-grid",
                 "togglable": true,
-                "activateHandler": "openWindow",
+                "activateHandler": "startWorkflow",
                 "deactivateHandler": "closeWindow"
             },
             "references": [
