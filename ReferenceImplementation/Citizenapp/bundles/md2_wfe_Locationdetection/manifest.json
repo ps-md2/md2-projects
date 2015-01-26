@@ -27,6 +27,7 @@
             "provides": ["md2.wfe.Locationdetection.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
+                "appId": "md2_Locationdetection",
                 "id": "md2_Locationdetection",
                 "windowTitle": "Complaining Citizen",
                 "onInitialized": "__startupAction",

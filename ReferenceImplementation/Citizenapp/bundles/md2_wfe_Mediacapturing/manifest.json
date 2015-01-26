@@ -27,6 +27,7 @@
             "provides": ["md2.wfe.MediaCapturing.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
+                "appId": "md2_MediaCapturing",
                 "id": "md2_MediaCapturing",
                 "windowTitle": "MediaCapturing",
                 "onInitialized": "__startupAction",
