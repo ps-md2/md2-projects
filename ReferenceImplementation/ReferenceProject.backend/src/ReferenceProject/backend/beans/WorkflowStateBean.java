@@ -1,6 +1,7 @@
 package ReferenceProject.backend.beans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -28,20 +29,21 @@ public class WorkflowStateBean {
 	
 	public List<WorkflowState> getAllWorkflowStates(String app){
 		List<WorkflowState> states = new ArrayList<WorkflowState>();
-		if(app.equals("")){
+		if(app == null || app.equals("")){
 			TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws", WorkflowState.class);
-			states = query.getResultList();
+			return query.getResultList();
 		}
-		else{
-			String[] wfes = Config.apps.get(app);
+		
+		// app name was set:
+		String[] wfes = Config.APP_WORKFLOWELEMENT_RELATIONSHIP.get(app);
 
-			for(String s:wfes)
-			{
-				TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.currentWorkflowElement = :wfe", WorkflowState.class)
-					.setParameter("wfe", s);
-				states.addAll(query.getResultList());
-			}
+		for(String s:wfes)
+		{
+			TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.currentWorkflowElement = :wfe", WorkflowState.class)
+				.setParameter("wfe", s);
+			states.addAll(query.getResultList());
 		}
+	
 		return states;
 	}
 	
@@ -75,14 +77,26 @@ public class WorkflowStateBean {
 	 */
 	public WorkflowState createOrUpdateWorkflowState(String lastEventFired, String instanceId, String wfe){
 		
+		HashMap<String, String> eventSuccessorMap = Config.WORKFLOWELEMENT_EVENT_SUCCESSION.get(wfe);
+		if (eventSuccessorMap == null) {
+			throw new RuntimeException("No events are registered for the workflow element " + wfe + ".");
+		}
+		
+		String succeedingWfe = eventSuccessorMap.get(lastEventFired);
+		if (succeedingWfe == null) {
+			throw new RuntimeException("The event " + lastEventFired + " is not registered for the workflow element " + wfe + ".");
+		}
+		
 		WorkflowState ws = getWorkflowState(instanceId);
 		if(ws == null){
-			WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, wfe);
+			WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, succeedingWfe);
 			em.persist(workflowState);
 		}
 		else {
-			ws.setCurrentWorkflowElement(wfe);
-			ws.setLastEventFired(lastEventFired);
+			// set to succeeding workflow element -- i.e. describe, what status the instance is in now.
+			ws.setCurrentWorkflowElement(succeedingWfe);
+			ws.setLastEventFired(lastEventFired); // in fact, this information is useless, but probably nice for display :)
+			
 			em.merge(ws);
 		}
 //		WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, complaint, wfe);
