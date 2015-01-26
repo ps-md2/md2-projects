@@ -10,37 +10,37 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var contentProvider0bd = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0be = this.$.widgetRegistry.getWidget("streetLbl2");
-            this.$.dataMapper.map(widget0be, contentProvider0bd, "loc.myStreet");
+            var contentProvider05n = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05o = this.$.widgetRegistry.getWidget("streetLbl2");
+            this.$.dataMapper.map(widget05o, contentProvider05n, "loc.myStreet");
             
-            var contentProvider0bf = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bg = this.$.widgetRegistry.getWidget("streetNoLbl2");
-            this.$.dataMapper.map(widget0bg, contentProvider0bf, "loc.myStreetNo");
+            var contentProvider05p = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05q = this.$.widgetRegistry.getWidget("streetNoLbl2");
+            this.$.dataMapper.map(widget05q, contentProvider05p, "loc.myStreetNo");
             
-            var contentProvider0bh = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bi = this.$.widgetRegistry.getWidget("cityLbl2");
-            this.$.dataMapper.map(widget0bi, contentProvider0bh, "loc.myCity");
+            var contentProvider05r = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05s = this.$.widgetRegistry.getWidget("cityLbl2");
+            this.$.dataMapper.map(widget05s, contentProvider05r, "loc.myCity");
             
-            var contentProvider0bj = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bk = this.$.widgetRegistry.getWidget("countryLbl2");
-            this.$.dataMapper.map(widget0bk, contentProvider0bj, "loc.myCountry");
+            var contentProvider05t = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05u = this.$.widgetRegistry.getWidget("countryLbl2");
+            this.$.dataMapper.map(widget05u, contentProvider05t, "loc.myCountry");
             
-            var contentProvider0bl = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bm = this.$.widgetRegistry.getWidget("streetLbl2");
-            this.$.dataMapper.map(widget0bm, contentProvider0bl, "loc.myStreet");
+            var contentProvider05v = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05w = this.$.widgetRegistry.getWidget("streetLbl2");
+            this.$.dataMapper.map(widget05w, contentProvider05v, "loc.myStreet");
             
-            var contentProvider0bn = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bo = this.$.widgetRegistry.getWidget("streetNoLbl2");
-            this.$.dataMapper.map(widget0bo, contentProvider0bn, "loc.myStreetNo");
+            var contentProvider05x = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget05y = this.$.widgetRegistry.getWidget("streetNoLbl2");
+            this.$.dataMapper.map(widget05y, contentProvider05x, "loc.myStreetNo");
             
-            var contentProvider0bp = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bq = this.$.widgetRegistry.getWidget("cityLbl2");
-            this.$.dataMapper.map(widget0bq, contentProvider0bp, "loc.myCity");
+            var contentProvider05z = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget060 = this.$.widgetRegistry.getWidget("cityLbl2");
+            this.$.dataMapper.map(widget060, contentProvider05z, "loc.myCity");
             
-            var contentProvider0br = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
-            var widget0bs = this.$.widgetRegistry.getWidget("countryLbl2");
-            this.$.dataMapper.map(widget0bs, contentProvider0br, "loc.myCountry");
+            var contentProvider061 = this.$.contentProviderRegistry.getContentProvider("localComplaintProvider");
+            var widget062 = this.$.widgetRegistry.getWidget("countryLbl2");
+            this.$.dataMapper.map(widget062, contentProvider061, "loc.myCountry");
             
         }
         

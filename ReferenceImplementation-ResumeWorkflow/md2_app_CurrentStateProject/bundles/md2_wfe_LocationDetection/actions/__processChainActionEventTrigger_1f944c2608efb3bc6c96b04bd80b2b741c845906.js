@@ -10,12 +10,12 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var targetContentProvider0cy = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-            var expr0cz = this.$.create("string", "__gui.LocationVerifyView.Previous.onClick");
-            targetContentProvider0cy.setValue("lastEventFired", expr0cz);
+            var targetContentProvider078 = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
+            var expr079 = this.$.create("string", "__gui.LocationVerifyView.Previous.onClick");
+            targetContentProvider078.setValue("lastEventFired", expr079);
             
-            var action0d0 = this.$.actionFactory.getCustomAction("__processChainProcessingAction");
-            action0d0.execute();
+            var action07a = this.$.actionFactory.getCustomAction("__processChainProcessingAction");
+            action07a.execute();
             
         }
         

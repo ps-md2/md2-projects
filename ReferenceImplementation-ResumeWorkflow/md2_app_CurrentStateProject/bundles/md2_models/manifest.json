@@ -2,9 +2,9 @@
     "Bundle-SymbolicName": "md2_models",
     "Bundle-Name": "currentStateApp models",
     "Bundle-Description": "Generated MD2 bundle: models of currentStateApp",
-    "Bundle-Version": "2.0",
-    "Bundle-Localization": [],
-    "Bundle-Main": "",
+            "Bundle-Version": "2.0",
+            "Bundle-Localization": [],
+            "Bundle-Main": "",
     "Require-Bundle": [
         {
             "name": "md2_runtime"

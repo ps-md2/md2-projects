@@ -3,8 +3,8 @@
     "Bundle-Name": "currentStateApp workflow",
     "Bundle-Description": "Generated MD2 bundle: workflow of currentStateApp",
     "Bundle-Version": "2.0",
-    "Bundle-Localization": [],
-    "Bundle-Main": "",
+            "Bundle-Localization": [],
+            "Bundle-Main": "",
     "Require-Bundle": [
         {
             "name": "md2_runtime"

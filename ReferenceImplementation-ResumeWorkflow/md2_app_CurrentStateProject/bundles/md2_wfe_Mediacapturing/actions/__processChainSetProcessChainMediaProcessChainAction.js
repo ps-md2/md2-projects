@@ -10,12 +10,12 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var targetContentProvider0dn = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-            var expr0do = this.$.create("string", "MediaProcessChain__MediaCapturing");
-            targetContentProvider0dn.setValue("currentProcessChainStep", expr0do);
+            var targetContentProvider07y = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
+            var expr07z = this.$.create("string", "MediaProcessChain__MediaCapturing");
+            targetContentProvider07y.setValue("currentProcessChainStep", expr07z);
             
-            var action0dp = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");
-            action0dp.execute();
+            var action080 = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");
+            action080.execute();
             
         }
         

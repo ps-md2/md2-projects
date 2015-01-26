@@ -1,5 +1,5 @@
 {
-    "Bundle-SymbolicName": "md2_wfe_Mediacapturing", //TODO:"md2_wfe_CurrentStateProject"
+    "Bundle-SymbolicName": "md2_wfe_Mediacapturing",
     "Bundle-Version": "1.0",
     "Bundle-Name": "Workflow element Mediacapturing",
     "Bundle-Description": "Generated MD2 workflow element bundle: Mediacapturing of currentStateApp",
@@ -23,12 +23,12 @@
         {
             "name": "MD2Mediacapturing",//TODO: processedInput.getBasePackageName.split("\\.").last.toFirstUpper
             "impl": "ct/Stateful",
-            "provides": ["md2.wfe.Mediacapturing.AppDefinition"], //TODO: CurrentStateProject
+            "provides": ["md2.wfe.Mediacapturing.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
                 "appId": "md2_currentStateApp",
                 "id": "md2_Mediacapturing", //TODO: processedInput.getBasePackageName.replace(".", "_")
-                "windowTitle": "de.wwu.md2.framework.mD2.impl.WorkflowElementImpl@7c7f6eca (name: Mediacapturing)",
+                "windowTitle": "Mediacapturing",
                 "onInitialized": "__startupAction",
                 "views": [
                     {
@@ -62,7 +62,7 @@
                                 },
                                 {
                                     "type": "simpleimage",
-                                    "src": "md2_app_CurrentStateProject:./resources/defaultImage.png",
+                                    "src": "md2_app_", //TODO: fix url
                                     "cellStyle": {
                                         "width": "100%"
                                     }

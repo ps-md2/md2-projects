@@ -1,5 +1,5 @@
 {
-    "Bundle-SymbolicName": "md2_wfe_LocationDetection", //TODO:"md2_wfe_CurrentStateProject"
+    "Bundle-SymbolicName": "md2_wfe_LocationDetection",
     "Bundle-Version": "1.0",
     "Bundle-Name": "Workflow element LocationDetection",
     "Bundle-Description": "Generated MD2 workflow element bundle: LocationDetection of currentStateApp",
@@ -23,12 +23,12 @@
         {
             "name": "MD2LocationDetection",//TODO: processedInput.getBasePackageName.split("\\.").last.toFirstUpper
             "impl": "ct/Stateful",
-            "provides": ["md2.wfe.LocationDetection.AppDefinition"], //TODO: CurrentStateProject
+            "provides": ["md2.wfe.LocationDetection.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
                 "appId": "md2_currentStateApp",
                 "id": "md2_LocationDetection", //TODO: processedInput.getBasePackageName.replace(".", "_")
-                "windowTitle": "Location Detection View",
+                "windowTitle": "LocationDetection",
                 "onInitialized": "__startupAction",
                 "views": [
                     {
@@ -47,7 +47,7 @@
                                     "type": "textoutput",
                                     "datatype": "string",
                                     "field": "TitleLbl",
-                                    "defaultText": "All Complaints",
+                                    "defaultText": "Enter your location",
                                     "cellStyle": {
                                         "width": "50%"
                                     }
@@ -576,31 +576,7 @@
                 "toolRole": "toolset",
                 "iconClass": "icon-view-grid",
                 "togglable": true,
-                "activateHandler": "openWindow",
-                "deactivateHandler": "closeWindow"
-            },
-            "references": [
-                {
-                    "name": "handlerScope",
-                    "providing": "md2.wfe.LocationDetection.Controller"
-                }
-            ]
-        },
-        
-        {
-            "name": "MD2LocationDetectionTool2", //TODO: processedInput.getBasePackageName
-            "impl": "ct.tools.Tool",
-            "provides": ["ct.tools.Tool"],
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "md2_wfe_LocationDetection_tool2",
-                "title": "Start Controller 2",
-                "description": "Start LocationDetection", //TODO: Insert good description
-                "tooltip": "Start Controller 2", //TODO: Insert good tooltip
-                "toolRole": "toolset",
-                "iconClass": "icon-view-grid",
-                "togglable": true,
-                "activateHandler": "openWindow",
+                "activateHandler": "startWorkflow",
                 "deactivateHandler": "closeWindow"
             },
             "references": [
@@ -610,8 +586,5 @@
                 }
             ]
         }
-        
-        
-        
     ]
 }

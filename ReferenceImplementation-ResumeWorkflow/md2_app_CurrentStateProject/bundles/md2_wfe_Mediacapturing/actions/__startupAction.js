@@ -10,14 +10,17 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var action0dd = this.$.actionFactory.getCustomAction("__registerProcessChainActionEventTrigger");
-            action0dd.execute();
+            var action07n = this.$.actionFactory.getCustomAction("__registerProcessChainActionEventTrigger");
+            action07n.execute();
             
-            var action0de = this.$.actionFactory.getCustomAction("__processChainSetProcessChainMediaProcessChainAction");
-            action0de.execute();
+            var action07o = this.$.actionFactory.getCustomAction("__processChainSetProcessChainMediaProcessChainAction");
+            action07o.execute();
             
-            var action0df = this.$.actionFactory.getCustomAction("init");
-            action0df.execute();
+            var action07p = this.$.actionFactory.getCustomAction("init");
+            action07p.execute();
+            
+            var action07q = this.$.actionFactory.getCustomAction("next");
+            action07q.execute();
             
         }
         

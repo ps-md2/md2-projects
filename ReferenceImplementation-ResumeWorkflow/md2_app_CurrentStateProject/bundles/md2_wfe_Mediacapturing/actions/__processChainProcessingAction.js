@@ -10,10 +10,10 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var expr0dl = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-            var expr0dm = this.$.create("string", "MediaProcessChain__MediaCapturing");
-            var bool0dk = expr0dl.equals(expr0dm);
-            if (bool0dk) {
+            var expr07w = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
+            var expr07x = this.$.create("string", "MediaProcessChain__MediaCapturing");
+            var bool07v = expr07w.equals(expr07x);
+            if (bool07v) {
             }
             
         }

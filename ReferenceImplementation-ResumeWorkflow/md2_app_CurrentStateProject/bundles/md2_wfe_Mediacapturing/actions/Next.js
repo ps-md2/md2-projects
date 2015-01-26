@@ -10,9 +10,9 @@ function(declare, _Action) {
         
         execute: function() {
             
-            var widget0db = this.$.widgetRegistry.getWidget("Next1");
-            var action0dc = this.$.actionFactory.getFireEventAction("Mediacapturing","MediacapturedEvent");
-            this.$.eventRegistry.get("widget/onClick").registerAction(widget0db, action0dc);
+            var widget07l = this.$.widgetRegistry.getWidget("Next1");
+            var action07m = this.$.actionFactory.getFireEventAction("Mediacapturing","MediacapturedEvent");
+            this.$.eventRegistry.get("widget/onClick").registerAction(widget07l, action07m);
             
         }
         
