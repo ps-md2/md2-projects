@@ -22,18 +22,18 @@
     ],
     "Components": [
         {
-            "name": "MD2MediaCapturing",
+            "name": "MD2Mediacapturing",
             "impl": "ct/Stateful",
-            "provides": ["md2.wfe.MediaCapturing.AppDefinition"],
+            "provides": ["md2.wfe.Mediacapturing.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
                 "appId": "Citizenapp",
-                "id": "md2_MediaCapturing",
-                "windowTitle": "MediaCapturing",
+                "id": "md2_Mediacapturing",
+                "windowTitle": "Mediacapturing",
                 "onInitialized": "__startupAction",
                 "views": [
                     {
-                        "name": "MediaCapturingView",
+                        "name": "MediacapturingView",
                         "dataForm": {
                             "dataform-version": "1.0.0",
                             "type": "md2gridpanel",
@@ -76,12 +76,12 @@
         },
         {
             "name": "CustomActions",
-            "provides": ["md2.wfe.MediaCapturing.CustomActions"],
+            "provides": ["md2.wfe.Mediacapturing.CustomActions"],
             "instanceFactory": true
         },
         {
             "name": "Controller",
-            "provides": ["md2.wfe.MediaCapturing.Controller", "md2.app.Citizenapp.controllers"],
+            "provides": ["md2.wfe.Mediacapturing.Controller", "md2.app.Citizenapp.controllers"],
             "instanceFactory": true,
             "references": [
                 {
@@ -90,7 +90,7 @@
                 },
                 {
                     "name": "_customActions",
-                    "providing": "md2.wfe.MediaCapturing.CustomActions"
+                    "providing": "md2.wfe.Mediacapturing.CustomActions"
                 },
                 {
                     "name": "_models",
@@ -103,7 +103,7 @@
                 },
                 {
                     "name": "_configBean",
-                    "providing": "md2.wfe.MediaCapturing.AppDefinition"
+                    "providing": "md2.wfe.Mediacapturing.AppDefinition"
                 },
                 {
                     "name": "_workflowEventHandler",
@@ -116,15 +116,15 @@
             ]
         },
         {
-            "name": "MD2MediaCapturingTool",
+            "name": "MD2MediacapturingTool",
             "impl": "ct.tools.Tool",
             "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_app_MediaCapturing_tool",
-                "title": "[MediaCapturing]",
-                "description": "[MediaCapturing]",
-                "tooltip": "[MediaCapturing]",
+                "id": "md2_app_Mediacapturing_tool",
+                "title": "[Mediacapturing]",
+                "description": "[Mediacapturing]",
+                "tooltip": "[Mediacapturing]",
                 "toolRole": "toolset",
                 "iconClass": "icon-view-grid",
                 "togglable": true,
@@ -134,7 +134,7 @@
             "references": [
                 {
                     "name": "handlerScope",
-                    "providing": "md2.wfe.MediaCapturing.Controller"
+                    "providing": "md2.wfe.Mediacapturing.Controller"
                 }
             ]
         }

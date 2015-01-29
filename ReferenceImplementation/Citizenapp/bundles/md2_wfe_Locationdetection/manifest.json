@@ -1,8 +1,8 @@
 {
-    "Bundle-SymbolicName": "md2_wfe_Locationdetection",
+    "Bundle-SymbolicName": "md2_wfe_LocationDetection",
     "Bundle-Version": "2.0",
-    "Bundle-Name": "Workflow element Locationdetection",
-    "Bundle-Description": "Generated MD2 workflow element bundle: Locationdetection of Citizenapp",
+    "Bundle-Name": "Workflow element LocationDetection",
+    "Bundle-Description": "Generated MD2 workflow element bundle: LocationDetection of Citizenapp",
     "Bundle-Localization": [],
     "Bundle-Main": "",
     "Require-Bundle": [],
@@ -22,13 +22,13 @@
     ],
     "Components": [
         {
-            "name": "MD2Locationdetection",
+            "name": "MD2LocationDetection",
             "impl": "ct/Stateful",
-            "provides": ["md2.wfe.Locationdetection.AppDefinition"],
+            "provides": ["md2.wfe.LocationDetection.AppDefinition"],
             "propertiesConstructor": true,
             "properties": {
                 "appId": "Citizenapp",
-                "id": "md2_Locationdetection",
+                "id": "md2_LocationDetection",
                 "windowTitle": "Complaining Citizen",
                 "onInitialized": "__startupAction",
                 "views": [
@@ -525,12 +525,12 @@
         },
         {
             "name": "CustomActions",
-            "provides": ["md2.wfe.Locationdetection.CustomActions"],
+            "provides": ["md2.wfe.LocationDetection.CustomActions"],
             "instanceFactory": true
         },
         {
             "name": "Controller",
-            "provides": ["md2.wfe.Locationdetection.Controller","md2.app.Citizenapp.controllers"],
+            "provides": ["md2.wfe.LocationDetection.Controller","md2.app.Citizenapp.controllers"],
             "instanceFactory": true,
             "references": [
                 {
@@ -539,7 +539,7 @@
                 },
                 {
                     "name": "_customActions",
-                    "providing": "md2.wfe.Locationdetection.CustomActions"
+                    "providing": "md2.wfe.LocationDetection.CustomActions"
                 },
                 {
                     "name": "_models",
@@ -552,7 +552,7 @@
                 },
                 {
                     "name": "_configBean",
-                    "providing": "md2.wfe.Locationdetection.AppDefinition"
+                    "providing": "md2.wfe.LocationDetection.AppDefinition"
                 },
                 {
                     "name": "_workflowEventHandler",
@@ -565,13 +565,13 @@
             ]
         },
         {
-            "name": "MD2LocationdetectionTool",
+            "name": "MD2LocationDetectionTool",
             "impl": "ct.tools.Tool",
             "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
-                "id": "md2_wfe_Locationdetection_tool",
-                "title": "Locationdetection",
+                "id": "md2_wfe_LocationDetection_tool",
+                "title": "LocationDetection",
                 "description": "Start Complaint",
                 "tooltip": "Start Complaint",
                 "toolRole": "toolset",
@@ -583,7 +583,7 @@
             "references": [
                 {
                     "name": "handlerScope",
-                    "providing": "md2.wfe.Locationdetection.Controller"
+                    "providing": "md2.wfe.LocationDetection.Controller"
                 }
             ]
         }
