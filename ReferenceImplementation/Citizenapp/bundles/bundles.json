@@ -13,7 +13,7 @@
     // Not needed for refrerence implementation: Only use for comparison
     //"md2_app_ReferenceProject": {},
     
-    "md2_wfe_Locationdetection": {},
+    "md2_wfe_LocationDetection": {},
     "md2_wfe_Mediacapturing": {}
  
 }

@@ -56,7 +56,7 @@ function(declare, _Action) {
                 var bool0i3 = bool0i4 || bool0i5;
                 if (bool0hw) {
                     
-                     this.$.workflowEventHandler.handleEvent("LocationEvent", "Locationdetection");
+                     this.$.workflowEventHandler.handleEvent("LocationEvent", "LocationDetection");
                    // var targetContentProvider0ia = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
                    // var expr0ib = this.$.create("string", "myWorkflow__Mediacapturing");
                    // targetContentProvider0ia.setValue("currentProcessChainStep", expr0ib);
