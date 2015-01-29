@@ -11,7 +11,7 @@ function(declare, _Action) {
         execute: function() {
             
             var expr07w = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-            var expr07x = this.$.create("string", "MediaProcessChain__MediaCapturing");
+            var expr07x = this.$.create("string", "MediaProcessChain__Mediacapturing");
             var bool07v = expr07w.equals(expr07x);
             if (bool07v) {
             }

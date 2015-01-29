@@ -17,7 +17,7 @@ function(declare, _Action) {
             var expr0hh = this.$.create("string", "myWorkflow__LocationVerify");
             var bool0hf = expr0hg.equals(expr0hh);
          //   var expr0hj = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-           // var expr0hk = this.$.create("string", "myWorkflow__MediaCapturing");
+           // var expr0hk = this.$.create("string", "myWorkflow__Mediacapturing");
          //   var bool0hi = expr0hj.equals(expr0hk);
             if (bool0hc) {
                 var expr0ho = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("lastEventFired");
@@ -58,7 +58,7 @@ function(declare, _Action) {
                     
                      this.$.workflowEventHandler.handleEvent("LocationEvent", "Locationdetection");
                    // var targetContentProvider0ia = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-                   // var expr0ib = this.$.create("string", "myWorkflow__MediaCapturing");
+                   // var expr0ib = this.$.create("string", "myWorkflow__Mediacapturing");
                    // targetContentProvider0ia.setValue("currentProcessChainStep", expr0ib);
                     
                    // var action0ic = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");

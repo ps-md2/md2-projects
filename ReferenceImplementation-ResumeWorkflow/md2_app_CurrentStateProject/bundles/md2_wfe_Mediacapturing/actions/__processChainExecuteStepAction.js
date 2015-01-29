@@ -11,10 +11,10 @@ function(declare, _Action) {
         execute: function() {
             
             var expr07s = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-            var expr07t = this.$.create("string", "MediaProcessChain__MediaCapturing");
+            var expr07t = this.$.create("string", "MediaProcessChain__Mediacapturing");
             var bool07r = expr07s.equals(expr07t);
             if (bool07r) {
-                var action07u = this.$.actionFactory.getGotoViewAction("MediaCapturingView");
+                var action07u = this.$.actionFactory.getGotoViewAction("MediacapturingView");
                 action07u.execute();
             }
             
