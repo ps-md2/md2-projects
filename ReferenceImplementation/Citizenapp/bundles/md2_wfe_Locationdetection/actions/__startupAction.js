@@ -19,6 +19,8 @@ function(declare, _Action) {
             var action0gz = this.$.actionFactory.getCustomAction("init");
             action0gz.execute();
             
+            var action068 = this.$.actionFactory.getCustomAction("next");
+            action068.execute();
         }
         
     });

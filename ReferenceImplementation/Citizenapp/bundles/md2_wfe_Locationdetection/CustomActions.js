@@ -1,6 +1,7 @@
 define([
     "dojo/_base/declare",
     "./actions/Init",
+    "./actions/Next",
     "./actions/__startupAction",
     "./actions/__processChainExecuteStepAction",
     "./actions/__processChainProcessingAction",
@@ -13,6 +14,7 @@ define([
 function(
     declare,
     init,
+    next,
     __startupAction,
     __processChainExecuteStepAction,
     __processChainProcessingAction,
@@ -31,6 +33,7 @@ function(
         createInstance: function() {
             return [
                 new init(),
+                new next(),
                 new __startupAction(),
                 new __processChainExecuteStepAction(),
                 new __processChainProcessingAction(),
