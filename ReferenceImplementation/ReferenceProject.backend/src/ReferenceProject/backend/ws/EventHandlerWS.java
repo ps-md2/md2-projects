@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -39,10 +40,10 @@ public class EventHandlerWS {
 	 */
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response createOrUpdate(@QueryParam("instanceId") String id, @QueryParam("lastEventFired") String event,
-			@QueryParam("currentWfe") String wfe) {
+	public Response createOrUpdate(@FormParam("instanceId") String id, @FormParam("lastEventFired") String event,
+			@FormParam("currentWfe") String wfe) {
 
 		workflowStateBean.createOrUpdateWorkflowState(event, id, wfe);
 				
