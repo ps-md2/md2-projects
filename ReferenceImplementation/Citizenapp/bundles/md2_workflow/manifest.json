@@ -16,6 +16,9 @@
             "provides": ["md2.workflow.EventHandler"],
             "instanceFactory": true,
             "immediate": true,
+            "properties":{
+                "uri": "http://localhost:8080/ReferenceProject.backend/service/eventHandler/"
+            },
             "references": [
                 {
                     "name": "controller",
