@@ -8,7 +8,8 @@
                        this.controllers = new Hash();
                     },
                     createInstance: function() {  
-                        return {
+                        return {  
+                          $: null, // injected by MD2MainWidget
                           handleEvent: this.handleEvent,
                           addController: this.addController,
                           removeController: this.removeController,
