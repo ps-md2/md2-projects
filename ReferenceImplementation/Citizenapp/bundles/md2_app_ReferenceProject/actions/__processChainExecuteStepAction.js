@@ -17,7 +17,7 @@ function(declare, _Action) {
             var expr0h5 = this.$.create("string", "myWorkflow__LocationVerify");
             var bool0h3 = expr0h4.equals(expr0h5);
             var expr0h7 = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider").getValue("currentProcessChainStep");
-            var expr0h8 = this.$.create("string", "myWorkflow__MediaCapturing");
+            var expr0h8 = this.$.create("string", "myWorkflow__Mediacapturing");
             var bool0h6 = expr0h7.equals(expr0h8);
             if (bool0h0) {
                 var action0h9 = this.$.actionFactory.getGotoViewAction("LocationDetectionView");
@@ -28,7 +28,7 @@ function(declare, _Action) {
                 action0ha.execute();
             }
             else if (bool0h6) {
-                var action0hb = this.$.actionFactory.getGotoViewAction("MediaCapturingView");
+                var action0hb = this.$.actionFactory.getGotoViewAction("MediacapturingView");
                 action0hb.execute();
             }
             

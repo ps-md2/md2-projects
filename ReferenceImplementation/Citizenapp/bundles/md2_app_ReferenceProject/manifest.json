@@ -517,7 +517,7 @@
                         }
                     },
                     {
-                        "name": "MediaCapturingView",
+                        "name": "MediacapturingView",
                         "dataForm": {
                             "dataform-version": "1.0.0",
                             "type": "md2gridpanel",

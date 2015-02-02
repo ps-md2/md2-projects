@@ -11,7 +11,7 @@ function(declare, _Action) {
         execute: function() {
             
             var targetContentProvider07y = this.$.contentProviderRegistry.getContentProvider("__processChainControllerStateProvider");
-            var expr07z = this.$.create("string", "MediaProcessChain__MediaCapturing");
+            var expr07z = this.$.create("string", "MediaProcessChain__Mediacapturing");
             targetContentProvider07y.setValue("currentProcessChainStep", expr07z);
             
             var action080 = this.$.actionFactory.getCustomAction("__processChainExecuteStepAction");
