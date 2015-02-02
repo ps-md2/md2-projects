@@ -40,7 +40,6 @@ public class EventHandlerWS {
 	 */
 	
 	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response createOrUpdate(@FormParam("instanceId") String id, @FormParam("lastEventFired") String event,
 			@FormParam("currentWfe") String wfe) {
