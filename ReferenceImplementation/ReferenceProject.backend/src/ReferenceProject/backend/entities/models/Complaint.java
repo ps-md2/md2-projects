@@ -47,10 +47,6 @@ public class Complaint implements Serializable {
 	@XmlElement(nillable=true)
 	protected ComplaintStatus status;
 	
-	@OneToOne
-	@XmlElement(nillable=true)
-	protected WorkflowState workflowState;
-	
 	
 	///////////////////////////////////////
 	/// Getters and setters
@@ -91,12 +87,5 @@ public class Complaint implements Serializable {
 	public void setStatus(ComplaintStatus status) {
 		this.status = status;
 	}
-	
-	public void setWorkflowState(WorkflowState wfs){
-		this.workflowState = wfs;
-	}
-	
-	public WorkflowState getWorkflowState(){
-		return this.workflowState;
-	}
+
 }
