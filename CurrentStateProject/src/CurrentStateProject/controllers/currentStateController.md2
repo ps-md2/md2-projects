@@ -37,12 +37,12 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction init{
-		map LocationDetectionView.streetLbl to :AddressProvider.myStreet
-		map LocationDetectionView.streetNoLbl to :AddressProvider.myStreetNo
-		map LocationDetectionView.cityLbl to :AddressProvider.myCity
+		map LocationDetectionView.AddressData.streetLbl to :AddressProvider.myStreet
+		map LocationDetectionView.AddressData.streetNoLbl to :AddressProvider.myStreetNo
+		map LocationDetectionView.AddressData.cityLbl to :AddressProvider.myCity
 		map LocationDetectionView.countryLbl to :AddressProvider.myCountry
-		map LocationDetectionView.latitudeValueLbl to :AddressProvider.myLatitude
-		map LocationDetectionView.longitudeValueLbl to :AddressProvider.myLongitude
+		map LocationDetectionView.LocationOutput.latitudeValueLbl to :AddressProvider.myLatitude
+		map LocationDetectionView.LocationOutput.longitudeValueLbl to :AddressProvider.myLongitude
 		map LocationVerifyView.StreetView.streetLbl2 to :AddressProvider.myStreet
 		map LocationVerifyView.StreetView.streetNoLbl2 to :AddressProvider.myStreetNo
 		map LocationVerifyView.CityView.cityLbl2 to :AddressProvider.myCity
@@ -52,7 +52,7 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction next{
-		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
+		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
 	}
 	action CustomAction saveComplaint{
 		set :ComplaintProvider.loc = :AddressProvider
@@ -62,12 +62,12 @@ WorkflowElement LocationDetection{
 	processChain LocationProcessChain{
 		step LocationDetection: 
 			view LocationDetectionView
-			proceed {on LocationDetectionView.Next.onClick
+			proceed {on LocationDetectionView.Navbar.Next.onClick
 			then saveComplaint}
 
 		step LocationVerify:
 			view LocationVerifyView
-			reverse on LocationVerifyView.Previous.onClick
+			reverse on LocationVerifyView.Buttons.Previous.onClick
 	}
 }
 
