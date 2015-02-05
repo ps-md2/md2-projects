@@ -15,12 +15,9 @@ FlowLayoutPane LocationDetectionView (vertical) {
 	TextInput countryLbl {label "country: " tooltip "country" width 100%}
 	Spacer
 	
-	GridLayoutPane LocationOutput (columns 2){
-		Label latitudeLbl ("Latitude:")
-		NumberInput latitudeValueLbl
-		Label longitudeLbl ("Longitude:")
-		NumberInput longitudeValueLbl
-	}
+		NumberInput latitudeValueLbl {label "Latitude:"}
+		NumberInput longitudeValueLbl {label "Longitude:"}
+
 	
 	GridLayoutPane Navbar (columns 3){
 		Spacer
@@ -48,8 +45,8 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	
 	LocationDetectionView.countryLbl -> countryLbl2
 	Spacer {width 1%}
-	LocationDetectionView.LocationOutput.latitudeValueLbl -> latitudeLbl2
-	LocationDetectionView.LocationOutput.longitudeValueLbl -> longitudeLbl2
+	LocationDetectionView.latitudeValueLbl -> latitudeLbl2
+	LocationDetectionView.longitudeValueLbl -> longitudeLbl2
 	
 	//NavigationBar(Cancel, previous, next)
 	

@@ -41,8 +41,8 @@ WorkflowElement LocationDetection{
 		map LocationDetectionView.AddressData.streetNoLbl to :AddressProvider.myStreetNo
 		map LocationDetectionView.AddressData.cityLbl to :AddressProvider.myCity
 		map LocationDetectionView.countryLbl to :AddressProvider.myCountry
-		map LocationDetectionView.LocationOutput.latitudeValueLbl to :AddressProvider.myLatitude
-		map LocationDetectionView.LocationOutput.longitudeValueLbl to :AddressProvider.myLongitude
+		map LocationDetectionView.latitudeValueLbl to :AddressProvider.myLatitude
+		map LocationDetectionView.longitudeValueLbl to :AddressProvider.myLongitude
 		map LocationVerifyView.StreetView.streetLbl2 to :AddressProvider.myStreet
 		map LocationVerifyView.StreetView.streetNoLbl2 to :AddressProvider.myStreetNo
 		map LocationVerifyView.CityView.cityLbl2 to :AddressProvider.myCity
