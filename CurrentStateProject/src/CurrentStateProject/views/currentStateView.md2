@@ -1,64 +1,62 @@
 package CurrentStateProject.views
 
 FlowLayoutPane LocationDetectionView (vertical) {
-	Label TitleLbl ("Enter your location") // better: As Title of Activity
+	Label TitleLbl {text "Enterg your location" style heading} // better: As Title of Activity
 	Spacer
 	
 	GridLayoutPane AddressData (columns 2){
-		TextInput streetLbl { label "Street: " tooltip "street"}
-		TextInput streetNoLbl { label "Street Number:" tooltip "no"}
+		TextInput streetLbl { label "Street: " tooltip "Please insert the name of your street."}
+		TextInput streetNoLbl { label "Street Number:" tooltip "Please insert your street-number."}
 
-		IntegerInput zipLbl {label "ZipCode:" tooltip "zip" }
-		TextInput cityLbl {label "City:" tooltip "city"}
-	}
-	
-	TextInput countryLbl {label "country: " tooltip "country" width 100%}
+		IntegerInput zipLbl {label "ZipCode:" tooltip "Please insert the zip-code of your location." }
+		TextInput cityLbl {label "City:" tooltip "Please insert your city."}
+		Spacer
+		TextInput countryLbl {label "Country: " tooltip "Please insert the name of your country."}
+		
+		Spacer Spacer
+		NumberInput latitudeValueLbl {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below."}
+		NumberInput longitudeValueLbl {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below."}
+	}	
+
 	Spacer
-	
-		NumberInput latitudeValueLbl {label "Latitude:"}
-		NumberInput longitudeValueLbl {label "Longitude:"}
-
 	
 	GridLayoutPane Navbar (columns 3){
 		Spacer
-		Button DetectLocationBtn {text "My Location"}
+		Button DetectLocationBtn {style disabledStyle text "My Location"}
 		Spacer
-		Spacer Spacer Spacer
-		Spacer
-		Button Cancel {text "Cancel"}
-		Button Next {text "Next"}
+		Button PreviousDummy {style disabledStyle text "Previous" disabled true} 
+		Button Cancel {style button text "Cancel"}
+		Button Next {style button text "Next" disabled false}
 	}
 	//NavigationBar(Cancel, next)
 }
 
 FlowLayoutPane LocationVerifyView (vertical) {
-	Label TitleLbl ("Verify Location") // better: As Title of Activity
+	Label TitleLbl {text "Verify your Location" style heading} // better: As Title of Activity
 	
-	FlowLayoutPane StreetView (horizontal) {
+	GridLayoutPane AddressView (columns 2) {
 		LocationDetectionView.AddressData.streetLbl -> streetLbl2
 		LocationDetectionView.AddressData.streetNoLbl -> streetNoLbl2
-	}
-	FlowLayoutPane CityView (horizontal) {
 		LocationDetectionView.AddressData.zipLbl -> zipLbl2
 		LocationDetectionView.AddressData.cityLbl -> cityLbl2
+		Spacer
+		LocationDetectionView.AddressData.countryLbl -> countryLbl2
+		Spacer Spacer
+		LocationDetectionView.AddressData.latitudeValueLbl -> latitudeLbl2
+		LocationDetectionView.AddressData.longitudeValueLbl -> longitudeLbl2
 	}
 	
-	LocationDetectionView.countryLbl -> countryLbl2
-	Spacer {width 1%}
-	LocationDetectionView.latitudeValueLbl -> latitudeLbl2
-	LocationDetectionView.longitudeValueLbl -> longitudeLbl2
-	
 	//NavigationBar(Cancel, previous, next)
-	
+	Spacer
 	FlowLayoutPane Buttons (horizontal) {
-	Button Previous {text "Previous"}
+	Button Previous {style button text "Previous"}
 	LocationDetectionView.Navbar.Cancel -> Cancel2
-	Button Next2 {text "Next"}
+	Button Next2 {style button text "Next"}
 	}
 }
 
 FlowLayoutPane MediaCapturingView (vertical) {
-	Label TitleLbl ("Upload Photo") // better: As Title of Activity
+	Label TitleLbl {text "Upload Photo" style heading} // better: As Title of Activity
 	Button UploadBtn {
 		text "Upload File"
 	}
@@ -66,26 +64,25 @@ FlowLayoutPane MediaCapturingView (vertical) {
 		src "defaultImage.png"
 	}
 	
-	Button Next {text "Submit Media"}
+	Button Next {style button text "Submit Media"}
 	//NavigationBar(Cancel, next)
 }
 
 FlowLayoutPane SubmitComplaintView (vertical) {
-	Label TitleLbl ("Submit Complaint") // better: As Title of Activity
+	Label TitleLbl {text "Submit Complaint" style heading} // better: As Title of Activity
 	Image UploadImg {
 		src "uploadedImage.png"
 	}
-	FlowLayoutPane StreetView (horizontal) {
+	GridLayoutPane AddressView (columns 2) {
 		TextInput streetLbl3 {tooltip "street"}
 		TextInput streetNoLbl3 {tooltip "no"}
-	}
-	FlowLayoutPane CityView (horizontal) {
 		IntegerInput zipLbl3 {tooltip "zip" }
 		TextInput cityLbl3 {tooltip "city"}
+		Spacer
+		TextInput countryLbl3 {tooltip "country"}
 	}
 	
-	TextInput countryLbl3 {tooltip "country" width 100%}
-	Spacer {width 1%}
+	Spacer
 	Label latitudeLbl3 ("Latitude:")
 	Label latitudeValueLbl3 ("")
 	Label longitudeLbl3 ("Longitude:")
@@ -96,37 +93,32 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 		type textarea
 	}
 	//NavigationBar(Cancel, next "Submit complaint")
-	Button Cancel3 {text "Cancel"}
-	Button submitComplaint {text "Submit complaint"}
+	Button Cancel3 {style button text "Cancel"}
+	Button submitComplaint {style button text "Submit complaint"}
 }
 
 FlowLayoutPane ViewComplaint (vertical) {
-	Label TitleLbl ("View Complaint") // better: As Title of Activity
+	Label TitleLbl {text "View Complaint" style heading} // better: As Title of Activity
 	
-	FlowLayoutPane StreetView (horizontal) {
-		TextInput streetLbl4 {tooltip "street"}
-		TextInput streetNoLbl4 {tooltip "no"}
-	}
-	FlowLayoutPane CityView (horizontal) {
-		IntegerInput zipLbl4 {tooltip "zip" }
-	TextInput cityLbl4 {tooltip "city"}
-	}
-	
-	TextInput countryLbl4 {tooltip "country" width 100%}
-	Spacer {width 1%}
-	
-	FlowLayoutPane CoordinateView (horizontal) {
-		Label latitudeLbl4 ("Latitude:")
-		NumberInput latitudeValueLbl4
-		Label longitudeLbl4 ("Longitude:")
-		NumberInput longitudeValueLbl4
+	GridLayoutPane AddressData (columns 2){
+		TextInput streetLbl4 { label "Street: " tooltip "Please insert the name of your street."}
+		TextInput streetNoLbl4 { label "Street Number:" tooltip "Please insert your street-number."}
+
+		IntegerInput zipLbl4 {label "ZipCode:" tooltip "Please insert the zip-code of your location." }
+		TextInput cityLbl4 {label "City:" tooltip "Please insert your city."}
+		Spacer
+		TextInput countryLbl4 {label "Country: " tooltip "Please insert the name of your country."}
+		
+		Spacer Spacer
+		NumberInput latitudeValueLbl4 {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below."}
+		NumberInput longitudeValueLbl4 {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below."}
 	}
 	
-	Button Next4 {text "Add Feedback"}	
+	Button Next4 {style button text "Add Feedback"}	
 }
 
 FlowLayoutPane UpdateComplaint (vertical) {
-	Label TitleLbl ("Update Complaint")
+	Label TitleLbl {text "Update Complaint" style heading }
 	
 	TextInput Feedback {
 		label "Add Feedback"
@@ -138,6 +130,24 @@ FlowLayoutPane UpdateComplaint (vertical) {
 		options ComplaintStatus
 	}
 	
-	Button SendFeedback {text "Send Feedback"}
+	Button SendFeedback {style button text "Send Feedback"}
 }
 
+style heading{
+	fontSize 2.5
+	color white 
+	textStyle bold italic
+}
+
+style button{
+	fontSize 1.2
+	color white
+	textStyle bold
+}
+
+style disabledStyle{
+	fontSize 1.2
+	//NOTE: COLORS OF BUTTON_LABELS CANNOT BE CHANGED!
+	color black
+	textStyle italic
+}

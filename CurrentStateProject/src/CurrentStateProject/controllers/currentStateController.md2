@@ -40,20 +40,35 @@ WorkflowElement LocationDetection{
 		map LocationDetectionView.AddressData.streetLbl to :AddressProvider.myStreet
 		map LocationDetectionView.AddressData.streetNoLbl to :AddressProvider.myStreetNo
 		map LocationDetectionView.AddressData.cityLbl to :AddressProvider.myCity
-		map LocationDetectionView.countryLbl to :AddressProvider.myCountry
-		map LocationDetectionView.latitudeValueLbl to :AddressProvider.myLatitude
-		map LocationDetectionView.longitudeValueLbl to :AddressProvider.myLongitude
-		map LocationVerifyView.StreetView.streetLbl2 to :AddressProvider.myStreet
-		map LocationVerifyView.StreetView.streetNoLbl2 to :AddressProvider.myStreetNo
-		map LocationVerifyView.CityView.cityLbl2 to :AddressProvider.myCity
-		map LocationVerifyView.countryLbl2 to :AddressProvider.myCountry
-		map LocationVerifyView.latitudeLbl2 to :AddressProvider.myLatitude
-		map LocationVerifyView.longitudeLbl2 to :AddressProvider.myLongitude
+		map LocationDetectionView.AddressData.countryLbl to :AddressProvider.myCountry
+		map LocationDetectionView.AddressData.latitudeValueLbl to :AddressProvider.myLatitude
+		map LocationDetectionView.AddressData.longitudeValueLbl to :AddressProvider.myLongitude
+		map LocationVerifyView.AddressView.streetLbl2 to :AddressProvider.myStreet
+		map LocationVerifyView.AddressView.streetNoLbl2 to :AddressProvider.myStreetNo
+		map LocationVerifyView.AddressView.cityLbl2 to :AddressProvider.myCity
+		map LocationVerifyView.AddressView.countryLbl2 to :AddressProvider.myCountry
+		map LocationVerifyView.AddressView.latitudeLbl2 to :AddressProvider.myLatitude
+		map LocationVerifyView.AddressView.longitudeLbl2 to :AddressProvider.myLongitude
 	}
 	
+	
+	 
 	action CustomAction next{
+		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
+		 
 	}
+	
+
+	
+	action CustomAction GoOn{
+		if (LocationDetectionView.AddressData.cityLbl equals ""){
+		}
+		else{
+			
+		}
+	}
+	
 	action CustomAction saveComplaint{
 		set :ComplaintProvider.loc = :AddressProvider
 		call ContentProviderOperation (save :ComplaintProvider)
@@ -63,7 +78,8 @@ WorkflowElement LocationDetection{
 		step LocationDetection: 
 			view LocationDetectionView
 			proceed {on LocationDetectionView.Navbar.Next.onClick
-			then saveComplaint}
+				given {(LocationDetectionView.AddressData.cityLbl equals "Münster")} 
+				then saveComplaint}
 
 		step LocationVerify:
 			view LocationVerifyView
@@ -126,13 +142,13 @@ WorkflowElement ReviewComplaint {
 	}
 	
 	action CustomAction init {
-		map ViewComplaint.StreetView.streetLbl4 to :AddressProvider.myStreet
-		map ViewComplaint.StreetView.streetNoLbl4 to :AddressProvider.myStreetNo
-		map ViewComplaint.CityView.zipLbl4 to :AddressProvider.myPostalCode
-		map ViewComplaint.CityView.cityLbl4 to :AddressProvider.myCity
-		map ViewComplaint.countryLbl4 to :AddressProvider.myCountry
-		map ViewComplaint.CoordinateView.latitudeValueLbl4 to :AddressProvider.myLatitude
-		map ViewComplaint.CoordinateView.longitudeValueLbl4 to :AddressProvider.myLongitude
+		map ViewComplaint.AddressData.streetLbl4 to :AddressProvider.myStreet
+		map ViewComplaint.AddressData.streetNoLbl4 to :AddressProvider.myStreetNo
+		map ViewComplaint.AddressData.zipLbl4 to :AddressProvider.myPostalCode
+		map ViewComplaint.AddressData.cityLbl4 to :AddressProvider.myCity
+		map ViewComplaint.AddressData.countryLbl4 to :AddressProvider.myCountry
+		map ViewComplaint.AddressData.latitudeValueLbl4 to :AddressProvider.myLatitude
+		map ViewComplaint.AddressData.longitudeValueLbl4 to :AddressProvider.myLongitude
 		
 		map UpdateComplaint.Feedback to :ComplaintProvider.feedback
 		map UpdateComplaint.Status to :ComplaintProvider.status
