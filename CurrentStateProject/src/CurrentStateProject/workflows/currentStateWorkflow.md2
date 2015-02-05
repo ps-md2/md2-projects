@@ -16,15 +16,20 @@ WorkflowElement Mediacapturing
 	
 WorkflowElement SubmitComplaint
 	fires SubmitEvent {
-		start LocationDetection
+		start ReviewComplaint
+	}
+
+WorkflowElement ReviewComplaint
+	fires ReviewEvent {
+		start LocationDetection // how do we end the workflow here?
 	}
 
 
 App CurrentStateApp {
 	WorkflowElements {
 		LocationDetection (startable: "Start Controller 1"),
-		Mediacapturing//,
-		//SubmitComplaint
+		Mediacapturing,
+		SubmitComplaint
 	}
 	appName "currentStateApp"
 }
@@ -32,7 +37,7 @@ App CurrentStateApp {
 
 App AdminApp {
 	WorkflowElements {
-		SubmitComplaint (startable: "Start Controller 1")
+		ReviewComplaint //(startable: "Review Complaint")
 	}
 	appName "adminApp"
 }
