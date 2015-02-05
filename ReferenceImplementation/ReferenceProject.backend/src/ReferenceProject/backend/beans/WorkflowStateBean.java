@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ReferenceProject.backend.Config;
-import ReferenceProject.backend.Utils;
 import ReferenceProject.backend.entities.WorkflowState;
 
 @Stateless
