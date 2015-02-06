@@ -52,7 +52,10 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	Button Previous {style button text "Previous"}
 	LocationDetectionView.Navbar.Cancel -> Cancel2
 	Button Next2 {style button text "Next"}
+	Button SkipUpload {style button text "Skip Media Upload"}
 	}
+	
+	
 }
 
 FlowLayoutPane MediaCapturingView (vertical) {
@@ -113,7 +116,7 @@ FlowLayoutPane ViewComplaint (vertical) {
 		NumberInput latitudeValueLbl4 {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below."}
 		NumberInput longitudeValueLbl4 {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below."}
 	}
-	
+	BooleanInput addFeedback {label "Add Feedback?" tooltip "Check this box if you want to provide feedback."}
 	Button Next4 {style button text "Add Feedback"}	
 }
 
@@ -131,6 +134,24 @@ FlowLayoutPane UpdateComplaint (vertical) {
 	}
 	
 	Button SendFeedback {style button text "Send Feedback"}
+}
+
+FlowLayoutPane ViewFeedback(vertical) {
+	Label TitleLbl {text "Your complaint has been received and processed."}
+	
+	GridLayoutPane AddressData (columns 2){
+		ViewComplaint.AddressData.streetLbl4 -> streetLbl5
+		ViewComplaint.AddressData.streetNoLbl4 -> streetNoLbl5
+		ViewComplaint.AddressData.zipLbl4 -> zipLbl5
+		ViewComplaint.AddressData.cityLbl4 -> cityLbl5
+		Spacer
+		ViewComplaint.AddressData.countryLbl4 -> countryLbl5		
+		Spacer Spacer
+		ViewComplaint.AddressData.latitudeValueLbl4 -> latitudeValueLbl5
+		ViewComplaint.AddressData.longitudeValueLbl4 -> longitudeValueLbl5
+	}
+	Label Feedback {text "Thank you for your complaint!"}
+	Button close {text "Close"}
 }
 
 style heading{

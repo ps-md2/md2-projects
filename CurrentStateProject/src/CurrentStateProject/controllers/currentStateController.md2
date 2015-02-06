@@ -56,16 +56,16 @@ WorkflowElement LocationDetection{
 	action CustomAction next{
 		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
+		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
 		 
 	}
 	
-
 	
 	action CustomAction GoOn{
 		if (LocationDetectionView.AddressData.cityLbl equals ""){
 		}
 		else{
-			
+			call FireEvent(LocationEvent)
 		}
 	}
 	
@@ -155,17 +155,49 @@ WorkflowElement ReviewComplaint {
 	}
 	
 	action CustomAction next{
-		bind action FireEvent(ReviewEvent) on UpdateComplaint.SendFeedback.onClick
+		bind action GoOn on UpdateComplaint.SendFeedback.onClick
+	}
+	
+	action CustomAction GoOn{
+		if(ViewComplaint.addFeedback equals false){
+			call FireEvent(ReviewEvent)
+		}
 	}
 	
 	processChain ReviewProcessChain {
 		step ViewComplaint:
 			view ViewComplaint
 			proceed {
-				on ViewComplaint.Next4.onClick
+				on ViewComplaint.Next4.onClick given ViewComplaint.addFeedback equals true
 			}
 		step UpdateComplaint:
 			view UpdateComplaint
+	}
+}
+
+WorkflowElement ReceiveFeedback {
+	defaultProcessChain receiveChain
+	onInit{
+		init
+	}
+	
+	action CustomAction init{
+		map ViewFeedback.AddressData.streetLbl5 to :AddressProvider.myStreet
+		map ViewFeedback.AddressData.streetNoLbl5 to :AddressProvider.myStreetNo
+		map ViewFeedback.AddressData.zipLbl5 to :AddressProvider.myPostalCode
+		map ViewFeedback.AddressData.cityLbl5 to :AddressProvider.myCity
+		map ViewFeedback.AddressData.countryLbl5 to :AddressProvider.myCountry
+		map ViewFeedback.AddressData.latitudeValueLbl5 to :AddressProvider.myLatitude
+		map ViewFeedback.AddressData.longitudeValueLbl5 to :AddressProvider.myLongitude
+		
+		map ViewFeedback.Feedback to :ComplaintProvider.feedback
+		
+		bind action FireEvent(ReviewEvent) on ViewFeedback.close.onClick
+	}
+	
+	processChain receiveChain {
+	step ViewFeedback:
+		view ViewFeedback
 	}
 }
 

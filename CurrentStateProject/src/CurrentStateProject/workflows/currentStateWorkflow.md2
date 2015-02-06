@@ -8,6 +8,9 @@ package CurrentStateProject.workflows
 	fires LocationEvent {
 		start Mediacapturing
 	}
+	fires WithoutPhotoEvent{
+		start SubmitComplaint
+	}
 	
 WorkflowElement Mediacapturing
 	fires MediacapturedEvent {
@@ -21,7 +24,12 @@ WorkflowElement SubmitComplaint
 
 WorkflowElement ReviewComplaint
 	fires ReviewEvent {
-		start LocationDetection // how do we end the workflow here?
+		start ReceiveFeedback // how do we end the workflow here?
+	}
+	
+WorkflowElement ReceiveFeedback
+	fires EndOfProcessEvent {
+		start LocationDetection
 	}
 
 
