@@ -43,12 +43,13 @@ WorkflowElement LocationDetection{
 		map LocationDetectionView.AddressData.countryLbl to :AddressProvider.myCountry
 		map LocationDetectionView.AddressData.latitudeValueLbl to :AddressProvider.myLatitude
 		map LocationDetectionView.AddressData.longitudeValueLbl to :AddressProvider.myLongitude
-		map LocationVerifyView.AddressView.streetLbl2 to :AddressProvider.myStreet
-		map LocationVerifyView.AddressView.streetNoLbl2 to :AddressProvider.myStreetNo
-		map LocationVerifyView.AddressView.cityLbl2 to :AddressProvider.myCity
-		map LocationVerifyView.AddressView.countryLbl2 to :AddressProvider.myCountry
-		map LocationVerifyView.AddressView.latitudeLbl2 to :AddressProvider.myLatitude
-		map LocationVerifyView.AddressView.longitudeLbl2 to :AddressProvider.myLongitude
+		map LocationVerifyView.AddressView.streetValue to :AddressProvider.myStreet
+		map LocationVerifyView.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map LocationVerifyView.AddressView.cityValue to :AddressProvider.myCity
+		map LocationVerifyView.AddressView.zipValue to :AddressProvider.myPostalCode
+		map LocationVerifyView.AddressView.countryValue to :AddressProvider.myCountry
+		map LocationVerifyView.LatLoView.latitudeValue to :AddressProvider.myLatitude
+		map LocationVerifyView.LatLoView.longitudeValue to :AddressProvider.myLongitude
 	}
 	
 	
@@ -100,7 +101,7 @@ WorkflowElement Mediacapturing {
 	}
 	
 	action CustomAction next {
-		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.Next.onClick
+		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.navbar.Next.onClick
 	}
 	
 	processChain MediaProcessChain {
@@ -116,6 +117,16 @@ WorkflowElement SubmitComplaint {
 	}
 	
 	action CustomAction init {
+		map SubmitComplaintView.AddressView.streetValue to :AddressProvider.myStreet
+		
+		map SubmitComplaintView.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map SubmitComplaintView.AddressView.cityValue to :AddressProvider.myCity
+		map SubmitComplaintView.AddressView.countryValue to :AddressProvider.myCountry
+		map SubmitComplaintView.LatLoView.latitudeValue to :AddressProvider.myLatitude
+		map SubmitComplaintView.LatLoView.longitudeValue to :AddressProvider.myLongitude
+
+
+		
 		bind action next on SubmitComplaintView.submitComplaint.onClick
 		//bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
 		//variant for implementation without process chains:
@@ -126,7 +137,7 @@ WorkflowElement SubmitComplaint {
 		call FireEvent(SubmitEvent)
 		set :ComplaintProvider.loc = :AddressProvider
 		call ContentProviderOperation(save :ComplaintProvider)
-		call DisplayMessage ("yeah, it worked!")
+		call DisplayMessage ("Complaint submitted!")
 	}
 	
 	processChain ComplaintProcessChain {
@@ -138,37 +149,48 @@ WorkflowElement SubmitComplaint {
 WorkflowElement ReviewComplaint {
 	defaultProcessChain ReviewProcessChain
 	onInit {
-		init
+		init,
+		next
 	}
 	
 	action CustomAction init {
-		map ViewComplaint.AddressData.streetLbl4 to :AddressProvider.myStreet
-		map ViewComplaint.AddressData.streetNoLbl4 to :AddressProvider.myStreetNo
-		map ViewComplaint.AddressData.zipLbl4 to :AddressProvider.myPostalCode
-		map ViewComplaint.AddressData.cityLbl4 to :AddressProvider.myCity
-		map ViewComplaint.AddressData.countryLbl4 to :AddressProvider.myCountry
-		map ViewComplaint.AddressData.latitudeValueLbl4 to :AddressProvider.myLatitude
-		map ViewComplaint.AddressData.longitudeValueLbl4 to :AddressProvider.myLongitude
+		map ViewComplaint.AddressView.streetValue to :AddressProvider.myStreet
+		map ViewComplaint.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map ViewComplaint.AddressView.zipValue to :AddressProvider.myPostalCode
+		map ViewComplaint.AddressView.cityValue to :AddressProvider.myCity
+		map ViewComplaint.AddressView.countryValue to :AddressProvider.myCountry
+		map ViewComplaint.AddressView.latitudeValue to :AddressProvider.myLatitude
+		map ViewComplaint.AddressView.longitudeValue to :AddressProvider.myLongitude
 		
-		map UpdateComplaint.Feedback to :ComplaintProvider.feedback
-		map UpdateComplaint.Status to :ComplaintProvider.status
+		map UpdateComplaint.feedbackView.feedback to :ComplaintProvider.feedback
+		map UpdateComplaint.feedbackView.status to :ComplaintProvider.status
+		
+		bind action sendFeedback on UpdateComplaint.SendFeedback.onClick
+	}
+	
+	action CustomAction sendFeedback{
+		//set :ComplaintProvider.feedback = UpdateComplaint.Feedback
+		call ContentProviderOperation(save :ComplaintProvider)
+		call DisplayMessage ("Changes saved!")
+		call FireEvent(ReviewEvent)
 	}
 	
 	action CustomAction next{
-		bind action GoOn on UpdateComplaint.SendFeedback.onClick
+		bind action GoOn on ViewComplaint.Next4.onClick
 	}
 	
 	action CustomAction GoOn{
-		if(ViewComplaint.addFeedback equals false){
+		if(ViewComplaint.AddressView.addFeedback equals false){
 			call FireEvent(ReviewEvent)
 		}
 	}
+	
 	
 	processChain ReviewProcessChain {
 		step ViewComplaint:
 			view ViewComplaint
 			proceed {
-				on ViewComplaint.Next4.onClick given ViewComplaint.addFeedback equals true
+				on ViewComplaint.Next4.onClick given ViewComplaint.AddressView.addFeedback equals true
 			}
 		step UpdateComplaint:
 			view UpdateComplaint
@@ -182,17 +204,17 @@ WorkflowElement ReceiveFeedback {
 	}
 	
 	action CustomAction init{
-		map ViewFeedback.AddressData.streetLbl5 to :AddressProvider.myStreet
-		map ViewFeedback.AddressData.streetNoLbl5 to :AddressProvider.myStreetNo
-		map ViewFeedback.AddressData.zipLbl5 to :AddressProvider.myPostalCode
-		map ViewFeedback.AddressData.cityLbl5 to :AddressProvider.myCity
-		map ViewFeedback.AddressData.countryLbl5 to :AddressProvider.myCountry
-		map ViewFeedback.AddressData.latitudeValueLbl5 to :AddressProvider.myLatitude
-		map ViewFeedback.AddressData.longitudeValueLbl5 to :AddressProvider.myLongitude
+		map ViewFeedback.AddressData.streetValue to :AddressProvider.myStreet
+		map ViewFeedback.AddressData.streetNoValue to :AddressProvider.myStreetNo
+		map ViewFeedback.AddressData.zipValue to :AddressProvider.myPostalCode
+		map ViewFeedback.AddressData.cityValue to :AddressProvider.myCity
+		map ViewFeedback.AddressData.countryValue to :AddressProvider.myCountry
+		map ViewFeedback.AddressData.latitudeValue to :AddressProvider.myLatitude
+		map ViewFeedback.AddressData.longitudeValue to :AddressProvider.myLongitude
 		
 		map ViewFeedback.Feedback to :ComplaintProvider.feedback
 		
-		bind action FireEvent(ReviewEvent) on ViewFeedback.close.onClick
+		bind action FireEvent(EndOfProcessEvent) on ViewFeedback.close.onClick
 	}
 	
 	processChain receiveChain {
