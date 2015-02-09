@@ -37,12 +37,13 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction init{
-		map LocationDetectionView.AddressData.streetLbl to :AddressProvider.myStreet
-		map LocationDetectionView.AddressData.streetNoLbl to :AddressProvider.myStreetNo
-		map LocationDetectionView.AddressData.cityLbl to :AddressProvider.myCity
-		map LocationDetectionView.AddressData.countryLbl to :AddressProvider.myCountry
-		map LocationDetectionView.AddressData.latitudeValueLbl to :AddressProvider.myLatitude
-		map LocationDetectionView.AddressData.longitudeValueLbl to :AddressProvider.myLongitude
+		map LocationDetectionView.AddressData.streetValue to :AddressProvider.myStreet
+		map LocationDetectionView.AddressData.streetNoValue to :AddressProvider.myStreetNo
+		map LocationDetectionView.AddressData.cityValue to :AddressProvider.myCity
+		map LocationDetectionView.AddressData.countryValue to :AddressProvider.myCountry
+		map LocationDetectionView.AddressData.zipValue to :AddressProvider.myPostalCode
+		map LocationDetectionView.AddressData.latitudeValue to :AddressProvider.myLatitude
+		map LocationDetectionView.AddressData.longitudeValue to :AddressProvider.myLongitude
 		map LocationVerifyView.AddressView.streetValue to :AddressProvider.myStreet
 		map LocationVerifyView.AddressView.streetNoValue to :AddressProvider.myStreetNo
 		map LocationVerifyView.AddressView.cityValue to :AddressProvider.myCity
@@ -63,7 +64,7 @@ WorkflowElement LocationDetection{
 	
 	
 	action CustomAction GoOn{
-		if (LocationDetectionView.AddressData.cityLbl equals ""){
+		if (LocationDetectionView.AddressData.cityValue equals ""){
 		}
 		else{
 			call FireEvent(LocationEvent)
@@ -79,7 +80,7 @@ WorkflowElement LocationDetection{
 		step LocationDetection: 
 			view LocationDetectionView
 			proceed {on LocationDetectionView.Navbar.Next.onClick
-				given {(LocationDetectionView.AddressData.cityLbl equals "Münster")} 
+				given {(LocationDetectionView.AddressData.cityValue equals "Münster")} 
 				then saveComplaint}
 
 		step LocationVerify:
