@@ -170,6 +170,8 @@ FlowLayoutPane ViewFeedback(vertical) {
 FlowLayoutPane ViewComplaint (vertical) {
 	Label TitleLbl {text "View Complaint" style heading} // better: As Title of Activity
 	
+	Spacer
+	
 	GridLayoutPane AddressView (columns 4){
 		Label streetLbl {text "Street"} Label streetValue {text "TEMP" style dataStyle}
 		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "TEMP" style dataStyle}
@@ -179,6 +181,8 @@ FlowLayoutPane ViewComplaint (vertical) {
 		
 		Spacer Spacer
 		Label countryLbl {text "Country"} Label countryValue {text "TEMP" style dataStyle}
+		
+		Spacer Spacer Spacer Spacer
 		
 		Label latLbl {text "Latitude:"}
 		NumberInput latitudeValue
@@ -190,6 +194,7 @@ FlowLayoutPane ViewComplaint (vertical) {
 		BooleanInput addFeedback {}
 	}
 	
+	Spacer
 	Button Next4 {style button text "Continue"}	
 }
 
