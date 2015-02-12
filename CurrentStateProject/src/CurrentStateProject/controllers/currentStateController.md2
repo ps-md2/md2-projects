@@ -33,7 +33,8 @@ WorkflowElement LocationDetection{
 	defaultProcessChain LocationProcessChain
 	onInit {
 		init,
-		buttonInit
+		buttonInit,
+		MyLocationAction
 	}
 	
 	action CustomAction init{
@@ -64,6 +65,21 @@ WorkflowElement LocationDetection{
 		 
 	}
 	
+	
+	action CustomAction MyLocationAction {
+		bind action Location ( inputs ( cityInput :AddressProvider.myCity
+			 							streetInput :AddressProvider.myStreet
+			 							streetNumberInput :AddressProvider.myStreetNo
+			 							postalInput :AddressProvider.myPostalCode
+			 							countryInput :AddressProvider.myCountry
+			 							)
+			 					outputs (
+			 							latitudeOutput :AddressProvider.myLatitude
+			 							longitudeOutput  :AddressProvider.myLongitude
+			 							)
+			 					)		 				
+			 on LocationDetectionView.Navbar.DetectLocationBtn.onClick
+	}
 	
 	action CustomAction GoOn{
 		if (not LocationDetectionView.AddressData.cityValue equals "Münster"){
