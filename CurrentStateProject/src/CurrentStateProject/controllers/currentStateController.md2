@@ -123,8 +123,10 @@ WorkflowElement SubmitComplaint {
 		map SubmitComplaintView.AddressView.streetNoValue to :AddressProvider.myStreetNo
 		map SubmitComplaintView.AddressView.cityValue to :AddressProvider.myCity
 		map SubmitComplaintView.AddressView.countryValue to :AddressProvider.myCountry
+		map SubmitComplaintView.AddressView.zipValue to :AddressProvider.myPostalCode
 		map SubmitComplaintView.LatLoView.latitudeValue to :AddressProvider.myLatitude
 		map SubmitComplaintView.LatLoView.longitudeValue to :AddressProvider.myLongitude
+		map SubmitComplaintView.LatLoView.descriptionTxt to :ComplaintProvider.descriptions
 
 
 		
@@ -135,9 +137,10 @@ WorkflowElement SubmitComplaint {
 	}
 	
 	action CustomAction next {
-		call FireEvent(SubmitEvent)
 		set :ComplaintProvider.loc = :AddressProvider
+		call ContentProviderOperation(save :AddressProvider)
 		call ContentProviderOperation(save :ComplaintProvider)
+		call FireEvent(SubmitEvent)
 		call DisplayMessage ("Complaint submitted!")
 	}
 	
@@ -213,7 +216,9 @@ WorkflowElement ReceiveFeedback {
 		map ViewFeedback.AddressData.latitudeValue to :AddressProvider.myLatitude
 		map ViewFeedback.AddressData.longitudeValue to :AddressProvider.myLongitude
 		
-		map ViewFeedback.Feedback to :ComplaintProvider.feedback
+		map ViewFeedback.feedbackData.descriptionText to :ComplaintProvider.descriptions
+		
+		map ViewFeedback.feedbackData.feedbackText to :ComplaintProvider.feedback
 		
 		bind action FireEvent(EndOfProcessEvent) on ViewFeedback.close.onClick
 	}

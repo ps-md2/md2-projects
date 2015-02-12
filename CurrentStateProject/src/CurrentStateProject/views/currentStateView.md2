@@ -152,12 +152,11 @@ FlowLayoutPane ViewFeedback(vertical) {
 		Label descriptionLbl {text"Description:" width 25%}
 		Label descriptionText {text "TEMP" width 75% style dataStyle}
 		Label feedbackLbl {text"Feedback:" width 25%}
-		Label feedbackText {text"TEMP" width 75% style dataStyle}
+		Label feedbackText {text "Thank you for your complaint!" width 75% style dataStyle}
 	} 
 		
 	
 	Spacer
-	Label Feedback {text "Thank you for your complaint!" style highlight}
 	Button close {text "Close" style button}
 }
 
