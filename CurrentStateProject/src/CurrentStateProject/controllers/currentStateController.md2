@@ -33,7 +33,7 @@ WorkflowElement LocationDetection{
 	defaultProcessChain LocationProcessChain
 	onInit {
 		init,
-		next
+		buttonInit
 	}
 	
 	action CustomAction init{
@@ -55,19 +55,19 @@ WorkflowElement LocationDetection{
 	
 	
 	 
-	action CustomAction next{
+	action CustomAction buttonInit{
 		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
 		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
+		bind action GoOn on LocationDetectionView.Navbar.Next.onClick
+		
 		 
 	}
 	
 	
 	action CustomAction GoOn{
-		if (LocationDetectionView.AddressData.cityValue equals ""){
-		}
-		else{
-			call FireEvent(LocationEvent)
+		if (not LocationDetectionView.AddressData.cityValue equals "Münster"){
+			call DisplayMessage("Only complaints from Münster are accepted!")
 		}
 	}
 	
