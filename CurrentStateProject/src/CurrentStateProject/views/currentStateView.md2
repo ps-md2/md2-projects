@@ -188,6 +188,11 @@ FlowLayoutPane ViewComplaint (vertical) {
 		Label longLbl {text "Longitude:"}
 		NumberInput longitudeValue
 		
+		Label descriptionLbl {text"Description:" width 25%}
+		Label descriptionText {text "TEMP" width 75% style dataStyle}
+		
+		Spacer Spacer
+		
 		Tooltip feedbackTip {text "Check this box if you want to provide feedback." width 5%}
 		Label feedbackLabel {text "Add Feedback?" width 20%}
 		BooleanInput addFeedback {}

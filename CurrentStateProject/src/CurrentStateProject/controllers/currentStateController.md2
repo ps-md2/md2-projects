@@ -166,6 +166,8 @@ WorkflowElement ReviewComplaint {
 		map ViewComplaint.AddressView.latitudeValue to :AddressProvider.myLatitude
 		map ViewComplaint.AddressView.longitudeValue to :AddressProvider.myLongitude
 		
+		map ViewComplaint.AddressView.descriptionText to :ComplaintProvider.descriptions
+		
 		map UpdateComplaint.feedbackView.feedback to :ComplaintProvider.feedback
 		map UpdateComplaint.feedbackView.status to :ComplaintProvider.status
 		
