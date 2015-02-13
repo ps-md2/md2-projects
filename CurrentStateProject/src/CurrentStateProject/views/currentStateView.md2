@@ -52,10 +52,9 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	}
 	
 	GridLayoutPane LatLoView (columns 4){
-		Label latLbl {text "Latitude:"}
-		NumberInput latitudeValue
-		Label longLbl {text "Longitude:"}
-		NumberInput longitudeValue
+		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
+
 	}
 	
 	//NavigationBar(Cancel, previous, next)
@@ -100,10 +99,8 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 	
 	Spacer
 	GridLayoutPane LatLoView (columns 4){	
-		Label latLbl {text "Latitude:"}
-		NumberInput latitudeValue
-		Label longLbl {text "Longitude:"}
-		NumberInput longitudeValue
+		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
 		
 		// TODO: Values are never used!
 		Label descriptionLbl {text "Additional Description:" width 20%}
@@ -138,10 +135,8 @@ FlowLayoutPane ViewFeedback(vertical) {
 		Label countryLbl {text "Country"} Label countryValue {text "TEMP" style dataStyle}
 	
 		Spacer Spacer Spacer Spacer
-		Label latLbl {text "Latitude:"}
-		NumberInput latitudeValue 
-		Label longLbl {text "Longitude:"}
-		NumberInput longitudeValue
+		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
 	}
 	
 	Spacer
@@ -183,10 +178,8 @@ FlowLayoutPane ViewComplaint (vertical) {
 		
 		Spacer Spacer Spacer Spacer
 		
-		Label latLbl {text "Latitude:"}
-		NumberInput latitudeValue
-		Label longLbl {text "Longitude:"}
-		NumberInput longitudeValue
+		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
 		
 		Label descriptionLbl {text"Description:" width 25%}
 		Label descriptionText {text "TEMP" width 75% style dataStyle}
@@ -253,7 +246,7 @@ style disabledStyle{
 }
 
 style dataStyle{
-	color green
+	color lime
 }
 
 style highlight{
