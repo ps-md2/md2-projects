@@ -8,6 +8,9 @@ package CurrentStateProject.workflows
 	fires LocationEvent {
 		start Mediacapturing
 	}
+	fires WithoutPhotoEvent{
+		start SubmitComplaint
+	}
 	
 WorkflowElement Mediacapturing
 	fires MediacapturedEvent {
@@ -21,15 +24,21 @@ WorkflowElement SubmitComplaint
 
 WorkflowElement ReviewComplaint
 	fires ReviewEvent {
+		start ReceiveFeedback 
+	}
+	
+WorkflowElement ReceiveFeedback
+	fires EndOfProcessEvent {
 		start LocationDetection // how do we end the workflow here?
 	}
 
 
 App CurrentStateApp {
 	WorkflowElements {
-		LocationDetection (startable: "Start Controller 1"),
+		LocationDetection (startable: "Start Complaint"),
 		Mediacapturing,
-		SubmitComplaint
+		SubmitComplaint,
+		ReceiveFeedback
 	}
 	appName "currentStateApp"
 }

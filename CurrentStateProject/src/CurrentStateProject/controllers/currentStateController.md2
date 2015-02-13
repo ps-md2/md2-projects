@@ -33,27 +33,59 @@ WorkflowElement LocationDetection{
 	defaultProcessChain LocationProcessChain
 	onInit {
 		init,
-		next
+		buttonInit,
+		MyLocationAction
 	}
 	
 	action CustomAction init{
-		map LocationDetectionView.streetLbl to :AddressProvider.myStreet
-		map LocationDetectionView.streetNoLbl to :AddressProvider.myStreetNo
-		map LocationDetectionView.cityLbl to :AddressProvider.myCity
-		map LocationDetectionView.countryLbl to :AddressProvider.myCountry
-		map LocationDetectionView.latitudeValueLbl to :AddressProvider.myLatitude
-		map LocationDetectionView.longitudeValueLbl to :AddressProvider.myLongitude
-		map LocationVerifyView.StreetView.streetLbl2 to :AddressProvider.myStreet
-		map LocationVerifyView.StreetView.streetNoLbl2 to :AddressProvider.myStreetNo
-		map LocationVerifyView.CityView.cityLbl2 to :AddressProvider.myCity
-		map LocationVerifyView.countryLbl2 to :AddressProvider.myCountry
-		map LocationVerifyView.latitudeLbl2 to :AddressProvider.myLatitude
-		map LocationVerifyView.longitudeLbl2 to :AddressProvider.myLongitude
+		map LocationDetectionView.AddressData.streetValue to :AddressProvider.myStreet
+		map LocationDetectionView.AddressData.streetNoValue to :AddressProvider.myStreetNo
+		map LocationDetectionView.AddressData.cityValue to :AddressProvider.myCity
+		map LocationDetectionView.AddressData.countryValue to :AddressProvider.myCountry
+		map LocationDetectionView.AddressData.zipValue to :AddressProvider.myPostalCode
+		map LocationDetectionView.AddressData.latitudeValue to :AddressProvider.myLatitude
+		map LocationDetectionView.AddressData.longitudeValue to :AddressProvider.myLongitude
+		map LocationVerifyView.AddressView.streetValue to :AddressProvider.myStreet
+		map LocationVerifyView.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map LocationVerifyView.AddressView.cityValue to :AddressProvider.myCity
+		map LocationVerifyView.AddressView.zipValue to :AddressProvider.myPostalCode
+		map LocationVerifyView.AddressView.countryValue to :AddressProvider.myCountry
+		map LocationVerifyView.LatLoView.latitudeValue to :AddressProvider.myLatitude
+		map LocationVerifyView.LatLoView.longitudeValue to :AddressProvider.myLongitude
 	}
 	
-	action CustomAction next{
-		bind action FireEvent(LocationEvent) on LocationVerifyView.Next2.onClick
+	
+	 
+	action CustomAction buttonInit{
+		
+		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
+		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
+		bind action GoOn on LocationDetectionView.Navbar.Next.onClick
+		
+		 
 	}
+	
+	action CustomAction MyLocationAction {
+		bind action Location ( inputs ( cityInput :AddressProvider.myCity
+			 							streetInput :AddressProvider.myStreet
+			 							streetNumberInput :AddressProvider.myStreetNo
+			 							postalInput :AddressProvider.myPostalCode
+			 							countryInput :AddressProvider.myCountry
+			 							)
+			 					outputs (
+			 							latitudeOutput :AddressProvider.myLatitude
+			 							longitudeOutput  :AddressProvider.myLongitude
+			 							)
+			 					)		 				
+			 on LocationDetectionView.Navbar.DetectLocationBtn.onClick
+	}
+	
+	action CustomAction GoOn{
+		if (not LocationDetectionView.AddressData.cityValue equals "Münster"){
+			call DisplayMessage("Only complaints from Münster are accepted!")
+		}
+	}
+	
 	action CustomAction saveComplaint{
 		set :ComplaintProvider.loc = :AddressProvider
 		call ContentProviderOperation (save :ComplaintProvider)
@@ -62,12 +94,13 @@ WorkflowElement LocationDetection{
 	processChain LocationProcessChain{
 		step LocationDetection: 
 			view LocationDetectionView
-			proceed {on LocationDetectionView.Next.onClick
-			then saveComplaint}
+			proceed {on LocationDetectionView.Navbar.Next.onClick
+				given {(LocationDetectionView.AddressData.cityValue equals "Münster")} 
+				then saveComplaint}
 
 		step LocationVerify:
 			view LocationVerifyView
-			reverse on LocationVerifyView.Previous.onClick
+			reverse on LocationVerifyView.Buttons.Previous.onClick
 	}
 }
 
@@ -84,7 +117,7 @@ WorkflowElement Mediacapturing {
 	}
 	
 	action CustomAction next {
-		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.Next.onClick
+		bind action FireEvent(MediacapturedEvent) on MediaCapturingView.navbar.Next.onClick
 	}
 	
 	processChain MediaProcessChain {
@@ -100,6 +133,18 @@ WorkflowElement SubmitComplaint {
 	}
 	
 	action CustomAction init {
+		map SubmitComplaintView.AddressView.streetValue to :AddressProvider.myStreet
+		
+		map SubmitComplaintView.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map SubmitComplaintView.AddressView.cityValue to :AddressProvider.myCity
+		map SubmitComplaintView.AddressView.countryValue to :AddressProvider.myCountry
+		map SubmitComplaintView.AddressView.zipValue to :AddressProvider.myPostalCode
+		map SubmitComplaintView.LatLoView.latitudeValue to :AddressProvider.myLatitude
+		map SubmitComplaintView.LatLoView.longitudeValue to :AddressProvider.myLongitude
+		map SubmitComplaintView.LatLoView.descriptionTxt to :ComplaintProvider.descriptions
+
+
+		
 		bind action next on SubmitComplaintView.submitComplaint.onClick
 		//bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
 		//variant for implementation without process chains:
@@ -107,10 +152,11 @@ WorkflowElement SubmitComplaint {
 	}
 	
 	action CustomAction next {
-		call FireEvent(SubmitEvent)
 		set :ComplaintProvider.loc = :AddressProvider
+		call ContentProviderOperation(save :AddressProvider)
 		call ContentProviderOperation(save :ComplaintProvider)
-		call DisplayMessage ("yeah, it worked!")
+		call FireEvent(SubmitEvent)
+		call DisplayMessage ("Complaint submitted!")
 	}
 	
 	processChain ComplaintProcessChain {
@@ -122,34 +168,81 @@ WorkflowElement SubmitComplaint {
 WorkflowElement ReviewComplaint {
 	defaultProcessChain ReviewProcessChain
 	onInit {
-		init
+		init,
+		next
 	}
 	
 	action CustomAction init {
-		map ViewComplaint.StreetView.streetLbl4 to :AddressProvider.myStreet
-		map ViewComplaint.StreetView.streetNoLbl4 to :AddressProvider.myStreetNo
-		map ViewComplaint.CityView.zipLbl4 to :AddressProvider.myPostalCode
-		map ViewComplaint.CityView.cityLbl4 to :AddressProvider.myCity
-		map ViewComplaint.countryLbl4 to :AddressProvider.myCountry
-		map ViewComplaint.CoordinateView.latitudeValueLbl4 to :AddressProvider.myLatitude
-		map ViewComplaint.CoordinateView.longitudeValueLbl4 to :AddressProvider.myLongitude
+		map ViewComplaint.AddressView.streetValue to :AddressProvider.myStreet
+		map ViewComplaint.AddressView.streetNoValue to :AddressProvider.myStreetNo
+		map ViewComplaint.AddressView.zipValue to :AddressProvider.myPostalCode
+		map ViewComplaint.AddressView.cityValue to :AddressProvider.myCity
+		map ViewComplaint.AddressView.countryValue to :AddressProvider.myCountry
+		map ViewComplaint.AddressView.latitudeValue to :AddressProvider.myLatitude
+		map ViewComplaint.AddressView.longitudeValue to :AddressProvider.myLongitude
 		
-		map UpdateComplaint.Feedback to :ComplaintProvider.feedback
-		map UpdateComplaint.Status to :ComplaintProvider.status
+		map ViewComplaint.AddressView.descriptionText to :ComplaintProvider.descriptions
+		
+		map UpdateComplaint.feedbackView.feedback to :ComplaintProvider.feedback
+		map UpdateComplaint.feedbackView.status to :ComplaintProvider.status
+		
+		bind action sendFeedback on UpdateComplaint.SendFeedback.onClick
+	}
+	
+	action CustomAction sendFeedback{
+		//set :ComplaintProvider.feedback = UpdateComplaint.Feedback
+		call ContentProviderOperation(save :ComplaintProvider)
+		call DisplayMessage ("Changes saved!")
+		call FireEvent(ReviewEvent)
 	}
 	
 	action CustomAction next{
-		bind action FireEvent(ReviewEvent) on UpdateComplaint.SendFeedback.onClick
+		bind action GoOn on ViewComplaint.Next4.onClick
 	}
+	
+	action CustomAction GoOn{
+		if(ViewComplaint.AddressView.addFeedback equals false){
+			call FireEvent(ReviewEvent)
+		}
+	}
+	
 	
 	processChain ReviewProcessChain {
 		step ViewComplaint:
 			view ViewComplaint
 			proceed {
-				on ViewComplaint.Next4.onClick
+				on ViewComplaint.Next4.onClick given ViewComplaint.AddressView.addFeedback equals true
 			}
 		step UpdateComplaint:
 			view UpdateComplaint
+	}
+}
+
+WorkflowElement ReceiveFeedback {
+	defaultProcessChain receiveChain
+	onInit{
+		init
+	}
+	
+	action CustomAction init{
+		map ViewFeedback.AddressData.streetValue to :AddressProvider.myStreet
+		map ViewFeedback.AddressData.streetNoValue to :AddressProvider.myStreetNo
+		map ViewFeedback.AddressData.zipValue to :AddressProvider.myPostalCode
+		map ViewFeedback.AddressData.cityValue to :AddressProvider.myCity
+		map ViewFeedback.AddressData.countryValue to :AddressProvider.myCountry
+		map ViewFeedback.AddressData.latitudeValue to :AddressProvider.myLatitude
+		map ViewFeedback.AddressData.longitudeValue to :AddressProvider.myLongitude
+		
+		map ViewFeedback.feedbackData.descriptionText to :ComplaintProvider.descriptions
+		
+		map ViewFeedback.feedbackData.feedbackText to :ComplaintProvider.feedback
+		
+		bind action FireEvent(EndOfProcessEvent) on ViewFeedback.close.onClick
+	}
+	
+	processChain receiveChain {
+	step ViewFeedback:
+		view ViewFeedback
 	}
 }
 
