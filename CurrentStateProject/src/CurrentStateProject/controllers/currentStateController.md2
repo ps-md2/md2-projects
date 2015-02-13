@@ -65,7 +65,6 @@ WorkflowElement LocationDetection{
 		 
 	}
 	
-	
 	action CustomAction MyLocationAction {
 		bind action Location ( inputs ( cityInput :AddressProvider.myCity
 			 							streetInput :AddressProvider.myStreet
