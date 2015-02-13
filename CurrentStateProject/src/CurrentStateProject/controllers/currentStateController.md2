@@ -63,8 +63,7 @@ WorkflowElement LocationDetection{
 		
 		 
 	}
-	
-	
+		
 	action CustomAction GoOn{
 		if (not LocationDetectionView.AddressData.cityValue equals "Münster"){
 			call DisplayMessage("Only complaints from Münster are accepted!")
