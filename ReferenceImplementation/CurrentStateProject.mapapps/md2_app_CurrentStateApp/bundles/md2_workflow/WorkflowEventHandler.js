@@ -51,9 +51,11 @@ function(declare, Hash) {
             (event === "EndOfProcessEvent" && workflowelement === "ReceiveFeedback")
             {
             var currentController = this.instance.controllers.get("md2.wfe.ReceiveFeedback.Controller");
-            var nextController = this.instance.controllers.get("md2.wfe.LocationDetection.Controller");
-            this.workflowStateHandler.changeWorkflowElement(currentController, nextController, "md2_LocationDetection");
+            this.workflowStateHandler.fireEventToBackend(event, workflowelement, currentController, currentController.getTransactionId());
             }
+
+            
+            
         },
 
         addController: function (controller, properties) {
