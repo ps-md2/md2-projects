@@ -40,20 +40,20 @@ FlowLayoutPane LocationVerifyView (vertical) {
 	Label TitleLbl {text "Verify your Location" style heading} // better: As Title of Activity
 	
 	GridLayoutPane AddressView (columns 4) {
-		Label streetLbl {text "Street"} Label streetValue{text "TEMP" style dataStyle}
-		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "TEMP" style dataStyle}
+		Label streetLbl {text "Street"} Label streetValue{text "" style dataStyle}
+		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "" style dataStyle}
 		
-		Label zipLbl {text "Zip Code"} Label zipValue {text "TEMP" style dataStyle}
-		Label cityLbl{text "City"} Label cityValue {text "TEMP" style dataStyle}
+		Label zipLbl {text "Zip Code"} Label zipValue {text "" style dataStyle}
+		Label cityLbl{text "City"} Label cityValue {text "" style dataStyle}
 		
 		Spacer Spacer
-		Label countryLbl {text "Country"} Label countryValue {text "TEMP" style dataStyle}
+		Label countryLbl {text "Country"} Label countryValue {text "" style dataStyle}
 		
 	}
 	
 	GridLayoutPane LatLoView (columns 4){
-		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
-		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
+		Label latLbl {text "Latitude"} Label latitudeValue {text "" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "" style dataStyle}
 
 	}
 	
@@ -87,20 +87,20 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 	}
 	
 	GridLayoutPane AddressView (columns 4) {
-		Label streetLbl {text "Street"} Label streetValue{text "TEMP" style dataStyle}
-		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "TEMP" style dataStyle}
+		Label streetLbl {text "Street"} Label streetValue{text "" style dataStyle}
+		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "" style dataStyle}
 		
-		Label zipLbl {text "Zip Code"} Label zipValue {text "TEMP" style dataStyle}
-		Label cityLbl{text "City"} Label cityValue {text "TEMP" style dataStyle}
+		Label zipLbl {text "Zip Code"} Label zipValue {text "" style dataStyle}
+		Label cityLbl{text "City"} Label cityValue {text "" style dataStyle}
 		
 		Spacer Spacer
-		Label countryLbl {text "Country"} Label countryValue{text "TEMP" style dataStyle}
+		Label countryLbl {text "Country"} Label countryValue{text "" style dataStyle}
 	}
 	
 	Spacer
 	GridLayoutPane LatLoView (columns 4){	
-		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
-		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
+		Label latLbl {text "Latitude"} Label latitudeValue {text "" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "" style dataStyle}
 		
 		// TODO: Values are never used!
 		Label descriptionLbl {text "Additional Description:" width 20%}
@@ -125,18 +125,18 @@ FlowLayoutPane ViewFeedback(vertical) {
 	
 	GridLayoutPane AddressData (columns 4){
 		
-		Label streetLbl {text "Street"} Label streetValue {text "TEMP" style dataStyle}
-		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "TEMP" style dataStyle}
+		Label streetLbl {text "Street"} Label streetValue {text "" style dataStyle}
+		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "" style dataStyle}
 		
-		Label zipLbl {text "Zip Code"} Label zipValue {text "TEMP" style dataStyle}
-		Label cityLbl {text "City"} Label cityValue {text "TEMP" style dataStyle}
+		Label zipLbl {text "Zip Code"} Label zipValue {text "" style dataStyle}
+		Label cityLbl {text "City"} Label cityValue {text "" style dataStyle}
 		
 		Spacer Spacer
-		Label countryLbl {text "Country"} Label countryValue {text "TEMP" style dataStyle}
+		Label countryLbl {text "Country"} Label countryValue {text "" style dataStyle}
 	
 		Spacer Spacer Spacer Spacer
-		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
-		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
+		Label latLbl {text "Latitude"} Label latitudeValue {text "" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "" style dataStyle}
 	}
 	
 	Spacer
@@ -145,7 +145,7 @@ FlowLayoutPane ViewFeedback(vertical) {
 		//TODO: Feedback and Description --> mappings
 		//TODO: Put Style dataStyle into every Data output Label
 		Label descriptionLbl {text"Description:" width 25%}
-		Label descriptionText {text "TEMP" width 75% style dataStyle}
+		Label descriptionText {text "" width 75% style dataStyle}
 		Label feedbackLbl {text"Feedback:" width 25%}
 		Label feedbackText {text "Thank you for your complaint!" width 75% style dataStyle}
 	} 
@@ -167,22 +167,22 @@ FlowLayoutPane ViewComplaint (vertical) {
 	Spacer
 	
 	GridLayoutPane AddressView (columns 4){
-		Label streetLbl {text "Street"} Label streetValue {text "TEMP" style dataStyle}
-		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "TEMP" style dataStyle}
+		Label streetLbl {text "Street"} Label streetValue {text "" style dataStyle}
+		Label streetNoLbl {text "Street Number"} Label streetNoValue {text "" style dataStyle}
 		
-		Label zipLbl {text "Zip Code"} Label zipValue {text "TEMP" style dataStyle}
-		Label cityLbl {text "City"} Label cityValue {text "TEMP" style dataStyle}
+		Label zipLbl {text "Zip Code"} Label zipValue {text "" style dataStyle}
+		Label cityLbl {text "City"} Label cityValue {text "" style dataStyle}
 		
 		Spacer Spacer
-		Label countryLbl {text "Country"} Label countryValue {text "TEMP" style dataStyle}
+		Label countryLbl {text "Country"} Label countryValue {text "" style dataStyle}
 		
 		Spacer Spacer Spacer Spacer
 		
-		Label latLbl {text "Latitude"} Label latitudeValue {text "TEMP" style dataStyle}
-		Label longLbl {text "Longitude"} Label longitudeValue {text "TEMP" style dataStyle}
+		Label latLbl {text "Latitude"} Label latitudeValue {text "" style dataStyle}
+		Label longLbl {text "Longitude"} Label longitudeValue {text "" style dataStyle}
 		
 		Label descriptionLbl {text"Description:" width 25%}
-		Label descriptionText {text "TEMP" width 75% style dataStyle}
+		Label descriptionText {text "" width 75% style dataStyle}
 		
 		Spacer Spacer
 		
@@ -208,7 +208,7 @@ FlowLayoutPane UpdateComplaint (vertical) {
 			type textarea
 		}
 		
-		Tooltip statusTip {text "Please choose a status for the complaint-issue." width 5%}
+		Tooltip statusTip {text "Please choose a status for the complaint issue." width 5%}
 		Label statusLbl {text "Status" width 20%}
 		OptionInput status {
 			options ComplaintStatus
