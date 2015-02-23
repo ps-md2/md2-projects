@@ -26,8 +26,6 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 
 import CurrentStateProject.backend.Config;
-import CurrentStateProject.backend.beans.WorkflowStateBean;
-import CurrentStateProject.backend.entities.WorkflowState;
 
 @Path("/upload")
 @Stateless
@@ -38,21 +36,24 @@ public class FileUploadWS {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
 			@FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetail,
-			@FormDataParam("path") String path) {
+			@FormDataParam("file") FormDataContentDisposition fileDetail) {
 
 		// Path format //10.217.14.97/Installables/uploaded/
-		System.out.println("path::" + path);
-		String uploadedFileLocation = path + fileDetail.getFileName();
+		
+		
+
 
 		// save it
 		try {
-			writeToFile(uploadedInputStream, uploadedFileLocation);
+			File targetLocation = File.createTempFile("upload-", "", Config.UPLOAD_FILE_STORAGE_PATH);
+			
+			writeToFile(uploadedInputStream, targetLocation);
 
-			String output = "File uploaded to : " + uploadedFileLocation;
+			String output = "File uploaded to : " + targetLocation;
 
 			return Response.ok().entity(output).header("MD2-Model-Version", Config.MODEL_VERSION).build();
 		} catch (IOException e) {
+			e.printStackTrace();
 			return Response.serverError().header("MD2-Model-Version", Config.MODEL_VERSION).build();
 		}
 
@@ -60,9 +61,9 @@ public class FileUploadWS {
 
 	// save uploaded file to new location
 	private void writeToFile(InputStream uploadedInputStream,
-			String uploadedFileLocation) throws IOException {
+			File uploadedFileLocation) throws IOException {
 
-		OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
+		OutputStream out = new FileOutputStream(uploadedFileLocation);
 		int read = 0;
 		byte[] bytes = new byte[1024];
 
@@ -72,27 +73,6 @@ public class FileUploadWS {
 		out.flush();
 		out.close();
 
-	}
-
-
-
-
-	@GET
-	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response get(@PathParam("id") String id) {
-		final WorkflowState workflowState = workflowStateBean
-				.getWorkflowState(id);
-
-		if (workflowState != null) {
-			return Response.ok()
-					.entity(new GenericEntity<WorkflowState>(workflowState) {
-					}).header("MD2-Model-Version", Config.MODEL_VERSION)
-					.build();
-		} else {
-			return Response.status(404)
-					.header("MD2-Model-Version", Config.MODEL_VERSION).build();
-		}
 	}
 
 }
