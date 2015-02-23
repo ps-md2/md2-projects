@@ -72,9 +72,9 @@ public class Config {
 		
 		// Coming from ReceiveFeedback
 		innerMap = new HashMap<String, String>();
-		innerMap.put("EndOfProcessEvent", "LocationDetection");
+		innerMap.put("EndOfProcessEvent", "_terminate");
 		map.put("ReceiveFeedback", innerMap);
-		
+
 		return map;
 	}
 }

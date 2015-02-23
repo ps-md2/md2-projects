@@ -37,7 +37,7 @@ public class WorkflowStateBean {
 		}
 		for(String s:wfes)
 		{
-			TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.currentWorkflowElement = :wfe", WorkflowState.class)
+			TypedQuery<WorkflowState> query = em.createQuery("SELECT ws FROM WorkflowState ws WHERE ws.currentWorkflowElement = :wfe AND ws.finished = false" , WorkflowState.class)
 				.setParameter("wfe", s);
 			states.addAll(query.getResultList());
 		}
@@ -75,15 +75,21 @@ public class WorkflowStateBean {
 		
 		WorkflowState ws = getWorkflowState(instanceId);
 		if(ws == null){
-			WorkflowState workflowState = new WorkflowState(lastEventFired, instanceId, succeedingWfe, contentProviderIds);
-			em.persist(workflowState);
+			ws = new WorkflowState(lastEventFired, instanceId, succeedingWfe, contentProviderIds);
+			if (succeedingWfe.equals("_terminate")) {
+				ws.setFinished();
+			}
+			em.persist(ws);
 		}
+
 		else {
 			// set to succeeding workflow element -- i.e. describe, what status the instance is in now.
 			ws.setCurrentWorkflowElement(succeedingWfe);
 			ws.setLastEventFired(lastEventFired); // in fact, this information is useless, but probably nice for display :)
 			ws.setContentProviderIds(contentProviderIds);
-			
+			if (succeedingWfe.equals("_terminate")) {
+				ws.setFinished();
+			}
 			em.merge(ws);
 		}
 		return ws;
