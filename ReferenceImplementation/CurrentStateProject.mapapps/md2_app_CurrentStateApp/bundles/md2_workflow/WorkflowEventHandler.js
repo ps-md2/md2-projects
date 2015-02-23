@@ -52,6 +52,7 @@ function(declare, Hash) {
             {
             var currentController = this.instance.controllers.get("md2.wfe.ReceiveFeedback.Controller");
             this.workflowStateHandler.fireEventToBackend(event, workflowelement, currentController, currentController.getTransactionId());
+            this.resetAll();
             }
 
             
