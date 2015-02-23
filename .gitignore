@@ -9,6 +9,7 @@ Thumbs.db
 */src-gen/
 
 # all class files
+build/
 *.class
 
 # User specific files and folders of Xcode
