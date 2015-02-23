@@ -1,0 +1,20 @@
+{
+    "Bundle-SymbolicName": "md2_models",
+    "Bundle-Name": "adminApp models",
+    "Bundle-Description": "Generated MD2 bundle: models of adminApp",
+            "Bundle-Version": "2.0",
+            "Bundle-Localization": [],
+            "Bundle-Main": "",
+    "Require-Bundle": [
+        {
+            "name": "md2_runtime"
+        }
+    ],
+    "Components": [
+        {
+            "name": "Models",
+            "provides": ["md2.app.adminApp.Models", "md2.Models"],
+            "instanceFactory": true
+        }
+    ]
+}
