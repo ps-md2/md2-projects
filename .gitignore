@@ -8,6 +8,9 @@ Thumbs.db
 # gen directories of our projects
 */src-gen/
 
+# all class files
+*.class
+
 # User specific files and folders of Xcode
 project.xcworkspace/
 xcuserdata/
