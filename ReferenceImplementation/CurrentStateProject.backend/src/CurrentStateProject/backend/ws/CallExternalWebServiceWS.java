@@ -92,7 +92,7 @@ public class CallExternalWebServiceWS {
 	public Response postMethod(@QueryParam("float1") float float1, @QueryParam("float2") float float2,
 			@QueryParam("float3") float float3) {
 	  try {
-			URL url = new URL("http://localhost:8080/ReferenceProject.backend/service/workflowState/");
+			URL url = new URL("http://localhost:8080/CurrentStateProject.backend/service/externalDummyWS/sum?");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
