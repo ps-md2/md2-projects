@@ -34,6 +34,7 @@ public class ExternalDummyService {
 		
 		return Response
 				.ok()
+				.entity(sum)
 				.header("MD2-Model-Version", Config.MODEL_VERSION)
 				.build();	
 		
