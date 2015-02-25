@@ -21,7 +21,7 @@ public class RequestDTO implements Serializable {
 	 * Provides all possible HTTP methods.
 	 * Can later be extended to support more types.
 	 */
-	protected enum RequestType {
+	public enum RequestType {
 		GET, POST, PUT, DELETE
 	}
 	

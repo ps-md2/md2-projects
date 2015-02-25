@@ -25,6 +25,9 @@ import javax.ws.rs.core.Response;
 
 import CurrentStateProject.backend.Config;
 import CurrentStateProject.backend.beans.ComplaintBean;
+import CurrentStateProject.backend.entities.RequestDTO;
+
+import CurrentStateProject.backend.entities.RequestDTO.RequestType;
 
 @Path("/externalWS")
 @Stateless
@@ -32,92 +35,86 @@ public class CallExternalWebServiceWS {
 
 
 	@POST
-	@Path("/callExternalWSGET")
+	@Path("/callExternalWS")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response getMethod(RequestDTO dto) {
 		Boolean responseOk = true;
 		int code = 0;
 		try {
-				HashMap<String,String> params;
-		  		URL url; 	
-		  		HttpURLConnection conn;
-				if(dto.getType().equals("GET"))	{
-				String urlParams = "";
+		  		URL url;
+		  		String type = dto.getRequestType().name();
 
-				for(Entry<String,String> entry: params.entrySet())
+		  		// build URL
+		  		switch(dto.getRequestType())
+		  		{
+		  		case GET:{
+		  		String urlParams = "?";
+
+				for(Entry<String,String> entry: dto.getParams().entrySet())
 				{
-					urlParams +="\"" + entry.getKey() + "\"=" + entry.getValue();		
+					urlParams += entry.getKey() + "=" + entry.getValue() + "&";		
 				}
-				
 				urlParams = urlParams.substring(0, urlParams.length()-1);
 				
-			  	url = new URL(dto.getURL() + urlParams);  	
-			  	conn = (HttpURLConnection) url.openConnection();
-				conn.setDoOutput(true);
-				conn.setRequestMethod("GET");
-				conn.setRequestProperty("Content-Type", "application/json");
+			  	url = new URL(dto.getUrl() + urlParams); 
+		  		}
+		  		break;
+		  		case POST: url = new URL(dto.getUrl());  	
+		  		break;
+		  		case PUT: url = new URL(dto.getUrl());  	
+		  		break;
+		  		case DELETE: url = new URL(dto.getUrl());
+		  		break;
+		  		default: url = new URL(dto.getUrl()); 	  	
 				}
-				
-				
-				if(conn.getResponseCode() != 200){
-					responseOk = false;
-				}
-							
-				BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-		 
-				String output;
-				System.out.println("Output from Server .... \n");
-				while ((output = br.readLine()) != null) {
-					System.out.println(output);
-				}
-				code = conn.getResponseCode();
-				conn.disconnect();
-			
-		 
-			  } catch (MalformedURLException e) {
-		 
-				e.printStackTrace();
-		 
-			  } catch (IOException e) {
-		 
-				e.printStackTrace();
-		 
-			 }
-		  
-			if(responseOk){
-				return Response
-					.ok()
-					.header("MD2-Model-Version", Config.MODEL_VERSION)
-					.build();	
-			}
-			else{
-				return Response
-					.status(code) // TODO: Change status here
-					.header("MD2-Model-Version", Config.MODEL_VERSION)
-					.build();	
-			}
+		  		System.out.println(url);
 
-	}
-	
-	
-	
-	@POST
-	@Path("/callExternalWSGET")
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getMethod(@QueryParam("float1") float float1, @QueryParam("float2") float float2,
-			@QueryParam("float3") float float3) {
-		Boolean responseOk = true;
-		int code = 0;
-		try {
+	  			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				conn.setRequestMethod(type);
+				conn.setRequestProperty("Content-Type", "application/json");
+	  							
+		  		switch(dto.getRequestType())
+		  		{
+		  		case GET:
+		  		{
+		  			conn.setDoOutput(false);
+		  		}
+		  		break;
+		  		case POST: 
+		  		{
+					conn.setDoOutput(true);
+
+					String postParams = "[{";
+
+					for(Entry<String,String> entry: dto.getParams().entrySet())
+					{
+						postParams += "\""+ entry.getKey()+"\":\""+ entry.getValue() +"\",";
+					}
 					
-				String params = "float1=" + float1 + "&float2=" + float2 +"&float3=" + float3;
-			
-			  	URL url = new URL("http://localhost:8080/CurrentStateProject.backend/service/externalDummyWS/sum?"+params);  	
-			  	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setDoOutput(true);
-				conn.setRequestMethod("GET");
-				conn.setRequestProperty("Content-Type", "application/json");
-
+					postParams += "}]";
+					
+					OutputStream os = conn.getOutputStream();
+					os.write(postParams.getBytes());
+					os.flush();
+		  		} 	
+		  		break;
+		  		case PUT: 
+		  		{
+		  			
+		  		} 	
+		  		break;
+		  		case DELETE: 
+		  		{
+		  			
+		  		} 
+		  		break;
+		  		default: 
+		  		{
+		  			
+		  		} 	  	
+				}
+		  		
 				if(conn.getResponseCode() != 200){
 					responseOk = false;
 				}
@@ -131,17 +128,18 @@ public class CallExternalWebServiceWS {
 				}
 				code = conn.getResponseCode();
 				conn.disconnect();
-			
-		 
+
+		  		
 			  } catch (MalformedURLException e) {
-		 
+					 
 				e.printStackTrace();
 		 
 			  } catch (IOException e) {
 		 
 				e.printStackTrace();
 		 
-			 }
+			 }				
+		
 		  
 			if(responseOk){
 				return Response
@@ -158,53 +156,6 @@ public class CallExternalWebServiceWS {
 
 	}
 	
-	
-	@POST
-	@Path("/callExternalWSPOST")
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response postMethod(@QueryParam("float1") float float1, @QueryParam("float2") float float2,
-			@QueryParam("float3") float float3) {
-	  try {
-			URL url = new URL("http://localhost:8080/CurrentStateProject.backend/service/externalDummyWS/sum?");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
-
-			String input = "[{\"float1\":\""+ float1 +"\","
-					+ "\"float2\":\""+ float2 +"\","
-					+ "\"float3\":\"" + float3 + "\"}]";
-
-			OutputStream os = conn.getOutputStream();
-			os.write(input.getBytes());
-			os.flush();
-	 
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-	 
-			String output;
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
-	 
-			conn.disconnect();
-	 
-		  } catch (MalformedURLException e) {
-	 
-			e.printStackTrace();
-	 
-		  } catch (IOException e) {
-	 
-			e.printStackTrace();
-	 
-		 }
-		return Response
-				.ok()
-				.header("MD2-Model-Version", Config.MODEL_VERSION)
-				.build();	
-		}
-
 }
 	
 	
