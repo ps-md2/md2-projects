@@ -40,7 +40,7 @@ public class CallExternalWebServiceWS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response getMethod(RequestDTO dto) {
-		Boolean responseOk = true;
+		Boolean responseOk = false;
 		int code = 0;
 		try {
 			URL url;
