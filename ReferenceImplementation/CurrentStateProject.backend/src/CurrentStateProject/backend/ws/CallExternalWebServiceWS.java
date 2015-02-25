@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 
 import CurrentStateProject.backend.Config;
 import CurrentStateProject.backend.entities.RequestDTO;
-import CurrentStateProject.backend.entities.RequestDTO.RequestType;
+import CurrentStateProject.backend.entities.RequestDTO.RequestMethod;
 
 @Path("/externalWS")
 @Stateless
@@ -44,61 +44,42 @@ public class CallExternalWebServiceWS {
 		int code = 0;
 		try {
 			URL url;
-			RequestType type = dto.getRequestType();
-
-			// build URL
-			switch (type) {
-			case GET:
-				String urlParams = buildUrlParameters(dto.getParams());
+			RequestMethod type = dto.getRequestMethod();
+			
+			// Add query parameters to URL
+			if(dto.getQueryParams() != null){
+				String urlParams = buildUrlParameters(dto.getQueryParams());
 				url = new URL(dto.getUrl() + urlParams);
-				break;
-			case POST:
-				url = new URL(dto.getUrl());
-				break;
-			default:
+			} else {
 				url = new URL(dto.getUrl());
 			}
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod(type.toString());
-			conn.setRequestProperty("Content-Type", "application/json");
 			
-			// Add method-specific options and content
-			switch (type) {
-			case GET:
-				conn.setDoOutput(false);
-				break;
-			case POST:
+			if(type != RequestMethod.GET){
+				// Only support JSON-encoded body data
+				conn.setRequestProperty("Content-Type", "application/json");
 				conn.setDoOutput(true);
 				
-				// JSON-encode parameter HashMap
-				String postParams = JSONValue.toJSONString(dto.getParams());
-				
-				OutputStream os = conn.getOutputStream();
-				os.write(postParams.getBytes());
-				os.flush();
-				break;
-			case PUT:
-				break;
-			case DELETE:
-				break;
-			default:
-				break;
+				// JSON-encode body content
+				if(dto.getBody() != null){
+					String postParams = JSONValue.toJSONString(dto.getBody());
+					OutputStream os = conn.getOutputStream();
+					os.write(postParams.getBytes());
+					os.flush();
+				}
+			} else {
+				conn.setDoOutput(false);
 			}
-
-			if (conn.getResponseCode() != 200) {
-				responseOk = false;
-			}
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-
-			String output;
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
+			
+			// Check if request was successful
 			code = conn.getResponseCode();
+			responseOk = (code == 200);
+			
+			// TODO: Implement real logging of requests
+			printRequestResult(conn);
+			
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {
@@ -116,6 +97,12 @@ public class CallExternalWebServiceWS {
 		}
 	}
 	
+	/**
+	 * Creates a string containing URL parameters, that can be added to a normal URL.
+	 * Example: {"hello": "world", "example": 42} will return '?hello=world&example=42'
+	 * @param params a HashMap containing all query parameters
+	 * @return a String containing query parameters
+	 */
 	private String buildUrlParameters(HashMap<String, Object> params){
 		String urlParams = "?";
 
@@ -125,5 +112,24 @@ public class CallExternalWebServiceWS {
 		// remove trailing "&"
 		urlParams = urlParams.substring(0, urlParams.length() - 1);
 		return urlParams;
+	}
+	
+	/**
+	 * Prints the result of a HttpURLConnection
+	 * @param conn the HttpURLConnection
+	 * @throws IOException when the inputStream cannot be read
+	 */
+	private void printRequestResult(HttpURLConnection conn) throws IOException {
+		String output;
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+			System.out.println("Output from Server: \n");
+			while ((output = br.readLine()) != null) {
+				System.out.println(output);
+			}
+		} catch (IOException e) {
+			throw e;
+		}
 	}
 }

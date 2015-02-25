@@ -21,7 +21,7 @@ public class RequestDTO implements Serializable {
 	 * Provides all possible HTTP methods.
 	 * Can later be extended to support more types.
 	 */
-	public enum RequestType {
+	public enum RequestMethod {
 		GET, POST, PUT, DELETE
 	}
 	
@@ -29,10 +29,13 @@ public class RequestDTO implements Serializable {
 	protected String url;
 	
 	@XmlElement
-	protected RequestType requestType;
+	protected RequestMethod requestMethod;
 	
 	@XmlElement
-	protected HashMap<String, Object> params;
+	protected HashMap<String, Object> queryParams;
+	
+	@XmlElement
+	protected HashMap<String, Object> body;
 	
 	
 	/* Getter and Setter */
@@ -41,23 +44,15 @@ public class RequestDTO implements Serializable {
 		return url;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public RequestMethod getRequestMethod() {
+		return requestMethod;
 	}
 
-	public RequestType getRequestType() {
-		return requestType;
+	public HashMap<String, Object> getQueryParams() {
+		return queryParams;
 	}
 
-	public void setRequestType(RequestType requestType) {
-		this.requestType = requestType;
-	}
-
-	public HashMap<String, Object> getParams() {
-		return params;
-	}
-
-	public void setParams(HashMap<String, Object> params) {
-		this.params = params;
+	public HashMap<String, Object> getBody() {
+		return body;
 	}
 }
