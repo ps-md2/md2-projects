@@ -12,6 +12,7 @@ function(declare, _Entity) {
             loc: "Address",
             descriptions: "string",
             feedback: "string",
+            picture: "string",
             status: "ComplaintStatus"
         },
         
@@ -20,6 +21,7 @@ function(declare, _Entity) {
                 loc: null,
                 descriptions: this._typeFactory.create("string", null),
                 feedback: this._typeFactory.create("string", null),
+                picture: this._typeFactory.create("string", null),
                 status: this._typeFactory.create("ComplaintStatus", "VALUE0")
             };
         }
