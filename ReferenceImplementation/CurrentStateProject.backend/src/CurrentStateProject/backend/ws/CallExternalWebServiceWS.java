@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -28,6 +29,7 @@ import CurrentStateProject.backend.entities.RequestDTO.RequestMethod;
 @Stateless
 public class CallExternalWebServiceWS {
 	
+	private final static Logger LOGGER = Logger.getLogger(CallExternalWebServiceWS.class.getName());
 	
 	/**
 	 * Receives a json-encoded object containing a url, a REST method type and a set of parameters.
@@ -78,7 +80,7 @@ public class CallExternalWebServiceWS {
 			responseOk = (code == 200);
 			
 			// TODO: Implement real logging of requests
-			printRequestResult(conn);
+			logRequestResult(conn);
 			
 			conn.disconnect();
 
@@ -115,18 +117,18 @@ public class CallExternalWebServiceWS {
 	}
 	
 	/**
-	 * Prints the result of a HttpURLConnection
+	 * Logs the result of a HttpURLConnection
 	 * @param conn the HttpURLConnection
 	 * @throws IOException when the inputStream cannot be read
 	 */
-	private void printRequestResult(HttpURLConnection conn) throws IOException {
+	private void logRequestResult(HttpURLConnection conn) throws IOException {
 		String output;
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
-			System.out.println("Output from Server: \n");
+			LOGGER.info("Server response content:");
 			while ((output = br.readLine()) != null) {
-				System.out.println(output);
+				LOGGER.info(output);
 			}
 		} catch (IOException e) {
 			throw e;
