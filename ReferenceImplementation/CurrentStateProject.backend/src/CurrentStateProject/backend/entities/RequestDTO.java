@@ -32,7 +32,7 @@ public class RequestDTO implements Serializable {
 	protected RequestType requestType;
 	
 	@XmlElement
-	protected HashMap<String, String> params;
+	protected HashMap<String, Object> params;
 	
 	
 	/* Getter and Setter */
@@ -53,11 +53,11 @@ public class RequestDTO implements Serializable {
 		this.requestType = requestType;
 	}
 
-	public HashMap<String, String> getParams() {
+	public HashMap<String, Object> getParams() {
 		return params;
 	}
 
-	public void setParams(HashMap<String, String> params) {
+	public void setParams(HashMap<String, Object> params) {
 		this.params = params;
 	}
 }

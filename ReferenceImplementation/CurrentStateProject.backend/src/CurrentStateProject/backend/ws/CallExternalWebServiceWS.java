@@ -1,5 +1,7 @@
 package CurrentStateProject.backend.ws;
 
+import org.json.simple.JSONValue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,7 +52,7 @@ public class CallExternalWebServiceWS {
 		  		case GET:
 			  		String urlParams = "?";
 	
-					for(Entry<String,String> entry: dto.getParams().entrySet()) {
+					for(Entry<String, Object> entry: dto.getParams().entrySet()) {
 						urlParams += entry.getKey() + "=" + entry.getValue() + "&";		
 					}
 					// remove trailing &
@@ -76,13 +78,8 @@ public class CallExternalWebServiceWS {
 		  		case POST: 
 					conn.setDoOutput(true);
 
-					String postParams = "[{";
-
-					for(Entry<String,String> entry: dto.getParams().entrySet()) {
-						postParams += "\""+ entry.getKey()+"\":\""+ entry.getValue() +"\",";
-					}
-					
-					postParams += "}]";
+					String postParams = JSONValue.toJSONString(dto.getParams());
+					System.out.println(postParams);
 					
 					OutputStream os = conn.getOutputStream();
 					os.write(postParams.getBytes());
@@ -90,7 +87,7 @@ public class CallExternalWebServiceWS {
 					break;
 		  		case PUT:  	
 		  			break;
-		  		case DELETE: 
+		  		case DELETE:
 		  			break;
 		  		default: 
 		  			break;
@@ -99,7 +96,7 @@ public class CallExternalWebServiceWS {
 				if(conn.getResponseCode() != 200){
 					responseOk = false;
 				}
-							
+				
 				BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 		 
 				String output;
