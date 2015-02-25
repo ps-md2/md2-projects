@@ -43,52 +43,42 @@ public class CallExternalWebServiceWS {
 		int code = 0;
 		try {
 		  		URL url;
-		  		String type = dto.getRequestType().name();
+		  		RequestType type = dto.getRequestType();
 
 		  		// build URL
-		  		switch(dto.getRequestType())
-		  		{
-		  		case GET:{
-		  		String urlParams = "?";
-
-				for(Entry<String,String> entry: dto.getParams().entrySet())
-				{
-					urlParams += entry.getKey() + "=" + entry.getValue() + "&";		
+		  		switch(type) {
+		  		case GET:
+			  		String urlParams = "?";
+	
+					for(Entry<String,String> entry: dto.getParams().entrySet()) {
+						urlParams += entry.getKey() + "=" + entry.getValue() + "&";		
+					}
+					// remove trailing &
+					urlParams = urlParams.substring(0, urlParams.length()-1);
+				  	url = new URL(dto.getUrl() + urlParams); 
+		  		
+				  	break;
+		  		case POST:
+		  			url = new URL(dto.getUrl());  	
+		  			break;
+		  		default:
+		  			url = new URL(dto.getUrl());
 				}
-				urlParams = urlParams.substring(0, urlParams.length()-1);
-				
-			  	url = new URL(dto.getUrl() + urlParams); 
-		  		}
-		  		break;
-		  		case POST: url = new URL(dto.getUrl());  	
-		  		break;
-		  		case PUT: url = new URL(dto.getUrl());  	
-		  		break;
-		  		case DELETE: url = new URL(dto.getUrl());
-		  		break;
-		  		default: url = new URL(dto.getUrl()); 	  	
-				}
-		  		System.out.println(url);
 
 	  			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setRequestMethod(type);
+				conn.setRequestMethod(type.toString());
 				conn.setRequestProperty("Content-Type", "application/json");
 	  							
-		  		switch(dto.getRequestType())
-		  		{
+		  		switch(dto.getRequestType()) {
 		  		case GET:
-		  		{
 		  			conn.setDoOutput(false);
-		  		}
-		  		break;
+		  			break;
 		  		case POST: 
-		  		{
 					conn.setDoOutput(true);
 
 					String postParams = "[{";
 
-					for(Entry<String,String> entry: dto.getParams().entrySet())
-					{
+					for(Entry<String,String> entry: dto.getParams().entrySet()) {
 						postParams += "\""+ entry.getKey()+"\":\""+ entry.getValue() +"\",";
 					}
 					
@@ -97,22 +87,13 @@ public class CallExternalWebServiceWS {
 					OutputStream os = conn.getOutputStream();
 					os.write(postParams.getBytes());
 					os.flush();
-		  		} 	
-		  		break;
-		  		case PUT: 
-		  		{
-		  			
-		  		} 	
-		  		break;
+					break;
+		  		case PUT:  	
+		  			break;
 		  		case DELETE: 
-		  		{
-		  			
-		  		} 
-		  		break;
+		  			break;
 		  		default: 
-		  		{
-		  			
-		  		} 	  	
+		  			break;
 				}
 		  		
 				if(conn.getResponseCode() != 200){
@@ -128,7 +109,6 @@ public class CallExternalWebServiceWS {
 				}
 				code = conn.getResponseCode();
 				conn.disconnect();
-
 		  		
 			  } catch (MalformedURLException e) {
 					 
@@ -153,7 +133,6 @@ public class CallExternalWebServiceWS {
 					.header("MD2-Model-Version", Config.MODEL_VERSION)
 					.build();	
 			}
-
 	}
 	
 }
