@@ -22,6 +22,7 @@ import CurrentStateProject.backend.Config;
 @Stateless
 public class FileUploadWS {
 
+
 	@POST
 	@Path("/file")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -31,15 +32,16 @@ public class FileUploadWS {
 
 		// save it
 		try {
-			File targetLocation = File.createTempFile("upload-", "", Config.UPLOAD_FILE_STORAGE_PATH);
+			File targetLocation = File.createTempFile(Config.UPLOAD_FILE_PREFIX, "", Config.UPLOAD_FILE_STORAGE_PATH);
 			
 			writeToFile(uploadedInputStream, targetLocation);
 
-			String output = "File uploaded to : " + targetLocation;
+			String output = targetLocation.getName().substring(Config.UPLOAD_FILE_PREFIX.length()); // get the generated part of the filename and return it to the server.
 
-			return Response.ok().entity(output).header("MD2-Model-Version", Config.MODEL_VERSION).build();
+			return Response.ok().entity("{\"name\": \""+output+"\"}").header("MD2-Model-Version", Config.MODEL_VERSION).build();
 		} catch (IOException e) {
 			e.printStackTrace();
+			// TODO alternativ: { "error" : "abcd" }
 			return Response.serverError().header("MD2-Model-Version", Config.MODEL_VERSION).build();
 		}
 

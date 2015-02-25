@@ -29,6 +29,9 @@ public class Config {
 	
 	public final static File UPLOAD_FILE_STORAGE_PATH = new File("c:/CurrentStateProject/");
 	
+	public static final String UPLOAD_FILE_PREFIX = "upload-";
+
+	
 	/**
 	 * provides a hashmap for filtering workflowelements by apps
 	 * setAppWorkflowElementRelationship : (App) --> (Wfe)*
