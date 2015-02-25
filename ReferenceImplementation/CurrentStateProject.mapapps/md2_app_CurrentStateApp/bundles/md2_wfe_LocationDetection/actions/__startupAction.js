@@ -25,6 +25,8 @@ function(declare, _Action) {
             var action08l = this.$.actionFactory.getCustomAction("MyLocationAction");
             action08l.execute();
             
+            var action08m = this.$.actionFactory.getCustomAction("CallWS");
+            action08m.execute();
         }
         
     });
