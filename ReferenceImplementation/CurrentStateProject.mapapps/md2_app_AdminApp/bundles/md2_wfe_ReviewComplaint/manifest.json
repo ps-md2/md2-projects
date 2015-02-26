@@ -312,6 +312,20 @@
                                     }
                                 },
                                 {
+                                    "type": "uploadimageoutput",
+                                    "field": "imageoutput",
+                                    "datatype": "string",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
+                                    "type": "spacer",
+                                    "cellStyle": {
+                                        "width": "100%"
+                                    }
+                                },
+                                {
                                     "type": "button",
                                     "title": "Continue",
                                     "field": "Next4",
