@@ -6,9 +6,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
@@ -42,6 +45,8 @@ public class CallExternalWebServiceWS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response getMethod(RequestDTO dto) {
+		
+		logRequest(dto);		
 		Boolean responseOk = false;
 		int code = 0;
 		try {
@@ -86,6 +91,8 @@ public class CallExternalWebServiceWS {
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+		} catch (ConnectException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -107,12 +114,16 @@ public class CallExternalWebServiceWS {
 	 */
 	private String buildUrlParameters(HashMap<String, Object> params){
 		String urlParams = "?";
-
-		for (Entry<String, Object> entry : params.entrySet()) {
-			urlParams += entry.getKey() + "=" + entry.getValue() + "&";
+		
+		try {
+			for (Entry<String, Object> entry : params.entrySet()) {
+				urlParams += URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue().toString(), "UTF-8") + "&";
+			}
+			// remove trailing "&"
+			urlParams = urlParams.substring(0, urlParams.length() - 1);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
-		// remove trailing "&"
-		urlParams = urlParams.substring(0, urlParams.length() - 1);
 		return urlParams;
 	}
 	
@@ -134,4 +145,15 @@ public class CallExternalWebServiceWS {
 			throw e;
 		}
 	}
+	
+	private void logRequest(RequestDTO dto){
+		LOGGER.info("New " + dto.getRequestMethod() + " request to " + dto.getUrl());
+		if(dto.getQueryParams() != null){
+			LOGGER.info("Query Params: " + dto.getQueryParams().toString());
+		}
+		if(dto.getBody() != null){
+			LOGGER.info("Body Params: " + dto.getBody().toString());
+		}
+	}
+	
 }
