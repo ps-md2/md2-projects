@@ -10,6 +10,10 @@ function(declare, _Action) {
         
         execute: function() {
             
+            var contentProvider0aw = this.$.contentProviderRegistry.getContentProvider("complaintProvider");
+            var widget0ax = this.$.widgetRegistry.getWidget("imageoutput");
+            this.$.dataMapper.map(widget0ax, contentProvider0aw, "picture");
+            
             var contentProvider0ai = this.$.contentProviderRegistry.getContentProvider("addressProvider");
             var widget0aj = this.$.widgetRegistry.getWidget("streetValue2");
             this.$.dataMapper.map(widget0aj, contentProvider0ai, "myStreet");

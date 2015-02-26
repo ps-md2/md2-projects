@@ -57,8 +57,9 @@
                                     }
                                 },
                                 {
-                                    "type": "simpleimage",
-                                    "src": "md2_app_", //TODO: fix url
+                                    "type": "uploadimageoutput",
+                                    "field": "imageoutput",
+                                    "datatype": "string",
                                     "cellStyle": {
                                         "width": "100%"
                                     }
