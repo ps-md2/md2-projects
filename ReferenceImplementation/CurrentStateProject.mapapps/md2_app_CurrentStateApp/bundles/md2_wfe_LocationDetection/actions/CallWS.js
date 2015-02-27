@@ -16,7 +16,7 @@ function(declare, _Action, lang) {
             }, {
                 "float1": 3.4, 
                 "float2": 22.4, 
-                "float3": lang.hitch(this, function(){return that.$.contentProviderRegistry.getContentProvider("addressProvider").getValue("myLatitude");})
+                "float3": lang.hitch(this, function(){return this.$.contentProviderRegistry.getContentProvider("addressProvider").getValue("myLatitude");})
             });
             this.$.eventRegistry.get("widget/onClick").registerAction(widget1337, action1337);
             
