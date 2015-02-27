@@ -35,7 +35,7 @@ public class CallExternalWebServiceWS {
 	private final static Logger LOGGER = Logger.getLogger(CallExternalWebServiceWS.class.getName());
 	
 	/**
-	 * Receives a json-encoded object containing a url, a REST method type and a set of parameters.
+	 * Receives a JSON-encoded object containing a URL, a REST method type and a set of parameters.
 	 * Based on this data, a new request is created.
 	 * @param dto contains the request data.
 	 * @return A response signaling success or failure of the request.
@@ -155,5 +155,4 @@ public class CallExternalWebServiceWS {
 			LOGGER.info("Body Params: " + dto.getBody().toString());
 		}
 	}
-	
 }
