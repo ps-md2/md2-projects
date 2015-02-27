@@ -29,7 +29,7 @@ WorkflowElement ReviewComplaint
 	
 WorkflowElement ReceiveFeedback
 	fires EndOfProcessEvent {
-		start LocationDetection // how do we end the workflow here?
+		end workflow // how do we end the workflow here?
 	}
 
 

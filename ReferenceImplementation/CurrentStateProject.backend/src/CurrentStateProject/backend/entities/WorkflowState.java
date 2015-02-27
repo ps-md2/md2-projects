@@ -50,6 +50,10 @@ public class WorkflowState implements Serializable {
 	@XmlElement(nillable=true)
 	protected String contentProviderIds; 
 	
+	@XmlElement(nillable=true)
+	protected boolean finished;
+
+	
 	///////////////////////////////////////
 	/// constructor
 	///////////////////////////////////////
@@ -63,6 +67,7 @@ public class WorkflowState implements Serializable {
 		this.lastEventFired = lastEventFired;
 		this.currentWorkflowElement = wfe;
 		this.contentProviderIds = contentProviderIds;
+		this.finished = false;
 	}
 	
 	///////////////////////////////////////
@@ -99,5 +104,14 @@ public class WorkflowState implements Serializable {
 	
 	public void setContentProviderIds(String contentProviderIds) {
 		this.contentProviderIds = contentProviderIds;
+	}
+	
+	public void setFinished(){
+		this.finished = true;
+	}
+
+	public boolean getFinished()
+	{
+		return this.finished;
 	}
 }
