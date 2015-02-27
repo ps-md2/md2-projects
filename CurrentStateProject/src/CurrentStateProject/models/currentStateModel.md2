@@ -5,6 +5,7 @@ entity Complaint {
 	descriptions : string(optional)
 	feedback : string(optional)
 	status : ComplaintStatus
+	picture : file(optional)
 }
 
 entity Address {

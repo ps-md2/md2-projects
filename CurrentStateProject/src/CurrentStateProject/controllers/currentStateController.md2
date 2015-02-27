@@ -1,13 +1,18 @@
 package CurrentStateProject.controllers
 
 main {
-	appVersion "1.0"
+	appVersion "1.0" 
 	modelVersion "1.0"
 	workflowManager WorkflowBackendConnection
-	defaultConnection CitizenAppRemoteConnection
+	defaultConnection CitizenAppRemoteConnection  
+	fileUploadConnection UploadConnection
 }
 remoteConnection WorkflowBackendConnection{
 	uri "http://localhost:8080/CurrentStateProject.backend/service/"
+}
+remoteConnection UploadConnection{
+	uri "http://localhost:8080/CurrentStateProject.backend/"
+	storagePath "C:/CurrentStateProject/"
 }
 
 remoteConnection CitizenAppRemoteConnection {
@@ -113,7 +118,8 @@ WorkflowElement Mediacapturing {
 	}
 	
 	action CustomAction init{
-		
+		map MediaCapturingView.navbar.UploadBtn to :ComplaintProvider.picture
+		map MediaCapturingView.imageoutput to :ComplaintProvider.picture
 	}
 	
 	action CustomAction next {
@@ -143,7 +149,7 @@ WorkflowElement SubmitComplaint {
 		map SubmitComplaintView.LatLoView.longitudeValue to :AddressProvider.myLongitude
 		map SubmitComplaintView.LatLoView.descriptionTxt to :ComplaintProvider.descriptions
 
-
+		map SubmitComplaintView.imageoutput to :ComplaintProvider.picture
 		
 		bind action next on SubmitComplaintView.submitComplaint.onClick
 		//bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
@@ -182,6 +188,8 @@ WorkflowElement ReviewComplaint {
 		map ViewComplaint.AddressView.longitudeValue to :AddressProvider.myLongitude
 		
 		map ViewComplaint.AddressView.descriptionText to :ComplaintProvider.descriptions
+		
+		map ViewComplaint.imageoutput to :ComplaintProvider.picture
 		
 		map UpdateComplaint.feedbackView.feedback to :ComplaintProvider.feedback
 		map UpdateComplaint.feedbackView.status to :ComplaintProvider.status
@@ -234,6 +242,8 @@ WorkflowElement ReceiveFeedback {
 		map ViewFeedback.AddressData.longitudeValue to :AddressProvider.myLongitude
 		
 		map ViewFeedback.feedbackData.descriptionText to :ComplaintProvider.descriptions
+		
+		map ViewComplaint.imageoutput to :ComplaintProvider.picture
 		
 		map ViewFeedback.feedbackData.feedbackText to :ComplaintProvider.feedback
 		
