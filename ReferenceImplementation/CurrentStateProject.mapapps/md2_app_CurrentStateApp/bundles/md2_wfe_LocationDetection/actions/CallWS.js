@@ -21,11 +21,10 @@ function(declare, _Action, lang) {
             this.$.eventRegistry.get("widget/onClick").registerAction(widget1337, action1337);
             
             var widget1338 = this.$.widgetRegistry.getWidget("Next2");
-            
             var action1338 = this.$.actionFactory.getWebServiceCallAction("http://psmd2.uni-muenster.de:8080/SendMail/api/mail/send/", "GET", {
-                "to": "andreas.fuchs@uni-muenster.de", 
-                "subject": "Hallo Andreas", 
-                "body": "Diese E-Mail stammt aus map.apps!" 
+                "to": "md2@trashmail.de",
+                "subject": "MD2 E-Mail", 
+                "body": "Diese E-Mail stammt aus md2/map.apps!" 
             }, {
             });
             this.$.eventRegistry.get("widget/onClick").registerAction(widget1338, action1338);
