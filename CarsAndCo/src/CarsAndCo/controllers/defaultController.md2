@@ -1,0 +1,158 @@
+package CarsAndCo.controllers
+
+/*
+ * Implement the controller here
+ */
+
+main {
+	appVersion "1.0"
+	modelVersion "1.0"
+	workflowManager WorkflowBackendConnection
+	defaultConnection DatingRemoteConnection
+}
+
+remoteConnection WorkflowBackendConnection{
+	uri "http://localhost:8080/Dating.backend/service/"
+}
+
+remoteConnection DatingRemoteConnection {
+	uri "http://localhost:8080/Dating.backend/service/"
+}
+
+contentProvider Candidate candidateProvider {
+	providerType DatingRemoteConnection
+}
+
+contentProvider Friend friendProvider {
+	providerType DatingRemoteConnection
+}
+
+WorkflowElement CreateProfile {
+	defaultProcessChain profileProcessChain
+	onInit{
+		init
+	}
+	
+	action CustomAction init {
+		map CreateProfileView.personalDataView.nameValue to :candidateProvider.lastname
+		map CreateProfileView.personalDataView.givenName to :candidateProvider.givenname
+		map CreateProfileView.personalDataView.email to :candidateProvider.email
+		map CreateProfileView.personalDataView.birthDate to :candidateProvider.birthday
+		map CreateProfileView.personalDataView.phone to :candidateProvider.phone
+		map CreateProfileView.aboutMe.interests to :candidateProvider.interests
+		map CreateProfileView.aboutMe.miscellaneous to :candidateProvider.miscellaneous
+		
+		bind action GoOn on CreateProfileView.Next.onClick
+	}
+
+	action CustomAction GoOn {
+		
+		call ContentProviderOperation (save :candidateProvider)
+		
+		if (ThanksView.inviteFriends equals true) {
+			call FireEvent(InviteFriendsEvent)
+		}
+		else {
+			call FireEvent(ProfileCreatedEvent)
+		}
+ 
+	}
+	
+	processChain profileProcessChain{
+	step profileData:
+		view CreateProfileView
+		proceed {on CreateProfileView.Next.onClick}
+	step uploadPhoto:
+		view UploadPhotosView
+		proceed {on UploadPhotosView.Next.onClick}
+	step thanks:
+		view ThanksView
+	}
+}
+
+WorkflowElement InviteFriends {
+	defaultProcessChain inviteChain
+	onInit{
+		init
+	}
+	
+	action CustomAction init{
+		map InviteFriendsView.friendNameValue to :friendProvider.givenname
+		map InviteFriendsView.friendEmailValue to :friendProvider.email
+		map InviteFriendsView.inviteTextValue to :friendProvider.invitationTxt
+		
+	}
+	
+	action CustomAction GoOn{
+		if (InviteFriendsView.inviteFriends equals true){
+			call FireEvent(InviteFriend)
+		}
+		else {call FireEvent(FinishedEvent)}
+	}
+	
+	
+	processChain inviteChain {
+	step inviteStep:
+		view InviteFriendsView
+	}
+}
+
+WorkflowElement inspectCandidate {
+	defaultProcessChain inspectChain
+	onInit {
+		init
+	}
+	
+	action CustomAction init{
+		map inspectCandidate.profileView.dataView.personalDataView.nameValue to :candidateProvider.lastname
+		map inspectCandidate.profileView.dataView.personalDataView.givenNameValue to :candidateProvider.givenname
+		map inspectCandidate.profileView.dataView.personalDataView.birthDateValue to :candidateProvider.birthday
+		map inspectCandidate.profileView.dataView.personalDataView.phoneValue to :candidateProvider.phone
+		map inspectCandidate.profileView.dataView.personalDataView.emailValue to :candidateProvider.email
+		
+		bind action accept on inspectCandidate.decisionPane.acceptBtn.onClick
+		bind action reject on inspectCandidate.decisionPane.rejectBtn.onClick
+	}
+	
+	action CustomAction accept {
+		call FireEvent (AcceptEvent)
+	}
+	
+	action CustomAction reject{
+		call FireEvent (RejectEvent)
+	}
+	
+	processChain inspectChain{
+		step inspectStep:
+			view inspectCandidate
+	}	
+}
+
+WorkflowElement receiveContact {
+	defaultProcessChain receiveChain
+	onInit{
+		init
+	}
+	
+	action CustomAction init {
+		bind action FireEvent(EndEvent) on ReceiveContactView.next.onClick
+	}
+	
+	processChain receiveChain{
+		step receiveStep:
+			view ReceiveContactView
+			
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+package CarsAndCo.workflows
+
+/*
+ * Implement the workflow here
+ */
+ 
+ WorkflowElement CreateProfile
+	fires ProfileCreatedEvent {
+		start inspectCandidate
+	}
+	fires InviteFriendsEvent {
+		start InviteFriends
+	}
+
+WorkflowElement InviteFriends
+	fires FinishedEvent{
+		start inspectCandidate
+	}
+	fires InviteFriend{
+		start InviteFriends
+	}
+	
+WorkflowElement inspectCandidate
+	fires AcceptEvent{
+		start receiveContact
+	}
+	fires RejectEvent {
+		start receiveContact //todo
+	}
+
+WorkflowElement receiveContact
+	fires EndEvent {
+		start receiveContact //todo
+	}
+	
+
+
+	
+App BoysApp {
+	WorkflowElements {
+		 CreateProfile (startable: "Create Dating Profile"), 
+		 InviteFriends,
+		 receiveContact
+	}
+	appName "BoysApp"
+}
+
+App GirlsApp{
+	WorkflowElements {
+		CreateProfile (startable: "Create Dating Profile"),
+		inspectCandidate
+		
+	}
+	appName "GirlsApp"
+}

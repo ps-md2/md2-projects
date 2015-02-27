@@ -1,0 +1,163 @@
+package CarsAndCo.views
+
+/*
+ * Implement the view here
+ */
+
+/////////////////////////////////////////////////////////////////////////////
+////////////////////girls' app///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+FlowLayoutPane  CreateProfileView (vertical) {
+	
+	Label TitleLbl {text "Create your Profile" style girlsheading}
+	Spacer
+	Label personalData {text "General Data" style girlssection}
+	Spacer
+	
+	GridLayoutPane personalDataView (columns 2){
+		TextInput nameValue {label "Name:"}
+		TextInput givenName {label "Given Name:"}
+		DateInput birthDate {label "Birthdate:"}
+		Spacer
+		TextInput phone {label "Phone:"}
+		TextInput email {label "Email:"}
+	}
+	
+	Label AboutMeLbl {text "AboutMe" style girlssection}
+	
+	FlowLayoutPane aboutMe (horizontal){
+		TextInput interests {type textarea label "Interests:"}
+		TextInput miscellaneous {type textarea label "Miscellaneous:"}
+	}
+	
+	Button Next {text "Next"}
+}
+
+FlowLayoutPane UploadPhotosView(vertical) {
+	
+	Label TitleLbl {text "Enrich your profile with personal pictures!" style girlsheading}
+	
+	GridLayoutPane picUploadView(columns 2){
+		Label pic1 {text "This is a picture upload"}
+		Label pic2 {text "This is a picture upload"}
+		Label pic3 {text "This is a picture upload"}
+		Label pic4 {text "This is a picture upload"}
+	}
+	Button Next {text "Finish"}
+}
+
+FlowLayoutPane ThanksView(vertical) {
+	
+	Label thanksLbl {text "Thank you for the creation of your profile, we now start searching for suited candidates!" style girlssection}
+	Spacer
+	Label shareLbl {text"You like our service? Invite a friend!"}
+	
+	BooleanInput inviteFriends {label "invite Friends?"}
+	
+	Button Next {text "Next"}
+}
+
+FlowLayoutPane InviteFriendsView (vertical) {
+	
+	Label TitleLbl {text "Invite a Friend!" style girlsheading}
+	Spacer
+	
+	TextInput friendNameValue {label "Name:"}
+	
+	TextInput friendEmailValue {label "Email:"}
+	
+	TextInput inviteTextValue {type textarea label "Invitation Text:"}
+		
+	BooleanInput inviteFriends {label "invite more Friends?"}
+	
+	Button Next {text "Next"}
+}
+
+FlowLayoutPane inspectCandidate (vertical) {
+	
+	Label TitleLbl {text "Get to know your perfect match!" style girlsheading}
+	Spacer
+	Label personalData {text "General Data" style girlssection}
+	Spacer
+	
+	FlowLayoutPane profileView(horizontal){
+		
+		FlowLayoutPane pictureView(vertical){
+			Image UploadImg1 {
+			src "defaultImage.png"
+			}
+				
+			Image UploadImg2 {
+			src "defaultImage.png"
+			}
+		}
+		
+		FlowLayoutPane dataView(vertical){
+		
+			GridLayoutPane personalDataView (columns 2){
+				Label nameLbl {text "Name:"} Label nameValue {text ""} 
+				Label givenNameLbl {text "Given Name:"} Label givenNameValue {text ""} 
+				Label birthDateLbl {text "Birthdate:"} Label birthDateValue {text ""} 
+				Label phoneLbl {text "Phone:"} Label phoneValue {text ""} 
+				Label emailLbl {text "Email:"} Label emailValue {text ""} 
+			}
+			
+			Label AboutMeLbl {text "AboutMe" style girlssection}
+		
+			GridLayoutPane aboutMe (columns 2){
+			Label interestsLbl {text "Interests:"} Label interestsValue {text ""}
+			Label miscellaneousLbl {text "Miscellaneous:"} Label miscellaneousValue {text ""}
+		}
+	}	
+	}
+	
+	FlowLayoutPane decisionPane (horizontal){
+		Button rejectBtn {text "No Interest"}
+		Button acceptBtn {text "Contact my Match"}
+	}
+}
+
+FlowLayoutPane sendData(vertical){
+	TextInput yourname {label "Your Name:"}
+	TextInput email {label "Your Email:"}
+	TextInput contactText {label "Your Text:"}
+}
+
+FlowLayoutPane ReceiveContactView (vertical){
+	
+	Label TitleLbl {text "Someone want to contact you!" style girlsheading}
+	Spacer
+	Label contactData {text "Contact your admirer via email or phone"}
+	Label phoneLbl {text "Phone"} Label phoneValue{text ""}
+	Label emailLbl {text "Email"} Label emailValue{text ""}
+	Spacer
+	Button next {text "OK"}
+	
+}
+
+/////////////////////////////////////////////////////////////////////////////
+////////////////////boys' app///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+style girlsheading{
+	fontSize 2.5
+	color maroon 
+	textStyle bold italic
+}
+style girlssection{
+	fontSize 1.5
+	color maroon
+	textStyle bold
+}
+
+style boysheading{
+	fontSize 2.5
+	color blue 
+	textStyle bold italic
+}
+style boyssection{
+	fontSize 1.5
+	color blue 
+	textStyle bold
+}
