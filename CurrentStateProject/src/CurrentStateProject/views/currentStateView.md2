@@ -70,21 +70,17 @@ FlowLayoutPane LocationVerifyView (vertical) {
 FlowLayoutPane MediaCapturingView (vertical) {
 	Label TitleLbl {text "Upload Photo" style heading} // better: As Title of Activity
 	GridLayoutPane navbar (columns 2){
-		Button UploadBtn {style button text "Upload File"}
+		FileUpload UploadBtn {style button text "Upload File"}
 		Button Next {style button text "Submit Media"}
 	}
-	Image UploadImg {
-		src "defaultImage.png"
-	}
+	UploadedImageOutput imageoutput
 	
 	//NavigationBar(Cancel, next)
 }
 
 FlowLayoutPane SubmitComplaintView (vertical) {
 	Label TitleLbl {text "Submit Complaint" style heading} // better: As Title of Activity
-	Image UploadImg {
-		src "uploadedImage.png"
-	}
+	UploadedImageOutput imageoutput
 	
 	GridLayoutPane AddressView (columns 4) {
 		Label streetLbl {text "Street"} Label streetValue{text "" style dataStyle}
@@ -141,6 +137,10 @@ FlowLayoutPane ViewFeedback(vertical) {
 	
 	Spacer
 	
+	UploadedImageOutput imageoutput
+	
+	Spacer 
+	
 	GridLayoutPane feedbackData (columns 2){
 		//TODO: Feedback and Description --> mappings
 		//TODO: Put Style dataStyle into every Data output Label
@@ -192,6 +192,11 @@ FlowLayoutPane ViewComplaint (vertical) {
 	}
 	
 	Spacer
+	
+	UploadedImageOutput imageoutput
+	
+	Spacer 
+	
 	Button Next4 {style button text "Continue"}	
 }
 

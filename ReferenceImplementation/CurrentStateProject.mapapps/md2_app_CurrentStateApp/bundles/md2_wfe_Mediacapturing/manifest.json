@@ -66,9 +66,11 @@
                                     ,
                                     "children": [
                                         {
-                                            "type": "button",
-                                            "title": "Upload File",
-                                            "field": "UploadBtn",
+                                            "type": "uploader",
+                                            "value": "File Upload",
+                                            "url": "http://localhost:9090/proxy?http://localhost:8080/CurrentStateProject.backend/service/upload/file",
+                                            "field": "fileupload",
+                                            "datatype": "string",
                                             "cellStyle": {
                                                 "width": "50%",
                                                 "font-weight": "bold",
@@ -90,8 +92,9 @@
                                     ]
                                 },
                                 {
-                                    "type": "simpleimage",
-                                    "src": "md2_app_", //TODO: fix url
+                                    "type": "uploadimageoutput",
+                                    "field": "imageoutput",
+                                    "datatype": "string",
                                     "cellStyle": {
                                         "width": "100%"
                                     }

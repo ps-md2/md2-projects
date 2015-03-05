@@ -64,6 +64,11 @@
             "WorkflowStateHandlerFactory": {
                     "appId": "md2_CurrentStateApp"
             }
+        }, 
+        "md2_formcontrols": {
+            "UploadImageOutputFactory": {
+                 "fileOutputServlet": "http://localhost:8080/CurrentStateProject.backend/DownloadFile"
+            }
         },
         "notifier": {
             "NotifierFactory": {

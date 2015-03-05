@@ -1,5 +1,6 @@
 package CurrentStateProject.backend;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class Config {
 	public final static HashMap<String, String[]> APP_WORKFLOWELEMENT_RELATIONSHIP = setAppWorkflowElementRelationship();
 
 	public final static HashMap<String, HashMap<String, String>> WORKFLOWELEMENT_EVENT_SUCCESSION = setAppWorkflowElementSuccession();
+	
+	public final static File UPLOAD_FILE_STORAGE_PATH = new File("c:/CurrentStateProject/");
+	
+	public static final String UPLOAD_FILE_PREFIX = "upload-";
+
 	
 	/**
 	 * provides a hashmap for filtering workflowelements by apps

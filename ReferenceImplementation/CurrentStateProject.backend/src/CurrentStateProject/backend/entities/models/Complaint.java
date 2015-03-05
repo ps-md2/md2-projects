@@ -38,6 +38,9 @@ public class Complaint implements Serializable {
 	protected String descriptions;
 	
 	@XmlElement(nillable=true)
+	private String picture;
+	
+	@XmlElement(nillable=true)
 	protected String feedback;
 	
 	@NotNull
@@ -83,6 +86,14 @@ public class Complaint implements Serializable {
 	
 	public void setStatus(ComplaintStatus status) {
 		this.status = status;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 }
