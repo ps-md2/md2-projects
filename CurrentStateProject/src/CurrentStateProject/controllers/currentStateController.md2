@@ -26,6 +26,26 @@ remoteConnection AdministrativeAppRemoteConnection{
 	key "5678"
 }
 
+externalWebService sendEmail {
+	url "http://psmd2.uni-muenster.de:8080/SendMail/api/mail/send/"
+	method GET
+	queryparams (
+		"to" : "md2@trashmail.de"
+		"subject" : "Map.Apps E-Mail"
+		"body" : "Diese E-Mail wurde aus md2 map.apps verschickt! Hooray!"
+	)
+}
+
+externalWebService dummyService {
+	url "http://localhost:8080/CurrentStateProject.backend/service/externalDummyWS/sum"
+	method POST
+	bodyparams (
+		"float1": 3.4
+		"float2": 22.4
+		"float3": :AddressProvider.myLatitude
+	)
+}
+
 contentProvider Complaint ComplaintProvider {
 	providerType CitizenAppRemoteConnection
 }
@@ -39,7 +59,8 @@ WorkflowElement LocationDetection{
 	onInit {
 		init,
 		buttonInit,
-		MyLocationAction
+		MyLocationAction,
+		callWS
 	}
 	
 	action CustomAction init{
@@ -59,6 +80,10 @@ WorkflowElement LocationDetection{
 		map LocationVerifyView.LatLoView.longitudeValue to :AddressProvider.myLongitude
 	}
 	
+	action CustomAction callWS {
+		bind action WebServiceCall dummyService on LocationVerifyView.Buttons.Next2.onClick
+		bind action WebServiceCall sendEmail on LocationVerifyView.Buttons.Next2.onClick
+	}
 	
 	 
 	action CustomAction buttonInit{
