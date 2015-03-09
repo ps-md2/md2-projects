@@ -1,18 +1,15 @@
-package CarsAndCo.views
+package DatingApp.views
 
 /*
  * Implement the view here
  */
 
-/////////////////////////////////////////////////////////////////////////////
-////////////////////girls' app///////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
 
 FlowLayoutPane  CreateProfileView (vertical) {
 	
-	Label TitleLbl {text "Create your Profile" style girlsheading}
+	Label TitleLbl {text "Create your Profile" style boysheading}
 	Spacer
-	Label personalData {text "General Data" style girlssection}
+	Label personalData {text "General Data" style boyssection}
 	Spacer
 	
 	GridLayoutPane personalDataView (columns 2){
@@ -24,7 +21,7 @@ FlowLayoutPane  CreateProfileView (vertical) {
 		TextInput email {label "Email:"}
 	}
 	
-	Label AboutMeLbl {text "AboutMe" style girlssection}
+	Label AboutMeLbl {text "AboutMe" style boyssection}
 	
 	FlowLayoutPane aboutMe (horizontal){
 		TextInput interests {type textarea label "Interests:"}
@@ -36,13 +33,19 @@ FlowLayoutPane  CreateProfileView (vertical) {
 
 FlowLayoutPane UploadPhotosView(vertical) {
 	
-	Label TitleLbl {text "Enrich your profile with personal pictures!" style girlsheading}
+	Label TitleLbl {text "Enrich your profile with personal pictures!" style boysheading}
 	
 	GridLayoutPane picUploadView(columns 2){
-		Label pic1 {text "This is a picture upload"}
-		Label pic2 {text "This is a picture upload"}
-		Label pic3 {text "This is a picture upload"}
-		Label pic4 {text "This is a picture upload"}
+		
+		FileUpload pic1 {
+			text "Upload a personal picture"
+			tooltip "Uploading a picture of you is important for finding a match!"		
+		}
+
+		FileUpload pic2 {
+			text "Upload a personal picture"
+			tooltip "Upload multiple pictures to show different facets of your personality!"
+		}
 	}
 	Button Next {text "Finish"}
 }
@@ -51,7 +54,7 @@ FlowLayoutPane ThanksView(vertical) {
 	
 	Label thanksLbl {text "Thank you for the creation of your profile, we now start searching for suited candidates!" style girlssection}
 	Spacer
-	Label shareLbl {text"You like our service? Invite a friend!"}
+	Label shareLbl {text"Do you like our service? Invite a friend!"}
 	
 	BooleanInput inviteFriends {label "invite Friends?"}
 	
@@ -60,7 +63,7 @@ FlowLayoutPane ThanksView(vertical) {
 
 FlowLayoutPane InviteFriendsView (vertical) {
 	
-	Label TitleLbl {text "Invite a Friend!" style girlsheading}
+	Label TitleLbl {text "Invite a Friend!" style boysheading}
 	Spacer
 	
 	TextInput friendNameValue {label "Name:"}
@@ -83,24 +86,16 @@ FlowLayoutPane inspectCandidate (vertical) {
 	
 	FlowLayoutPane profileView(horizontal){
 		
-		FlowLayoutPane pictureView(vertical){
-			Image UploadImg1 {
-			src "defaultImage.png"
-			}
-				
-			Image UploadImg2 {
-			src "defaultImage.png"
-			}
+		FlowLayoutPane pictureView(vertical){		
+			UploadedImageOutput pic1		
+			UploadedImageOutput pic2
 		}
 		
 		FlowLayoutPane dataView(vertical){
 		
 			GridLayoutPane personalDataView (columns 2){
-				Label nameLbl {text "Name:"} Label nameValue {text ""} 
 				Label givenNameLbl {text "Given Name:"} Label givenNameValue {text ""} 
-				Label birthDateLbl {text "Birthdate:"} Label birthDateValue {text ""} 
-				Label phoneLbl {text "Phone:"} Label phoneValue {text ""} 
-				Label emailLbl {text "Email:"} Label emailValue {text ""} 
+				Label birthDateLbl {text "Birthdate:"} Label birthDateValue {text ""}
 			}
 			
 			Label AboutMeLbl {text "AboutMe" style girlssection}
@@ -119,26 +114,33 @@ FlowLayoutPane inspectCandidate (vertical) {
 }
 
 FlowLayoutPane sendData(vertical){
+	Label TitleLbl {text "Please insert the contact information you want to send!" style girlsheading}
+	Spacer
 	TextInput yourname {label "Your Name:"}
 	TextInput email {label "Your Email:"}
-	TextInput contactText {label "Your Text:"}
+	TextInput phone {label "Your Phone:"}
+	TextInput contactText {label "Contact Text:"}
+	Spacer
+	Button sendBtn {text "Contact my Match!"}
 }
 
 FlowLayoutPane ReceiveContactView (vertical){
 	
-	Label TitleLbl {text "Someone want to contact you!" style girlsheading}
+	Label TitleLbl {text "Someone wants to contact you!" style boysheading}
 	Spacer
-	Label contactData {text "Contact your admirer via email or phone"}
-	Label phoneLbl {text "Phone"} Label phoneValue{text ""}
-	Label emailLbl {text "Email"} Label emailValue{text ""}
+	GridLayoutPane contact (columns 2){
+		Label nameLbl {text "Candidate Name:"} Label nameValue {text ""}
+		Label contactTextLbl {text "Contact Message:"} Label contactText {text ""}
+		Spacer Spacer
+		Label contactData {text "Contact your admirer via email or phone" style boyssection}
+		Label phoneLbl {text "Phone:"} Label phoneValue{text ""}
+		Label emailLbl {text "Email:"} Label emailValue{text ""} 
+	}
 	Spacer
 	Button next {text "OK"}
 	
 }
 
-/////////////////////////////////////////////////////////////////////////////
-////////////////////boys' app///////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
 
 style girlsheading{
 	fontSize 2.5

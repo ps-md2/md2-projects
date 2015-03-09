@@ -1,4 +1,4 @@
-package CarsAndCo.controllers
+package DatingApp.controllers
 
 /*
  * Implement the controller here
@@ -9,6 +9,7 @@ main {
 	modelVersion "1.0"
 	workflowManager WorkflowBackendConnection
 	defaultConnection DatingRemoteConnection
+	fileUploadConnection FileUploadConnection
 }
 
 remoteConnection WorkflowBackendConnection{
@@ -19,10 +20,17 @@ remoteConnection DatingRemoteConnection {
 	uri "http://localhost:8080/Dating.backend/service/"
 }
 
+remoteConnection FileUploadConnection{
+	uri "http://localhost:8080/Dating.backend/service/"
+	storagePath "C:\\Fileupload"
+}
+
 contentProvider Candidate candidateProvider {
 	providerType DatingRemoteConnection
 }
-
+contentProvider ContactInfo contactProvider{
+	providerType DatingRemoteConnection
+}
 contentProvider Friend friendProvider {
 	providerType DatingRemoteConnection
 }
@@ -41,22 +49,24 @@ WorkflowElement CreateProfile {
 		map CreateProfileView.personalDataView.phone to :candidateProvider.phone
 		map CreateProfileView.aboutMe.interests to :candidateProvider.interests
 		map CreateProfileView.aboutMe.miscellaneous to :candidateProvider.miscellaneous
+		map UploadPhotosView.picUploadView.pic1 to :candidateProvider.picture1
+		map UploadPhotosView.picUploadView.pic2 to :candidateProvider.picture2
 		
-		bind action GoOn on CreateProfileView.Next.onClick
+		bind action GoOn on ThanksView.Next.onClick
 	}
 
-	action CustomAction GoOn {
-		
-		call ContentProviderOperation (save :candidateProvider)
-		
+	action CustomAction GoOn {	
 		if (ThanksView.inviteFriends equals true) {
 			call FireEvent(InviteFriendsEvent)
 		}
 		else {
 			call FireEvent(ProfileCreatedEvent)
 		}
- 
-	}
+ 	}
+ 	action CustomAction saveAction {
+ 		call ContentProviderOperation (save :candidateProvider)		
+ 		call DisplayMessage ("Your profile has been saved successfully")
+ 	}
 	
 	processChain profileProcessChain{
 	step profileData:
@@ -64,7 +74,7 @@ WorkflowElement CreateProfile {
 		proceed {on CreateProfileView.Next.onClick}
 	step uploadPhoto:
 		view UploadPhotosView
-		proceed {on UploadPhotosView.Next.onClick}
+		proceed {on UploadPhotosView.Next.onClick then saveAction}
 	step thanks:
 		view ThanksView
 	}
@@ -81,15 +91,20 @@ WorkflowElement InviteFriends {
 		map InviteFriendsView.friendEmailValue to :friendProvider.email
 		map InviteFriendsView.inviteTextValue to :friendProvider.invitationTxt
 		
+		bind action GoOn on InviteFriendsView.Next.onClick
 	}
 	
 	action CustomAction GoOn{
+		
+		//TODO: here we need to send the email!
+		call DisplayMessage ("Your Invitation was sent successfully")
+		call ContentProviderOperation (save :friendProvider)
+		
 		if (InviteFriendsView.inviteFriends equals true){
 			call FireEvent(InviteFriend)
 		}
 		else {call FireEvent(FinishedEvent)}
 	}
-	
 	
 	processChain inviteChain {
 	step inviteStep:
@@ -104,17 +119,20 @@ WorkflowElement inspectCandidate {
 	}
 	
 	action CustomAction init{
-		map inspectCandidate.profileView.dataView.personalDataView.nameValue to :candidateProvider.lastname
 		map inspectCandidate.profileView.dataView.personalDataView.givenNameValue to :candidateProvider.givenname
 		map inspectCandidate.profileView.dataView.personalDataView.birthDateValue to :candidateProvider.birthday
-		map inspectCandidate.profileView.dataView.personalDataView.phoneValue to :candidateProvider.phone
-		map inspectCandidate.profileView.dataView.personalDataView.emailValue to :candidateProvider.email
+		map sendData.yourname to :contactProvider.myname
+		map sendData.email to :contactProvider.email
+		map sendData.phone to :contactProvider.phone
+		map sendData.contactText to :contactProvider.contactText
 		
-		bind action accept on inspectCandidate.decisionPane.acceptBtn.onClick
+		bind action accept on sendData.onClick
 		bind action reject on inspectCandidate.decisionPane.rejectBtn.onClick
 	}
 	
 	action CustomAction accept {
+		call ContentProviderOperation (save :contactProvider)
+		call DisplayMessage ("Your request was saved successfully")
 		call FireEvent (AcceptEvent)
 	}
 	
@@ -125,6 +143,9 @@ WorkflowElement inspectCandidate {
 	processChain inspectChain{
 		step inspectStep:
 			view inspectCandidate
+			proceed {on inspectCandidate.decisionPane.acceptBtn.onClick}
+		step sentDataStep:
+			view sendData
 	}	
 }
 
@@ -135,6 +156,11 @@ WorkflowElement receiveContact {
 	}
 	
 	action CustomAction init {
+		map ReceiveContactView.contact.nameValue to :contactProvider.myname
+		map ReceiveContactView.contact.emailValue to :contactProvider.email
+		map ReceiveContactView.contact.phoneValue to :contactProvider.phone
+		map ReceiveContactView.contact.contactText to :contactProvider.contactText
+		
 		bind action FireEvent(EndEvent) on ReceiveContactView.next.onClick
 	}
 	

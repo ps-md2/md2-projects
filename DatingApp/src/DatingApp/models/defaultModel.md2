@@ -1,4 +1,4 @@
-package CarsAndCo.models
+package DatingApp.models
 
 /*
  * Implement the model here
@@ -11,10 +11,17 @@ entity Candidate{
 	birthday : date
 	email : string
 	phone : string
-	picture1 : string
-	picture2 : string
+	picture1 : file
+	picture2 : file
 	interests : string
 	miscellaneous : string
+}
+
+entity ContactInfo{
+	myname : string
+	email : string
+	phone : string
+	contactText : string
 }
 
 entity Friend{

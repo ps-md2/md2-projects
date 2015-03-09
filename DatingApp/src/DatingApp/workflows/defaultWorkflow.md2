@@ -1,4 +1,4 @@
-package CarsAndCo.workflows
+package DatingApp.workflows
 
 /*
  * Implement the workflow here
@@ -25,12 +25,12 @@ WorkflowElement inspectCandidate
 		start receiveContact
 	}
 	fires RejectEvent {
-		start receiveContact //todo
+		end workflow
 	}
 
 WorkflowElement receiveContact
 	fires EndEvent {
-		start receiveContact //todo
+		end workflow
 	}
 	
 
