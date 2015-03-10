@@ -4,11 +4,11 @@ package CurrentStateProject.workflows
  * Implement the workflow here
  */
  
- WorkflowElement LocationDetection
+WorkflowElement LocationDetection (invokeable "startWithCoordinates")
 	fires LocationEvent {
 		start Mediacapturing
 	}
-	fires WithoutPhotoEvent{
+	fires WithoutPhotoEvent {
 		start SubmitComplaint
 	}
 	
@@ -29,7 +29,7 @@ WorkflowElement ReviewComplaint
 	
 WorkflowElement ReceiveFeedback
 	fires EndOfProcessEvent {
-		end workflow // how do we end the workflow here?
+		end workflow
 	}
 
 
@@ -46,7 +46,7 @@ App CurrentStateApp {
 
 App AdminApp {
 	WorkflowElements {
-		ReviewComplaint //(startable: "Review Complaint")
+		ReviewComplaint
 	}
 	appName "adminApp"
 }
