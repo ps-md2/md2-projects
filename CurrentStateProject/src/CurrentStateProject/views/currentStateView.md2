@@ -19,8 +19,8 @@ FlowLayoutPane LocationDetectionView (vertical) {
 		TextInput countryValue {label "Country: " tooltip "Please insert the name of your country."}
 		
 		Spacer Spacer
-		NumberInput latitudeValue {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below."}
-		NumberInput longitudeValue {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below."}
+		NumberInput latitudeValue {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below." places 6}
+		NumberInput longitudeValue {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below." places 6}
 	}	
 
 	Spacer
