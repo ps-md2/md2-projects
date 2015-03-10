@@ -6,26 +6,26 @@ package DatingApp.models
 
  
 entity Candidate{
-	lastname : string
+	lastname : string 
 	givenname : string
 	birthday : date
 	email : string
 	phone : string
-	picture1 : file
-	picture2 : file
-	interests : string
-	miscellaneous : string
+	picture1 : file (optional)
+	picture2 : file (optional)
+	interests : string (optional)
+	miscellaneous : string (optional)
 }
 
 entity ContactInfo{
-	myname : string
-	email : string
-	phone : string
-	contactText : string
+	myname : string (optional)
+	email : string (optional)
+	phone : string (optional)
+	contactText : string (optional)
 }
 
 entity Friend{
 	email: string
-	invitationTxt: string
-	givenname : string
+	invitationTxt: string (optional)
+	givenname : string (optional)
 }

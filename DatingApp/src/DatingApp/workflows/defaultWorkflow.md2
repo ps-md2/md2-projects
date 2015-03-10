@@ -49,7 +49,6 @@ App GirlsApp{
 	WorkflowElements {
 		CreateProfile (startable: "Create Dating Profile"),
 		inspectCandidate
-		
 	}
 	appName "GirlsApp"
 }

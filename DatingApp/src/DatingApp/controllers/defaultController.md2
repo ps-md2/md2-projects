@@ -7,22 +7,17 @@ package DatingApp.controllers
 main {
 	appVersion "1.0"
 	modelVersion "1.0"
-	workflowManager WorkflowBackendConnection
+	workflowManager DatingRemoteConnection
 	defaultConnection DatingRemoteConnection
 	fileUploadConnection FileUploadConnection
 }
 
-remoteConnection WorkflowBackendConnection{
-	uri "http://localhost:8080/Dating.backend/service/"
-}
-
 remoteConnection DatingRemoteConnection {
-	uri "http://localhost:8080/Dating.backend/service/"
+	uri "http://localhost:8080/DatingApp.backend/service/"
 }
-
 remoteConnection FileUploadConnection{
-	uri "http://localhost:8080/Dating.backend/service/"
-	storagePath "C:\\Fileupload"
+	uri "http://localhost:9090/proxy?http://localhost:8080/DatingApp.backend/"
+	storagePath "C:\\\\Fileupload"
 }
 
 contentProvider Candidate candidateProvider {
@@ -51,6 +46,8 @@ WorkflowElement CreateProfile {
 		map CreateProfileView.aboutMe.miscellaneous to :candidateProvider.miscellaneous
 		map UploadPhotosView.picUploadView.pic1 to :candidateProvider.picture1
 		map UploadPhotosView.picUploadView.pic2 to :candidateProvider.picture2
+		map UploadPhotosView.picUploadView.pic1display to :candidateProvider.picture1
+		map UploadPhotosView.picUploadView.pic2display to :candidateProvider.picture2
 		
 		bind action GoOn on ThanksView.Next.onClick
 	}
@@ -80,6 +77,16 @@ WorkflowElement CreateProfile {
 	}
 }
 
+externalWebService sendEmail {
+	url "http://psmd2.uni-muenster.de:8080/SendMail/api/mail/send/"
+	method GET
+	queryparams (
+		"to" : :friendProvider.email
+		"subject" : "Your perfect match!"
+		"body" : :friendProvider.invitationTxt
+	)
+}
+
 WorkflowElement InviteFriends {
 	defaultProcessChain inviteChain
 	onInit{
@@ -96,9 +103,9 @@ WorkflowElement InviteFriends {
 	
 	action CustomAction GoOn{
 		
-		//TODO: here we need to send the email!
 		call DisplayMessage ("Your Invitation was sent successfully")
 		call ContentProviderOperation (save :friendProvider)
+		call WebServiceCall sendEmail
 		
 		if (InviteFriendsView.inviteFriends equals true){
 			call FireEvent(InviteFriend)
@@ -121,6 +128,9 @@ WorkflowElement inspectCandidate {
 	action CustomAction init{
 		map inspectCandidate.profileView.dataView.personalDataView.givenNameValue to :candidateProvider.givenname
 		map inspectCandidate.profileView.dataView.personalDataView.birthDateValue to :candidateProvider.birthday
+		map inspectCandidate.profileView.pictureView.pic1 to :candidateProvider.picture1
+		map inspectCandidate.profileView.pictureView.pic2 to :candidateProvider.picture2
+		
 		map sendData.yourname to :contactProvider.myname
 		map sendData.email to :contactProvider.email
 		map sendData.phone to :contactProvider.phone
@@ -170,15 +180,6 @@ WorkflowElement receiveContact {
 			
 	}
 }
-
-
-
-
-
-
-
-
-
 
 
 

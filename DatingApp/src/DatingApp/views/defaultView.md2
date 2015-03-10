@@ -40,12 +40,14 @@ FlowLayoutPane UploadPhotosView(vertical) {
 		FileUpload pic1 {
 			text "Upload a personal picture"
 			tooltip "Uploading a picture of you is important for finding a match!"		
-		}
-
+		}		
+			
 		FileUpload pic2 {
 			text "Upload a personal picture"
 			tooltip "Upload multiple pictures to show different facets of your personality!"
 		}
+		UploadedImageOutput pic1display
+		UploadedImageOutput pic2display
 	}
 	Button Next {text "Finish"}
 }
