@@ -133,7 +133,12 @@ WorkflowElement LocationDetection{
 			reverse on LocationVerifyView.Buttons.Previous.onClick
 	}
 	
-	invokable at "coordinates" {
+	invokable at "coordinates" using POST {
+		:AddressProvider.myLatitude
+		:AddressProvider.myLongitude
+	}
+	
+	invokable at "coordinatesPut" using PUT {
 		:AddressProvider.myLatitude
 		:AddressProvider.myLongitude
 	}
