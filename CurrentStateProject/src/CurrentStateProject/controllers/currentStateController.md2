@@ -91,7 +91,6 @@ WorkflowElement LocationDetection{
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
 		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
 		bind action GoOn on LocationDetectionView.Navbar.Next.onClick
-		call Disable(LocationDetectionView.Navbar.PreviousDummy)
 		
 	}
 	
