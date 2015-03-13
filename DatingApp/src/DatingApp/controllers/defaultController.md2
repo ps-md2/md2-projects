@@ -17,7 +17,7 @@ remoteConnection DatingRemoteConnection {
 }
 remoteConnection FileUploadConnection{
 	uri "http://localhost:9090/proxy?http://localhost:8080/DatingApp.backend/"
-	storagePath "C:\\\\Fileupload"
+	storagePath "C:/Fileupload/"
 }
 
 contentProvider Candidate candidateProvider {
