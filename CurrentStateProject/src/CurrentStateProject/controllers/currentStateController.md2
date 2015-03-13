@@ -127,12 +127,7 @@ WorkflowElement LocationDetection{
 		:AddressProvider.myStreetNo
 		:AddressProvider.myCity
 		:AddressProvider.myPostalCode
-		default :ComplaintProvider.status = "Complaint has been handled by the administration" 
-	}
-	
-	invokable at "coordinatesPut" using PUT {
-		:AddressProvider.myLatitude
-		:AddressProvider.myLongitude
+		default :ComplaintProvider.status = "User is filling out complaint" 
 	}
 }
 
