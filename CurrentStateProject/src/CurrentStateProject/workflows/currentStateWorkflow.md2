@@ -11,6 +11,12 @@ package CurrentStateProject.workflows
 	fires WithoutPhotoEvent{
 		start SubmitComplaint
 	}
+	fires LDVCancelWorkflow {
+		end workflow
+	}
+	fires LVVCancelWorkflow {
+		end workflow
+	}
 	
 WorkflowElement Mediacapturing
 	fires MediacapturedEvent {
@@ -20,6 +26,9 @@ WorkflowElement Mediacapturing
 WorkflowElement SubmitComplaint
 	fires SubmitEvent {
 		start ReviewComplaint
+	}
+	fires CancelWorkflow {
+		end workflow
 	}
 
 WorkflowElement ReviewComplaint

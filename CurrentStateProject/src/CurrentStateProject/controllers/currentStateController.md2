@@ -90,6 +90,8 @@ WorkflowElement LocationDetection{
 		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
 		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
+		bind action FireEvent(LDVCancelWorkflow) on LocationDetectionView.Navbar.Cancel.onClick
+		bind action FireEvent(LVVCancelWorkflow) on LocationVerifyView.Buttons.Cancel2.onClick
 		bind action GoOn on LocationDetectionView.Navbar.Next.onClick
 		call Disable(LocationDetectionView.Navbar.PreviousDummy)
 		
@@ -177,6 +179,7 @@ WorkflowElement SubmitComplaint {
 		map SubmitComplaintView.imageoutput to :ComplaintProvider.picture
 		
 		bind action next on SubmitComplaintView.submitComplaint.onClick
+		bind action FireEvent(CancelWorkflow) on SubmitComplaintView.Cancel3.onClick
 		//bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
 		//variant for implementation without process chains:
 		//call GotoView (SubmitComplaintView)
