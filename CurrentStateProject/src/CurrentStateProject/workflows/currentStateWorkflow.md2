@@ -49,7 +49,7 @@ App CurrentStateApp {
 		SubmitComplaint,
 		ReceiveFeedback
 	}
-	appName "currentStateApp"
+	appName "Report a Deficiency"
 }
 
 
@@ -57,7 +57,7 @@ App AdminApp {
 	WorkflowElements {
 		ReviewComplaint
 	}
-	appName "adminApp"
+	appName "Reported Deficiencies (Administration)"
 }
 
 
