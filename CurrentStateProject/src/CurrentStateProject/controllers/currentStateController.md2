@@ -268,7 +268,7 @@ WorkflowElement ReceiveFeedback {
 		
 		map ViewFeedback.feedbackData.descriptionText to :ComplaintProvider.descriptions
 		
-		map ViewComplaint.imageoutput to :ComplaintProvider.picture
+		map ViewFeedback.imageoutput to :ComplaintProvider.picture
 		
 		map ViewFeedback.feedbackData.feedbackText to :ComplaintProvider.feedback
 		
