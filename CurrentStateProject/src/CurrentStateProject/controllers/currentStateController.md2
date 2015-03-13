@@ -3,7 +3,7 @@ package CurrentStateProject.controllers
 main {
 	appVersion "1.0" 
 	modelVersion "1.0"
-	workflowManager WorkflowBackendConnection
+	workflowManager CitizenAppRemoteConnection
 	defaultConnection CitizenAppRemoteConnection  
 	fileUploadConnection UploadConnection
 }
@@ -33,16 +33,6 @@ externalWebService sendEmail {
 		"to" : "md2@trashmail.de"
 		"subject" : "Map.Apps E-Mail"
 		"body" : "Diese E-Mail wurde aus md2 map.apps verschickt! Hooray!"
-	)
-}
-
-externalWebService dummyService {
-	url "http://localhost:8080/CurrentStateProject.backend/service/externalDummyWS/sum"
-	method POST
-	bodyparams (
-		"float1": 3.4
-		"float2": 22.4
-		"float3": :AddressProvider.myLatitude
 	)
 }
 
@@ -81,13 +71,11 @@ WorkflowElement LocationDetection{
 	}
 	
 	action CustomAction callWS {
-		bind action WebServiceCall dummyService on LocationVerifyView.Buttons.Next2.onClick
 		bind action WebServiceCall sendEmail on LocationVerifyView.Buttons.Next2.onClick
 	}
 	
 	 
 	action CustomAction buttonInit{
-		
 		bind action FireEvent(LocationEvent) on LocationVerifyView.Buttons.Next2.onClick
 		bind action FireEvent(WithoutPhotoEvent) on LocationVerifyView.Buttons.SkipUpload.onClick
 		bind action FireEvent(LDVCancelWorkflow) on LocationDetectionView.Navbar.Cancel.onClick
@@ -133,6 +121,15 @@ WorkflowElement LocationDetection{
 		step LocationVerify:
 			view LocationVerifyView
 			reverse on LocationVerifyView.Buttons.Previous.onClick
+	}
+	
+	invokable at "address" using POST {
+		set :ComplaintProvider.loc to :AddressProvider
+		:AddressProvider.myStreet
+		:AddressProvider.myStreetNo
+		:AddressProvider.myCity
+		:AddressProvider.myPostalCode
+		default :ComplaintProvider.status = "User is filling out complaint" 
 	}
 }
 
