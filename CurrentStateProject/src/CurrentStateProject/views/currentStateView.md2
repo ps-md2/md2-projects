@@ -19,19 +19,19 @@ FlowLayoutPane LocationDetectionView (vertical) {
 		TextInput countryValue {label "Country: " tooltip "Please insert the name of your country."}
 		
 		Spacer Spacer
-		NumberInput latitudeValue {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below." places 6}
-		NumberInput longitudeValue {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below." places 6}
+		NumberInput latitudeValue {label "Latitude:" tooltip "To get the value for latitude, use the My Location function down below." places 6 disabled true}
+		NumberInput longitudeValue {label "Longitude:" tooltip "To get the value for longitude, use the My Location function down below." places 6 disabled true}
 	}	
 
 	Spacer
 	
 	GridLayoutPane Navbar (columns 3){
 		Spacer
-		Button DetectLocationBtn {style disabledStyle text "My Location"}
+		Button DetectLocationBtn {style button text "My Location"}
 		Spacer
-		Button PreviousDummy {style disabledStyle text "Previous" disabled true} //TODO: Disabling of Buttons
+		Button PreviousDummy {style button text "Previous" disabled true}
 		Button Cancel {style button text "Cancel"} 
-		Button Next {style button text "Next" disabled false} //TODO: Disabling of Buttons
+		Button Next {style button text "Next" disabled false}
 	}
 	//NavigationBar(Cancel, next)
 }
@@ -103,7 +103,7 @@ FlowLayoutPane SubmitComplaintView (vertical) {
 		Tooltip descriptionTip {text "In this field, an additional description can be provided." width 5%}
 		TextInput descriptionTxt {
 			type textarea
-			width 75%
+			width 70%
 		}
 	}
 	
@@ -241,13 +241,6 @@ style button{
 	fontSize 1.2
 	color white
 	textStyle bold
-}
-
-style disabledStyle{
-	fontSize 1.2
-	//NOTE or TODO: COLORS OF BUTTON_LABELS CANNOT BE CHANGED!
-	color black
-	textStyle italic
 }
 
 style dataStyle{
