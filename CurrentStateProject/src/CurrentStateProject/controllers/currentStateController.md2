@@ -176,9 +176,6 @@ WorkflowElement SubmitComplaint {
 		
 		bind action next on SubmitComplaintView.submitComplaint.onClick
 		bind action FireEvent(CancelWorkflow) on SubmitComplaintView.Cancel3.onClick
-		//bind action FireEvent(SubmitEvent) on SubmitComplaintView.submitComplaint.onClick
-		//variant for implementation without process chains:
-		//call GotoView (SubmitComplaintView)
 	}
 	
 	action CustomAction next {
@@ -279,31 +276,3 @@ WorkflowElement ReceiveFeedback {
 		view ViewFeedback
 	}
 }
-
-
-//}
-//
-//
-//WorkflowElement ProcessMessage {
-//	onInit {
-//		map ProcessMessageView.ProceesmyStreetView.myStreetLbl to ComplaintProvider.Location.myStreet
-//		map ProcessMessageView.ProcessmyStreetView.myStreetNoLbl to ComplaintProvider.Location.myStreetNo
-//		map ProcessMessageView.ProcessmyCityView.zipLbl to ComplaintProvider.Location.myPostalCode
-//		map ProcessMessageView.ProcessmyCityView.myCityLbl to ComplaintProvider.Location.myCity
-//		map ProcessMessageView.myCountryLbl to ComplaintProvider.Location.myCountry
-//		map ProcessMessageView.ProcessLaloView.myLatitudeLbl to ComplaintProvider.Location.myLatitude
-//		map ProcessMessageView.ProcessLaloView.myLongitudeLbl to ComplaintProvider.Location.myLongitude
-//		map ProcessMessageView.UploadImg to ComplaintProvider.picture
-//		map ProcessMessageView.DescriptionTxt to ComplaintProvider.descriptions
-//		map ProcessMessageView.FeedbackTxt to ComplaintProvider.feedback
-//		map ProcessMessageView.complaintStatusDropdown to ComplaintProvider.status
-//		display ProcessMessageView
-//	}
-//	ProcessMessageView.NavigationBar.next {
-//			
-//		call DataAction(save ComplaintProvider)
-//		backToStartScreen
-//		fire UpdateStatusEvent
-//
-//	}
-//}
