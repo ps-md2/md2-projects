@@ -4,7 +4,7 @@ package CurrentStateProject.workflows
  * Implement the workflow here
  */
  
-WorkflowElement LocationDetection (invokeable)
+WorkflowElement LocationDetection (invokable)
 	fires LocationEvent {
 		start Mediacapturing
 	}
