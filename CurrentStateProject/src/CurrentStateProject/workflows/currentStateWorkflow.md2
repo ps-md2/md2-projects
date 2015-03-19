@@ -4,7 +4,7 @@ package CurrentStateProject.workflows
  * Implement the workflow here
  */
  
-WorkflowElement LocationDetection (invokable)
+WorkflowElement LocationDetection
 	fires LocationEvent {
 		start Mediacapturing
 	}
@@ -23,7 +23,7 @@ WorkflowElement Mediacapturing
 		start SubmitComplaint
 	}
 	
-WorkflowElement SubmitComplaint
+WorkflowElement SubmitComplaint (invokable "InvokedFromWS")
 	fires SubmitEvent {
 		start ReviewComplaint
 	}
