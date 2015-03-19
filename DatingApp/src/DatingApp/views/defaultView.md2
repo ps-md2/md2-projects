@@ -134,7 +134,7 @@ FlowLayoutPane ReceiveContactView (vertical){
 		Label nameLbl {text "Candidate Name:"} Label nameValue {text ""}
 		Label contactTextLbl {text "Contact Message:"} Label contactText {text ""}
 		Spacer Spacer
-		Label contactData {text "Contact your admirer via email or phone" style boyssection}
+		Label contactData {text "Contact your admirer via email or phone" style boyssection} Label space ("")
 		Label phoneLbl {text "Phone:"} Label phoneValue{text ""}
 		Label emailLbl {text "Email:"} Label emailValue{text ""} 
 	}
