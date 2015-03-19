@@ -54,7 +54,7 @@ FlowLayoutPane UploadPhotosView(vertical) {
 
 FlowLayoutPane ThanksView(vertical) {
 	
-	Label thanksLbl {text "Thank you for the creation of your profile, we now start searching for suited candidates!" style girlssection}
+	Label thanksLbl {text "Thank you for the creation of your profile, we now start searching for suited candidates!" style boyssection}
 	Spacer
 	Label shareLbl {text"Do you like our service? Invite a friend!"}
 	

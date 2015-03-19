@@ -15,7 +15,7 @@ main {
 remoteConnection DatingRemoteConnection {
 	uri "http://localhost:8080/DatingApp.backend/service/"
 }
-remoteConnection FileUploadConnection{
+remoteConnection FileUploadConnection {
 	uri "http://localhost:9090/proxy?http://localhost:8080/DatingApp.backend/"
 	storagePath "C:/Fileupload/"
 }
@@ -23,7 +23,7 @@ remoteConnection FileUploadConnection{
 contentProvider Candidate candidateProvider {
 	providerType DatingRemoteConnection
 }
-contentProvider ContactInfo contactProvider{
+contentProvider ContactInfo contactProvider {
 	providerType DatingRemoteConnection
 }
 contentProvider Friend friendProvider {
@@ -136,7 +136,7 @@ WorkflowElement inspectCandidate {
 		map sendData.phone to :contactProvider.phone
 		map sendData.contactText to :contactProvider.contactText
 		
-		bind action accept on sendData.onClick
+		bind action accept on sendData.sendBtn.onClick
 		bind action reject on inspectCandidate.decisionPane.rejectBtn.onClick
 	}
 	
