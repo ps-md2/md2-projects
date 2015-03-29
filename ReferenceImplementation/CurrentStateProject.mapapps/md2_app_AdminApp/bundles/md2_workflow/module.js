@@ -1,4 +1,0 @@
-define([
-    "ct/Stateful",
-    "./WorkflowEventHandler"
-], {});
