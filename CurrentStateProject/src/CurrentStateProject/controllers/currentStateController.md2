@@ -31,7 +31,7 @@ externalWebService sendEmail {
 	method GET
 	queryparams (
 		"to" : "md2@trashmail.de"
-		"subject" : "Map.Apps E-Mail"
+		"subject" : "map.apps E-Mail"
 		"body" : "Diese E-Mail wurde aus md2 map.apps verschickt! Hooray!"
 	)
 }
@@ -173,6 +173,7 @@ WorkflowElement SubmitComplaint {
 	
 	action CustomAction next {
 		set :ComplaintProvider.loc = :AddressProvider
+		set :ComplaintProvider.status = "VALUE1"
 		call ContentProviderOperation(save :AddressProvider)
 		call ContentProviderOperation(save :ComplaintProvider)
 		call FireEvent(SubmitEvent)
@@ -223,17 +224,22 @@ WorkflowElement ReviewComplaint {
 	
 	action CustomAction sendFeedback{
 		//set :ComplaintProvider.feedback = UpdateComplaint.Feedback
+		set :ComplaintProvider.status = "VALUE3"
 		call ContentProviderOperation(save :ComplaintProvider)
 		call DisplayMessage ("Changes saved!")
 		call FireEvent(ReviewEvent)
 	}
+	
 	
 	action CustomAction next{
 		bind action GoOn on ViewComplaint.Next4.onClick
 	}
 	
 	action CustomAction GoOn{
+		set :ComplaintProvider.status = "VALUE2"
 		if(ViewComplaint.AddressView.addFeedback equals false){
+			set :ComplaintProvider.status = "VALUE3"
+			call ContentProviderOperation(save :ComplaintProvider)
 			call FireEvent(ReviewEvent)
 		}
 	}
